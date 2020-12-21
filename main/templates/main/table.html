@@ -1,0 +1,96 @@
+<!--
+=========================================================
+ Light Bootstrap Dashboard - v2.0.1
+=========================================================
+
+ Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+ Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
+
+ Coded by Creative Tim
+
+=========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
+
+
+{% extends 'main/base.html' %}
+{% block content %}
+                        <div class="col-md-12">
+                          <div class="col-md-12 col-md-offset-0">
+
+                            <div class="fresh-table">
+                              <div class="card-header ">
+                                    {%if pageName == 'fitJobs' %}
+                                      <h4 class="card-title">{{ customer.fullName }}</h4>
+                                      <p class="card-category">Công việc phù hợp với khách hàng</p>
+                                    {% endif %}
+                                    {%if pageName == 'customers' %}
+                                      <h4 class="card-title"> Danh sách khách hàng </h4>
+                                    {% endif %}
+                                    {%if pageName == 'jobs' %}
+                                      <h4 class="card-title"> Danh sách ứng tuyển </h4>
+                                    {% endif %}
+                                    {%if pageName == 'tracking' %}
+                                      <h4 class="card-title"> Theo dõi thành viên </h4>
+                                    {% endif %}
+                                </div>
+                            <!--
+                              Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                              Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                            -->
+                              <div class="toolbar">
+                                <button id="alertBtn" class="btn btn-default">Alert</button>
+                              </div>
+
+                              <table id="fresh-table" class="table">
+                                <thead>
+                                  {% for hd in tableHeader %}
+                                    <th>{{ hd }}</th>
+                                  {% endfor %}
+                                  <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+                                </thead>
+                                <tbody>
+                                  {% if customers %}
+                                  {% for c in customers %}
+                                  <tr>
+                                      <td>{{ c.id }}</td>
+                                      <td><a href="{% url 'customerDetail' customer_id=c.id %}">{{ c.fullName }}</a></td>
+                                      <td>{{ c.phoneNumber }}</td>
+                                      <td>{{ c.currentJob }}</td>
+                                      <td>{{ c.status }}</td>
+                                      <td></td>
+                                  </tr>
+                                  {% endfor %}
+                                  {% endif %}
+
+
+                                  {% if jobs %}
+                                  {% for j in jobs %}
+                                  <tr>
+                                      <td>{{ j.country }}</td>
+                                      <td>{{ j.position }}</td>
+                                      <td>Level {{ j.education }}</td>
+                                      <td>{{ j.ielts }} </td>
+                                      <td>{{ j.available }}</td>
+                                      <td></td>
+                                  </tr>
+                                  {% endfor %}
+                                  {% endif %}
+                                  {% if pageName == 'tracking' %}
+                                  {% for track in tracks %}
+                                  <tr>
+                                    <td>{{ track.userName }}</td>
+                                    <td>{{ track.request }}</td>
+                                    <td>{{ track.date }}</td>
+                                    <td></td>
+                                  </tr>
+                                  {% endfor %}
+                                  {% endif %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+
+{% endblock %}
