@@ -6,10 +6,10 @@ class MyUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = User
-        fields = ('bio', 'birth_date', 'phoneNumber', 'position', 'profilePic')
+        fields = ('bio', 'birth_date', 'phoneNumber', 'position', 'address', 'profilePic')
 
 class MyUserChangeForm(UserChangeForm):
 
     class Meta(UserChangeForm):
         model = User
-        fields = ('bio', 'birth_date', 'phoneNumber', 'position', 'profilePic')
+        fields = ('bio', 'birth_date', 'phoneNumber', 'position', 'address', 'profilePic')

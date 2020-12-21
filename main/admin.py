@@ -17,7 +17,7 @@ class UserAdmin(OrigUserAdmin):
     form = MyUserChangeForm
     model = MyUser
     fieldsets = OrigUserAdmin.fieldsets + (
-            (None, {'fields': ('bio', 'birth_date', 'phoneNumber', 'position','profilePic')}),
+            (None, {'fields': ('bio', 'birth_date', 'phoneNumber', 'position', 'address','profilePic')}),
     ) #this will allow to change these fields in admin module
 
 class SaleSummaryAdmin(admin.ModelAdmin):
