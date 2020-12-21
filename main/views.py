@@ -7,8 +7,14 @@ from rest_framework.response import Response
 def trackingUser(user, path):
     tracking = Tracking.objects.create(userName=user.username, request=path)
     tracking.save()
+
 @login_required
 def index(request):
+    test = 20
+    return render(request, 'main/index.html', context={'test': test})
+
+@login_required
+def customers(request):
     trackingUser(request.user, request.get_full_path())
     pageName='customers'
     customers = Customer.objects.all()

@@ -29,6 +29,7 @@ urlpatterns = [
     path('jobs/', views.availableJobs,name='jobs'),
     path('tracks', views.tracking, name='tracking'),
     path('user/<int:userId>', views.userDetail, name='userDetail'),
+    path('customers/', views.customers, name='customers'),
     path('customer/<int:customer_id>', views.customerDetail,name='customerDetail'),
     path('customer/<int:customer_id>/jobs', views.fitJobs, name='customerFitJobs'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
