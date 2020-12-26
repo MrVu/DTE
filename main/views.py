@@ -13,7 +13,6 @@ def trackingUser(user, path):
     tracking.save()
 
 
-@login_required
 def index(request):
     universities = University.objects.all()[:4]
     return render(request, 'main/index.html', context={'universities': universities})
