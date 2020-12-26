@@ -22,18 +22,20 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(template_name='main/login.html',redirect_authenticated_user=True), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('', views.index,name='index'),
-    path('jobs/', views.availableJobs,name='jobs'),
-    path('tracks', views.tracking, name='tracking'),
-    path('user/<int:userId>', views.userDetail, name='userDetail'),
-    path('customers/', views.customers, name='customers'),
-    path('customer/<int:customer_id>', views.customerDetail,name='customerDetail'),
-    path('customer/<int:customer_id>/jobs', views.fitJobs, name='customerFitJobs'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('login/',
+                       auth_views.LoginView.as_view(template_name='main/login.html', redirect_authenticated_user=True),
+                       name='login'),
+                  path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+                  path('', views.index, name='index'),
+                  path('tracks', views.tracking, name='tracking'),
+                  path('user/<int:userId>', views.userDetail, name='userDetail'),
+                  path('customers/', views.customers, name='customers'),
+                  path('customer/<int:customer_id>', views.customerDetail, name='customerDetail'),
+                  path('universities/', views.universities, name='universities'),
+                  path('universities-filter/', views.universitiesFilter, name='universitiesFilter'),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

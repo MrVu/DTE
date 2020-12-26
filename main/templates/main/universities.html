@@ -1,0 +1,56 @@
+{% extends 'main/index_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="about_bg">
+        <div class="container">
+            {% include 'main/navbar.html' %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Điểm đến du học</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="admission_cources">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h2>Du học anh quốc</h2>
+                    <p>Du học Anh quốc luôn là lựa chọn ưu tiên của sinh viên quốc tế - Đây sẽ là cơ hội để được sinh
+                        sống và làm việc trong cái nôi của nền giáo dục hàng đầu thế giới. Với kinh nghiệm làm việc lâu
+                        năm và có chi nhánh văn phòng tại London, đội ngũ chuyên viên Đồng Thịnh tự tin đem đến cho bạn
+                        dịch vụ Tư vấn du học Anh quốc chuyên nghiệp & uy tín.</p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <div class="row">
+                {% for u in universities %}
+                    <div class="col-md-6">
+                        <a href="#" class="course_box">
+                            <img src="/media/{{ u.pic }}" class="img-fluid" alt="#">
+                            <div class="couse-desc-wrap">
+                                <h4>{{ u.universityName |truncatechars:30 }}</h4>
+                                <p>{{ u.description|truncatechars:100 }}</p>
+                            </div>
+
+                            <div class="course_duration">
+                                <ul>
+
+                                    <li>
+                                        <p>Duration</p><span>1 Year</span></li>
+                                    <li>
+                                        <p>Timing</p><span>10 am-2 pm</span></li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
