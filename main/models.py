@@ -94,10 +94,12 @@ class University(models.Model):
 
 class Level(models.Model):
     levelName = models.CharField(max_length=200, null=True,
-                                 choices=[('DH', 'Đại học'), ('SDH', 'Sau đại học'), ('TS', 'Thạc sĩ')])
+                                 choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ('Thạc sĩ', 'Thạc sĩ')])
     feeAYear = models.IntegerField(null=True)
-    ieltOverall = models.FloatField(null=True)
-    ieltsMin = models.FloatField(null=True)
+    ieltOverall = models.FloatField(null=True, choices=(
+    ('', 'IELTS Overall'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'), (7, '7.0')))
+    ieltsMin = models.FloatField(null=True, choices=(
+    ('', 'IELTS Minumum'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'), (7, '7.0')))
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 
     def __str__(self):

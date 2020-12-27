@@ -109,7 +109,7 @@
                             <img src="/media/{{ u.pic }}" class="img-fluid" alt="courses-img">
                             <div class="courses_box-img">
                                 <div class="courses-link-wrap">
-                                    <a href="#" class="course-link"><span>Chi tiết </span></a>
+                                    <a href="{% url 'university_detail' university_id=u.id %}" class="course-link"><span>Chi tiết </span></a>
                                     <a href="#" class="course-link"><span>Đăng ký </span></a>
                                 </div>
 
@@ -140,12 +140,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Upcoming Events</h2>
+                    <h2>Sự kiện</h2>
                     <div class="event-img">
                         <span class="event-img_date">06-Nov-17</span>
                         <img src="{% static 'img/upcoming-event-img.jpg' %}" class="img-fluid" alt="event-img">
                         <div class="event-img_title">
-                            <h3>Event Heading</h3>
+                            <h3>Tên sự kiện</h3>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
                                 has
                                 been the ...</p>
@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h2>Important Dates</h2>
+                    <h2>Thông tin</h2>
                     <div class="event-date-slide">
                         <div class="row">
                             <div class="col-md-12">

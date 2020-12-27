@@ -16,6 +16,6 @@ class MyUserChangeForm(UserChangeForm):
 
 class UniversitiesFilterForm(forms.Form):
     subjectName = forms.ModelChoiceField(empty_label='Chọn môn học',queryset=Subject.objects.all())
-    levelName = forms.ChoiceField(choices=(('','Cấp học'),('DH', 'Đại học'),('SDH', 'Sau đại học'),('TS', 'Thạc sĩ')))
+    levelName = forms.ChoiceField(choices=(('','Cấp học'),('Đại học', 'Đại học'),('Sau đại học', 'Sau đại học'),('Thạc sĩ', 'Thạc sĩ')))
     ieltsOverall = forms.ChoiceField(choices=(('','IELTS Overall'),(4,'4.0'),(4.5, '4.5'),(5,'5.0'),(5.5,'5.5'),(6,'6.0'),(6.5,'6.5'),(7,'7.0')))
     ieltsMin = forms.ChoiceField(choices=(('','IELTS Minimum'),(4,'4.0'),(4.5, '4.5'),(5,'5.0'),(5.5,'5.5'),(6,'6.0'),(6.5,'6.5'),(7,'7.0')))

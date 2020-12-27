@@ -31,7 +31,7 @@
             <div class="row">
                 {% for u in universities %}
                     <div class="col-md-6">
-                        <a href="#" class="course_box">
+                        <a href="{% url 'university_detail' university_id=u.id %}" class="course_box">
                             <img src="/media/{{ u.pic }}" class="img-fluid" alt="#">
                             <div class="couse-desc-wrap">
                                 <h4>{{ u.universityName |truncatechars:30 }}</h4>

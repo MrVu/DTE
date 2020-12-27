@@ -34,6 +34,7 @@ urlpatterns = [
                   path('customer/<int:customer_id>', views.customerDetail, name='customerDetail'),
                   path('universities/', views.universities, name='universities'),
                   path('universities-filter/', views.universitiesFilter, name='universitiesFilter'),
+                  path('universities/<int:university_id>', views.university_detail, name='university_detail'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

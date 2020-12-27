@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level
+from .models import Customer, User, Tracking, University, Level, Subject
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics
 from rest_framework.response import Response
@@ -28,7 +28,6 @@ def universitiesFilter(request):
                 Q(level__levelName=form.cleaned_data['levelName']) & Q(
                     level__ieltOverall__lte=form.cleaned_data['ieltsOverall']) & Q(
                     level__ieltsMin__lte=form.cleaned_data['ieltsMin']))
-            print(form.cleaned_data)
     return render(request, 'main/universitiesFilter.html',
                   context={'universitiesFilter': universitiesFilter, 'form': form})
 
@@ -36,6 +35,12 @@ def universitiesFilter(request):
 def universities(request):
     universities = University.objects.all()
     return render(request, 'main/universities.html', context={'universities': universities})
+
+
+def university_detail(request, university_id):
+    university = University.objects.get(id=university_id)
+    subjects = Subject.objects.filter(universities=university)
+    return render(request, 'main/universityDetail.html', context={'university': university, 'subjects': subjects})
 
 
 @login_required
