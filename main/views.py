@@ -24,9 +24,7 @@ def universitiesFilter(request):
     if request.method == 'POST':
         form = GuestCustomerForm(request.POST)
         if form.is_valid():
-            print('plaplapla')
             form.save()
-
             ielts_overall = float(form.cleaned_data['ielts_overall'])
             ielts_min = float(form.cleaned_data['ielts_min'])
             universities_filter = University.objects.filter(subjects=form.cleaned_data['subject']).filter(

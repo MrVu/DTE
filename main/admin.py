@@ -22,20 +22,6 @@ class UserAdmin(OrigUserAdmin):
     )  # this will allow to change these fields in admin module
 
 
-class SaleSummaryAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/sale_summary_change_list.html'
-
-    def changelist_view(self, request, extra_context=None):
-        users = User.objects.all()
-        extra_context = extra_context or {}
-        extra_context['users'] = users
-        response = super().changelist_view(
-            request,
-            extra_context=extra_context,
-        )
-        return response
-
-
 class CustomerAdmin(admin.ModelAdmin):
     search_fields = ['fullName']
     readonly_fields = ('thumbnail_preview',)
@@ -53,10 +39,6 @@ class TrackingAdmin(admin.ModelAdmin):
 
 class LevelInline(admin.TabularInline):
     model = Level
-
-
-class SubjectInline(admin.TabularInline):
-    model = Subject.universities.through
 
 
 class UniversityAdmin(admin.ModelAdmin):
