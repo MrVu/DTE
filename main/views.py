@@ -3,7 +3,7 @@ from .models import Customer, User, Tracking, University, Level, Subject
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics
 from rest_framework.response import Response
-from .forms import UniversitiesFilterForm
+from .forms import UniversitiesFilterForm, GuestCustomerForm
 from django.db.models import Q
 
 
@@ -19,17 +19,22 @@ def index(request):
 
 
 def universitiesFilter(request):
-    form = UniversitiesFilterForm()
-    universitiesFilter = None
+    form = GuestCustomerForm()
+    universities_filter = None
     if request.method == 'POST':
-        form = UniversitiesFilterForm(request.POST)
+        form = GuestCustomerForm(request.POST)
         if form.is_valid():
-            universitiesFilter = University.objects.filter(subjects=form.cleaned_data['subjectName']).filter(
-                Q(level__levelName=form.cleaned_data['levelName']) & Q(
-                    level__ieltOverall__lte=form.cleaned_data['ieltsOverall']) & Q(
-                    level__ieltsMin__lte=form.cleaned_data['ieltsMin']))
+            print('plaplapla')
+            form.save()
+
+            ielts_overall = float(form.cleaned_data['ielts_overall'])
+            ielts_min = float(form.cleaned_data['ielts_min'])
+            universities_filter = University.objects.filter(subjects=form.cleaned_data['subject']).filter(
+                Q(level__levelName=form.cleaned_data['level']) & Q(
+                    level__ieltOverall__lte=ielts_overall) & Q(
+                    level__ieltsMin__lte=ielts_min))
     return render(request, 'main/universitiesFilter.html',
-                  context={'universitiesFilter': universitiesFilter, 'form': form})
+                  context={'universities_filter': universities_filter, 'form': form})
 
 
 def universities(request):

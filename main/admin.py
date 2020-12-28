@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
-from .models import SaleSummary, Customer, Tracking, University, Level, Subject
+from .models import SaleSummary, Customer, Tracking, University, Level, Subject, GuestCustomer
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
@@ -68,8 +68,13 @@ class SubjectAdmin(admin.ModelAdmin):
     list_display = ['subjectName']
 
 
+class GuestCustomerAdmin(admin.ModelAdmin):
+    list_display = ['guest_name', 'email', 'phone_number']
+
+
 # admin.site.register(Level)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Tracking, TrackingAdmin)
 admin.site.register(University, UniversityAdmin)
 admin.site.register(Subject, SubjectAdmin)
+admin.site.register(GuestCustomer, GuestCustomerAdmin)

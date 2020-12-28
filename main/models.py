@@ -94,13 +94,40 @@ class University(models.Model):
 
 class Level(models.Model):
     levelName = models.CharField(max_length=200, null=True,
-                                 choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ('Thạc sĩ', 'Thạc sĩ')])
+                                 choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'),
+                                          ('Thạc sĩ', 'Thạc sĩ')])
     feeAYear = models.IntegerField(null=True)
     ieltOverall = models.FloatField(null=True, choices=(
-    ('', 'IELTS Overall'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'), (7, '7.0')))
+        ('', 'IELTS Overall'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'),
+        (7, '7.0')))
     ieltsMin = models.FloatField(null=True, choices=(
-    ('', 'IELTS Minumum'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'), (7, '7.0')))
+        ('', 'IELTS Minumum'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'),
+        (7, '7.0')))
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.levelName
+
+
+class GuestCustomer(models.Model):
+    subject = models.CharField(max_length=200, null=True)
+    guest_name = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=254, null=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    ielts_overall = models.CharField(max_length=20, null=True, choices=(
+        ('', 'IELTS trung bình'), ('4', '4.0'), ('4.5', '4.5'), ('5', '5.0'), ('5.5', '5.5'), ('6', '6.0'),
+        ('6.5', '6.5'),
+        ('7', '7.0')))
+    ielts_min = models.CharField(max_length=20, null=True, choices=(
+        ('', 'IELTS thấp nhất'), ('4', '4.0'), ('4.5', '4.5'), ('5', '5.0'), ('5.5', '5.5'), ('6', '6.0'),
+        ('6.5', '6.5'),
+        ('7', '7.0')))
+    level = models.CharField(max_length=50, null=True,
+                             choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ('Thạc sĩ', 'Thạc sĩ')])
+
+    def __str__(self):
+        return self.guest_name
+
+    class Meta:
+        verbose_name = 'Khách vãng lai'
+        verbose_name_plural = 'Khách vãng lai'
