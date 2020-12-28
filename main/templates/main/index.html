@@ -119,7 +119,7 @@
                         <div class="courses_icon">
                             <img src="{% static 'img/plus-icon.png' %}" class="img-fluid close-icon" alt="plus-icon">
                         </div>
-                        <a href="#" class="course-box-content">
+                        <a href="{% url 'university_detail' university_id=u.id %}" class="course-box-content">
                             <h3>{{ u.universityName |truncatechars:30}}</h3>
                             <p>{{ u.description|truncatechars:50}}</p>
                         </a>
