@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 from django.utils.html import mark_safe
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -78,10 +79,22 @@ class Subject(models.Model):
         verbose_name_plural = 'Môn học'
 
 
+class City(models.Model):
+    city_name = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.city_name
+
+    class Meta:
+        verbose_name = 'Thành phố'
+        verbose_name_plural = 'Thành phố'
+
+
 class University(models.Model):
     universityName = models.CharField(max_length=200, null=True)
+    cities = models.ManyToManyField(City)
     subjects = models.ManyToManyField(Subject, related_name='universities')
-    description = models.TextField(null=True)
+    description = RichTextField(null=True)
     pic = models.ImageField(null=True)
 
     def __str__(self):
@@ -89,7 +102,14 @@ class University(models.Model):
 
     class Meta:
         verbose_name = 'Trường'
-        verbose_name_plural = 'Trường'
+        verbose_name_plural = 'Quản lý trường'
+
+
+class Scholarship(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    value = models.IntegerField(null=True)
+    time = models.CharField(max_length=200)
+    uni = models.ForeignKey(University, on_delete=models.CASCADE)
 
 
 class Level(models.Model):
@@ -97,12 +117,12 @@ class Level(models.Model):
                                  choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'),
                                           ('Thạc sĩ', 'Thạc sĩ')])
     feeAYear = models.IntegerField(null=True)
-    ieltOverall = models.FloatField(null=True, choices=(
-        ('', 'IELTS Overall'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'),
-        (7, '7.0')))
+    ielts_overall = models.FloatField(null=True, choices=(
+        ('', 'IELTS Overall'), (4.0, '4.0'), (4.5, '4.5'), (5.0, '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
+        (7.0, '7.0')))
     ieltsMin = models.FloatField(null=True, choices=(
-        ('', 'IELTS Minumum'), (4, '4.0'), (4.5, '4.5'), (5, '5.0'), (5.5, '5.5'), (6, '6.0'), (6.5, '6.5'),
-        (7, '7.0')))
+        ('', 'IELTS Minumum'), (4.0, '4.0'), (4.5, '4.5'), (5.0, '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
+        (7.0, '7.0')))
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -111,23 +131,30 @@ class Level(models.Model):
 
 class GuestCustomer(models.Model):
     subject = models.CharField(max_length=200, null=True)
+    city_name = models.CharField(max_length=200, null=True)
     guest_name = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=254, null=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    ielts_overall = models.CharField(max_length=20, null=True, choices=(
-        ('', 'IELTS trung bình'), ('4', '4.0'), ('4.5', '4.5'), ('5', '5.0'), ('5.5', '5.5'), ('6', '6.0'),
-        ('6.5', '6.5'),
-        ('7', '7.0')))
-    ielts_min = models.CharField(max_length=20, null=True, choices=(
-        ('', 'IELTS thấp nhất'), ('4', '4.0'), ('4.5', '4.5'), ('5', '5.0'), ('5.5', '5.5'), ('6', '6.0'),
-        ('6.5', '6.5'),
-        ('7', '7.0')))
+    budget = models.BigIntegerField(null=True)
     level = models.CharField(max_length=50, null=True,
-                             choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ('Thạc sĩ', 'Thạc sĩ')])
+                             choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ])
 
     def __str__(self):
         return self.guest_name
 
     class Meta:
         verbose_name = 'Khách vãng lai'
-        verbose_name_plural = 'Khách vãng lai'
+        verbose_name_plural = 'Quản lý Khách vãng lai'
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    body = RichTextField(null=True)
+    date = models.DateTimeField(default=datetime.now, null=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Bài viết'
+        verbose_name_plural = 'Quản lý bài viết'

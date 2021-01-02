@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level, Subject
+from .models import Customer, User, Tracking, University, Level, Subject, Article
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics
 from rest_framework.response import Response
-from .forms import UniversitiesFilterForm, GuestCustomerForm
+from .forms import GuestCustomerForm
 from django.db.models import Q
 
 
@@ -14,25 +14,24 @@ def trackingUser(user, path):
 
 
 def index(request):
-    universities = University.objects.all()[:4]
-    return render(request, 'main/index.html', context={'universities': universities})
+    universities = University.objects.all()[:3]
+    articles = Article.objects.all()[:3]
+    return render(request, 'main/index.html', context={'universities': universities, 'articles': articles})
 
 
 def universitiesFilter(request):
     form = GuestCustomerForm()
-    universities_filter = None
+    unies = None
     if request.method == 'POST':
         form = GuestCustomerForm(request.POST)
         if form.is_valid():
             form.save()
-            ielts_overall = float(form.cleaned_data['ielts_overall'])
-            ielts_min = float(form.cleaned_data['ielts_min'])
-            universities_filter = University.objects.filter(subjects=form.cleaned_data['subject']).filter(
-                Q(level__levelName=form.cleaned_data['level']) & Q(
-                    level__ieltOverall__lte=ielts_overall) & Q(
-                    level__ieltsMin__lte=ielts_min))
+            unies = University.objects.filter(subjects=form.cleaned_data['subject']).filter(
+                cities=form.cleaned_data['cities']).filter(Q(level__levelName=form.cleaned_data['level']) & Q(
+                level__feeAYear__lte=form.cleaned_data['budget']))
+            print(unies)
     return render(request, 'main/universitiesFilter.html',
-                  context={'universities_filter': universities_filter, 'form': form})
+                  context={'unies': unies, 'form': form})
 
 
 def universities(request):
@@ -43,24 +42,7 @@ def universities(request):
 def university_detail(request, university_id):
     university = University.objects.get(id=university_id)
     subjects = Subject.objects.filter(universities=university)
-    return render(request, 'main/universityDetail.html', context={'university': university, 'subjects': subjects})
-
-
-@login_required
-def customers(request):
-    # trackingUser(request.user, request.get_full_path())
-    pageName = 'customers'
-    customers = Customer.objects.all()
-    tableHeader = ['ID', 'Full Name', 'Phone Number', 'Current Job', 'Status']
-    return render(request, 'main/table.html',
-                  context={'customers': customers, 'tableHeader': tableHeader, 'pageName': pageName})
-
-
-@login_required
-def customerDetail(request, customer_id):
-    # trackingUser(request.user, request.get_full_path())
-    customer = Customer.objects.get(id=customer_id)
-    return render(request, 'main/customer.html', context={'customer': customer})
+    return render(request, 'main/uni_detail.html', context={'university': university, 'subjects': subjects})
 
 
 @login_required

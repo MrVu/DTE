@@ -1,334 +1,212 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
-<html lang="en">
+<html class="wide wow-animation scrollTo" lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-    <link rel="icon" type="image/png" href="/static/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Đồng Thịnh EMS</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="/static/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{% static 'css/demo.css' %}" rel="stylesheet" />
-    <!-- Style -->
-  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" /> -->
-  <link href="{% static 'css/fresh-bootstrap-table.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-  <!-- Fonts and icons -->
-  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
-  <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
+    <title>Du học Đồng Thịnh</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="intense web design multipurpose template">
+    <meta name="date" content="Dec 26">
+    <link rel="icon" href="https://demo.hasthemes.com/patshala/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,700%7CMerriweather:400,300,300italic,400italic,700,700italic">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/novi.css' %}">
+    <!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;">
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+                src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+    </div>
+    <script src="js/html5shiv.min.js"></script><![endif]-->
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-image="/static/img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="/" class="simple-text">
-                        ĐỒNG THỊNH
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="/">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Quản Lý</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{% url 'userDetail' userId=request.user.id %}">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>Thông tin cá nhân</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'customers' %}">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Khách hàng</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'jobs' %}">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Ứng tuyển</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{% url 'tracking' %}">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Theo dõi</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <!-- <span class="notification">5</span> -->
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'userDetail' userId=request.user.id %}">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
+<div class="page-loader">
+    <div class="page-loader-body"><span class="cssload-loader"><span class="cssload-loader-inner"></span></span></div>
+</div>
+<div class="page text-center">
+    <header class="page-head">
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar novi-background rd-navbar-center" data-layout="rd-navbar-fixed"
+                 data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed"
+                 data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+                 data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
+                 data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static"
+                 data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="220px"
+                 data-xl-stick-up-offset="220px" data-xxl-stick-up-offset="220px" data-lg-stick-up="true"
+                 data-xl-stick-up="true" data-xxl-stick-up="true">
+                <div class="rd-navbar-inner">
+                    <div class="rd-navbar-panel">
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap">
+                            <span></span></button>
+                        <h4 class="panel-title">Đồng Thịnh</h4>
+                        <button class="rd-navbar-top-panel-toggle" data-rd-navbar-toggle=".rd-navbar-top-panel">
+                            <span></span></button>
+                        <div class="rd-navbar-top-panel">
+                            <div class="shell">
+                                <div class="range range-10 range-md-center range-md-middle range-lg-around">
+                                    <div class="cell-md-3">
+                                        <div class="unit unit-horizontal unit-top unit-spacing-xs">
+                                            <div class="unit-left"><span
+                                                    class="icon novi-icon mdi mdi-phone text-middle"></span></div>
+                                            <div class="unit-body"><a class="reveal-block"
+                                                                      href="tel:#">1-800-1234-567,</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-md-3 text-center">
+                                        <div class="rd-navbar-brand"><a class="reveal-inline-block"
+                                                                        href="{% url 'index' %}"><img
+                                                src="{% static 'images/logo-no-uk.png' %}" alt="" width="191"
+                                                height="80"></a></div>
+                                    </div>
+                                    <div class="cell-md-3">
+                                        <div class="inset-md-left-50">
+                                            <div class="unit unit-horizontal unit-top unit-spacing-xs text-left">
+                                                <div class="unit-left"><span
+                                                        class="icon novi-icon mdi mdi-map-marker text-middle"></span>
+                                                </div>
+                                                <div class="unit-body"><a
+                                                        href="#">21G Nguyễn Văn Trỗi, Phú Nhuận, Tp.Hồ Chí Minh</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="nav-item">
-                              {% if user.is_authenticated %}
-                                <a class="nav-link" href="{% url 'logout' %}">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                              {% else %}
-                                <a class="nav-link" href="{% url 'login' %}">
-                                    <span class="no-icon">Log in</span>
-                                </a>
-                              {% endif %}
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rd-navbar-menu-wrap clearfix">
+                        <div class="rd-navbar-nav-wrap">
+                            <div class="rd-navbar-mobile-scroll">
+                                <div class="rd-navbar-mobile-header-wrap">
+                                    <div class="rd-navbar-mobile-brand"><a
+                                            href="{% url 'index' %}"><img
+                                            src="{% static 'images/logo-no-uk.png' %}" alt="" width="191"
+                                                height="80">
+                                    </a>
+                                    </div>
+                                </div>
+                                <ul class="rd-navbar-nav">
+                                    <li><a href="{% url 'index' %}">Home</a></li>
+                                    <li><a href="#">Giới thiệu</a></li>
+                                    <li><a href="{% url 'universities' %}">Trường</a></li>
+                                    <li><a href="{% url 'universitiesFilter' %}">Tìm trường</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="section page-footer">
+        <div class="novi-background bg-cover bg-default">
+            <div class="shell-wide">
+                <div class="hr bg-gray-light"></div>
+            </div>
+            <div class="section-60">
+                <div class="shell">
+                    <div class="range range-50 range-lg-justify range-xs-center">
+                        <div class="cell-md-3 cell-lg-3"><a class="reveal-inline-block"
+                                                            href="{% url 'index' %}"><img
+                                src="{% static 'images/logo-no-uk.png' %}" alt="" style="width:144px"
+                                ></a>
+                            <div class="offset-top-30 text-center">
+                                <ul class="list-inline list-inline-xs list-inline-madison">
+                                    <li>
+                                        <a class="icon novi-icon icon-xxs fa-facebook icon-circle icon-gray-light-filled"
+                                           href="#"></a></li>
+                                    <li><a class="icon novi-icon icon-xxs fa-twitter icon-circle icon-gray-light-filled"
+                                           href="#"></a></li>
+                                    <li><a class="icon novi-icon icon-xxs fa-google icon-circle icon-gray-light-filled"
+                                           href="#"></a></li>
+                                    <li>
+                                        <a class="icon novi-icon icon-xxs fa-instagram icon-circle icon-gray-light-filled"
+                                           href="#"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="cell-xs-10 cell-md-5 cell-lg-4 text-lg-left">
+                            <h6 class="text-bold">Liên hệ</h6>
+                            <div class="text-subline"></div>
+                            <div class="offset-top-30">
+                                <ul class="list-unstyled contact-info list">
+                                    <li>
+                                        <div class="unit unit-horizontal unit-middle unit-spacing-xs">
+                                            <div class="unit-left"><span
+                                                    class="icon novi-icon mdi mdi-phone text-middle icon-xs text-madison"></span>
+                                            </div>
+                                            <div class="unit-body"><a class="text-dark" href="tel:#">1-800-1234-567,</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="unit unit-horizontal unit-middle unit-spacing-xs">
+                                            <div class="unit-left"><span
+                                                    class="icon novi-icon mdi mdi-map-marker text-middle icon-xs text-madison"></span>
+                                            </div>
+                                            <div class="unit-body text-left"><a class="text-dark"
+                                                                                href="#">21G Nguyễn Văn Trỗi, Phú Nhuận, Tp.Hồ Chí Minh</a></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="unit unit-horizontal unit-middle unit-spacing-xs">
+                                            <div class="unit-left"><span
+                                                    class="icon novi-icon mdi mdi-email-open text-middle icon-xs text-madison"></span>
+                                            </div>
+                                            <div class="unit-body"><a href="mailto:#">contact@dongthinh.co.uk</a></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="cell-xs-10 cell-md-8 cell-lg-4 text-lg-left">
+                            <h6 class="text-bold">Thư thông tin</h6>
+                            <div class="text-subline"></div>
+                            <div class="offset-top-30 text-left">
+                                <p>Nhập email để nhận thông tin mới nhất về thông tin và học bổng du học</p>
+                            </div>
+                            <div class="offset-top-10">
+                                <form class="rd-mailform form-subscribe" data-form-output="form-output-global"
+                                      data-form-type="subscribe" method="post"
+                                      action="https://demo.hasthemes.com/patshala/bat/rd-mailform.php">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-sm"><label class="form-label"
+                                                                                       for="form-email">Your
+                                            e-mail</label><input class="form-control" id="form-email" type="email"
+                                                                 name="email" data-constraints="@Required @Email"><span
+                                                class="input-group-btn"><button class="btn btn-sm btn-primary"
+                                                                                type="submit">Đăng ký</button></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-output"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-5 bg-madison context-dark novi-background">
+                <div class="shell text-md-left">
 
-{% block content %}
-{% endblock %}
-</div>
-</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 
-</div>
-</div>
-<!--   -->
-<!-- <div class="fixed-plugin">
-<div class="dropdown show-dropdown">
-<a href="#" data-toggle="dropdown">
-<i class="fa fa-cog fa-2x"> </i>
-</a>
 
-<ul class="dropdown-menu">
-<li class="header-title"> Sidebar Style</li>
-<li class="adjustments-line">
-<a href="javascript:void(0)" class="switch-trigger">
-<p>Background Image</p>
-<label class="switch">
-    <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-</label>
-<div class="clearfix"></div>
-</a>
-</li>
-<li class="adjustments-line">
-<a href="javascript:void(0)" class="switch-trigger background-color">
-<p>Filters</p>
-<div class="pull-right">
-    <span class="badge filter badge-black" data-color="black"></span>
-    <span class="badge filter badge-azure" data-color="azure"></span>
-    <span class="badge filter badge-green" data-color="green"></span>
-    <span class="badge filter badge-orange" data-color="orange"></span>
-    <span class="badge filter badge-red" data-color="red"></span>
-    <span class="badge filter badge-purple active" data-color="purple"></span>
-</div>
-<div class="clearfix"></div>
-</a>
-</li>
-<li class="header-title">Sidebar Images</li>
-
-<li class="active">
-<a class="img-holder switch-trigger" href="javascript:void(0)">
-<img src="/static/img/sidebar-1.jpg" alt="" />
-</a>
-</li>
-<li>
-<a class="img-holder switch-trigger" href="javascript:void(0)">
-<img src="/static/img/sidebar-3.jpg" alt="" />
-</a>
-</li>
-<li>
-<a class="img-holder switch-trigger" href="javascript:void(0)">
-<img src="..//assets/img/sidebar-4.jpg" alt="" />
-</a>
-</li>
-<li>
-<a class="img-holder switch-trigger" href="javascript:void(0)">
-<img src="/static/img/sidebar-5.jpg" alt="" />
-</a>
-</li>
-
-<li class="button-container">
-<div class="">
-<a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-</div>
-</li>
-
-<li class="header-title pro-title text-center">Want more components?</li>
-
-<li class="button-container">
-<div class="">
-<a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-</div>
-</li>
-
-<li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-<li class="button-container">
-<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-<button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-</li>
-</ul>
-</div>
-</div>
--->
+<script src="{% static 'js/core.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 </body>
-<!--   Core JS Files   -->
-<script src="/static/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="/static/js/core/popper.min.js" type="text/javascript"></script>
-<script src="/static/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="/static/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<!--  Chartist Plugin  -->
-<script src="/static/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="/static/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="/static/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="/static/js/demo.js"></script>
-<!-- Javascript -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js"></script>
 
-<script type="text/javascript">
-  var $table = $('#fresh-table')
-  var $alertBtn = $('#alertBtn')
-
-  window.operateEvents = {
-    'click .like': function (e, value, row, index) {
-      alert('You click like icon, row: ' + JSON.stringify(row))
-      console.log(value, row, index)
-    },
-    'click .edit': function (e, value, row, index) {
-      alert('You click edit icon, row: ' + JSON.stringify(row))
-      console.log(value, row, index)
-    },
-    'click .remove': function (e, value, row, index) {
-      $table.bootstrapTable('remove', {
-        field: 'id',
-        values: [row.id]
-      })
-    }
-  }
-
-  function operateFormatter(value, row, index) {
-    return [
-      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-        '<i class="fa fa-heart"></i>',
-      '</a>',
-      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-        '<i class="fa fa-edit"></i>',
-      '</a>',
-      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-        '<i class="fa fa-remove"></i>',
-      '</a>'
-    ].join('')
-  }
-
-  $(function () {
-    $table.bootstrapTable({
-      classes: 'table table-hover table-striped',
-      toolbar: '.toolbar',
-
-      search: true,
-      showRefresh: true,
-      showToggle: true,
-      showColumns: true,
-      pagination: true,
-      striped: true,
-      sortable: true,
-      pageSize: 8,
-      pageList: [8, 10, 25, 50, 100],
-
-      formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return ''
-      },
-      formatRecordsPerPage: function (pageNumber) {
-        return pageNumber + ' rows visible'
-      }
-    })
-
-    $alertBtn.click(function () {
-      alert('You pressed on Alert')
-    })
-  })
-
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-        demo.showNotification();
-
-    });
-</script>
 </html>

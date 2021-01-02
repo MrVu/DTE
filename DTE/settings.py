@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'admin_interface',
     'colorfield',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
