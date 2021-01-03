@@ -261,7 +261,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
                         <article class="post-news">
                             <div class="post-news-body">
-                                <h6><a href="#"> {{ article.title|truncatewords:12 }}</a></h6>
+                                <h6><a href="{% url 'article_detail' article_id=article.id %}"> {{ article.title|truncatewords:12 }}</a></h6>
                                 <div class="offset-top-20">
                                     <p>{{ article.body|safe|truncatewords_html:20 }}</p>
                                 </div>

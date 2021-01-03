@@ -2,23 +2,22 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
+    {% include 'main/breadcrumb.html' %}
 <section class="section novi-background bg-cover section-70 section-md-114 bg-default">
             <div class="shell">
                 <div class="range range-50 range-xs-center">
-                    <div class="cell-sm-8 cell-md-8 text-md-left">
-                        <h3 class="text-bold"> 5 Ways to Pay for Community College </h3>
+                    <div class="cell-sm-10 cell-md-10 text-md-left">
+                        <h3 class="text-bold"> {{ art.title }} </h3>
                         <hr class="divider bg-madison hr-md-left-0">
                         <div class="offset-md-top-20 offset-top-10">
                             <ul class="post-news-meta list list-inline list-inline-xl">
-                                <li><span class="icon novi-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span class="text-middle inset-left-10 text-italic text-black">2 days ago</span></li>
-                                <li><span class="icon novi-icon icon-xs mdi mdi-account text-middle text-madison"></span><span class="text-middle inset-left-10 text-italic text-primary">Ronald Austin</span></li>
+                                <li><span class="icon novi-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span class="text-middle inset-left-10 text-italic text-black">{{ art.date }}</span></li>
                             </ul>
                         </div>
                         <div class="offset-top-30">
                             <div class="offset-top-30">
-                                <p>Most community college students qualify for need-based aid, experts say. Many community colleges offer promise programs, which offer tuition-free awards to eligible students – mainly to students with Pell grant eligibility. For one Massachusetts teen choosing between a two-year or four-year college, cost was the deciding factor.</p>
+                                {{ art.body|safe }}
                             </div>
-                            <p>Estime had hoped to attend Smith College, but says the school costs too much, at more than $45,000 a year for tuition and fees. The liberal arts major enrolled in Holyoke Community College last fall and plans to transfer to nearby Smith or the University of Massachusetts–Amherst for her junior year, depending on the financial aid award. Estime, in the meantime, has managed to keep her debt under $2,000, paying for college with private scholarships, Pell grants and a small loan.</p>
                         </div>
                     </div>
                 </div>

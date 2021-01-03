@@ -27,7 +27,6 @@ def universitiesFilter(request):
             unies = University.objects.filter(subjects=form.cleaned_data['subject']).filter(
                 cities=form.cleaned_data['cities']).filter(Q(level__levelName=form.cleaned_data['level']) & Q(
                 level__feeAYear__lte=form.cleaned_data['budget']))
-            print(unies)
     return render(request, 'main/universitiesFilter.html',
                   context={'unies': unies, 'form': form, 'page_name': page_name})
 

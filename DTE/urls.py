@@ -28,6 +28,7 @@ urlpatterns = [
                   path('universities-filter/', views.universitiesFilter, name='universitiesFilter'),
                   path('universities/<int:university_id>', views.university_detail, name='university_detail'),
                   path('articles/', views.articles, name='articles'),
+                  path('articles/<int:article_id>', views.article_detail, name='article_detail'),
                   path('contact/', views.contact, name='contact'),
                   path('about-us/', views.about_us, name='about_us'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
