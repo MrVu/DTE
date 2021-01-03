@@ -3,20 +3,9 @@
 {% load widget_tweaks %}
 {% block content %}
 
-    <section class="section breadcrumb-modern context-dark parallax-container"
-             data-parallax-img="{% static 'images/parallax-03.jpg' %}">
-        <div class="parallax-content section-30 section-sm-70">
-            <div class="shell">
-                <h2 class="veil reveal-sm-block">Danh sách trường</h2>
-                <div class="offset-sm-top-35">
-                    <ul class="list-inline list-inline-lg list-inline-dashed p">
-                        <li><a href="{% url 'index' %}">Home</a></li>
-                        <li>Danh sách trường</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% include 'main/breadcrumb.html' %}
+
+
     <section class="section novi-background bg-cover section-70 section-md-114 bg-catskill">
         <div class="shell isotope-wrap">
             <h2 class="text-bold">Danh sách trường</h2>
@@ -38,7 +27,7 @@
 {#                                </ul>#}
                             </div>
                             <div class="offset-top-10">
-                                <p>{{ university.description|safe|truncatechars_html:100 }}</p>
+                                <p>{{ university.description|safe|truncatewords_html:20 }}</p>
                             </div>
                             <div class="post-course-meta offset-top-20"><span
                                     class="text-middle text-black"><a href="{% url 'university_detail' university_id=university.id %}">Tìm hiểu thêm</a></span><span

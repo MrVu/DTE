@@ -6,81 +6,75 @@
         <div class="swiper-container swiper-slider swiper-slider-modern swiper-slider-2" data-loop="true"
              data-dragable="false" data-slide-effect="fade">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-slide-bg="{% static 'images/slide-04-1920x810.jpg' %}"
+                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
                      style="background-position: 80% center">
                     <div class="swiper-slide-caption section-70">
                         <div class="container">
                             <div class="range range-xs-center">
                                 <div class="cell-md-9 cell-xs-10">
                                     <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">Providing Higher Education</h1>
+                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_1 }}</h1>
                                     </div>
                                     <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
                                          data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6 class=""><span data-novi-id="1">Besides providing you with new knowledge and training in chosen disciplines, our university also gives you an opportunity to benefit from spending your free time by playing .</span>
+                                        <h6 class=""><span data-novi-id="1">{{ page_info.banner_slogan_1 }}</span>
                                         </h6>
                                     </div>
                                     <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
                                          data-caption-delay="400">
-                                        <div class="group-xl group-middle"><a class="btn btn-primary"
-                                                                              href="index.html%3Fstorefront=envato-elements.html#">Start
-                                            a Journey</a><a class="btn btn-default"
-                                                            href="index.html%3Fstorefront=envato-elements.html#"><span
-                                                data-novi-id="3">Get Template Now</span></a></div>
+                                        <div class="group-xl group-middle">
+                                            <a class="btn btn-primary" href="{% url 'universitiesFilter' %}">Bắt đầu</a>
+                                            <a class="btn btn-default" href="{% url 'universities' %}"><span data-novi-id="3">Tìm hiểu thêm</span></a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-slide-bg="images/slide-02-1920x810.jpg"
+                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
                      style="background-position: 80% center">
                     <div class="swiper-slide-caption section-70">
                         <div class="container">
                             <div class="range range-xs-center">
                                 <div class="cell-md-9 cell-xs-10">
                                     <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">Creating Your Future</h1>
+                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_2 }}</h1>
                                     </div>
                                     <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
                                          data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6><span data-novi-id="2">Besides providing you with new knowledge and training in chosen disciplines, our university also gives you an opportunity to benefit from spending your free time by playing </span>
+                                        <h6><span data-novi-id="2">{{ page_info.banner_slogan_2 }}</span>
                                         </h6>
                                     </div>
                                     <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
                                          data-caption-delay="400">
-                                        <div class="group-xl group-middle"><a class="btn btn-primary"
-                                                                              href="index.html%3Fstorefront=envato-elements.html#">Start
-                                            a Journey</a><a class="btn btn-default"
-                                                            href="index.html%3Fstorefront=envato-elements.html#">Get
-                                            Template Now</a></div>
+                                        <div class="group-xl group-middle">
+                                            <a class="btn btn-primary" href="{% url 'universitiesFilter' %}">Bắt đầu</a>
+                                            <a class="btn btn-default" href="{% url 'universities' %}">Tìm hiểu thêm</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-slide-bg="{% static 'images/slide-03-1920x810.jpg' %}"
+                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
                      style="background-position: 80% center">
                     <div class="swiper-slide-caption section-70">
                         <div class="container">
                             <div class="range range-xs-center">
                                 <div class="cell-md-9 cell-xs-10">
                                     <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">More Than Just Studying</h1>
+                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_3 }}</h1>
                                     </div>
                                     <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
                                          data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6 class=""><span data-novi-id="0">Besides providing you with new knowledge and training in chosen disciplines, our university also gives you an opportunity to benefit from spending your free time by playing.</span>
+                                        <h6 class=""><span data-novi-id="0">{{ page_info.banner_slogan_3 }}</span>
                                         </h6>
                                     </div>
                                     <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
                                          data-caption-delay="400">
-                                        <div class="group-xl group-middle"><a class="btn btn-primary"
-                                                                              href="index.html%3Fstorefront=envato-elements.html#">Start
-                                            a Journey</a><a class="btn btn-default"
-                                                            href="index.html%3Fstorefront=envato-elements.html#">Get
-                                            Template Now</a></div>
+                                        <div class="group-xl group-middle">
+                                            <a class="btn btn-primary" href="{% url 'universitiesFilter' %}">Bắt đầu</a>
+                                            <a class="btn btn-default" href="{% url 'universities' %}">Tìm hiểu thêm</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -98,25 +92,21 @@
             <div class="range range-50">
                 <div class="cell-sm-4 cell-sm-push-2 text-sm-left">
                     <div class="inset-sm-left-50"><img class="img-responsive reveal-inline-block img-rounded"
-                                                       src="{% static 'images/Ashbourne-College-Buffet-Party-Vienam-2.jpg' %}"
+                                                       src="/media/{{ page_info.team_pic }}"
                                                        alt="" width="340" height="300">
                         <div class="offset-top-20">
-                            <h6 class="text-primary text-bold">Nguyễn Ngọc Tuấn</h6>
+                            <h6 class="text-primary text-bold">Team Đồng Thịnh</h6>
                         </div>
-                        <p>Giám đốc Du Học Đồng Thịnh – nhà tư vấn du học Anh chuyên nghiệp</p>
+                        <p> Tư vấn du học Anh chuyên nghiệp</p>
                     </div>
                 </div>
                 <div class="cell-sm-8 cell-sm-push-1 text-sm-left">
                     <h2 class="text-bold">Đồng Thịnh</h2>
                     <hr class="divider bg-madison hr-sm-left-0">
                     <div class="offset-top-30 offset-sm-top-30">
-                        <p>Được sáng lập từ năm 2011 bởi các thành viên đã từng đi du học, có kinh nghiệm sống và làm
-                            việc lâu năm tại nước ngoài, Đồng Thịnh hiểu rõ được ước mơ, khao khát vươn lên, khẳng định
-                            bản thân qua con đường du học của các bạn học sinh – sinh viên Việt Nam.</p>
+                        {{ page_info.team_description|safe }}
                     </div>
-                    <p>Với kinh nghiệm tư vấn cho hàng ngàn học sinh, sinh viên du học thành công, Đồng Thịnh tự hào là
-                        đơn vị tư vấn chuyên nghiệp hàng đầu được học sinh, sinh viên và quý phụ huynh ưu tiên lựa chọn
-                        tư vấn du học Anh, Canada, Mỹ, Úc, Singapore và các nước khác.</p>
+
                 </div>
             </div>
         </div>
@@ -127,7 +117,7 @@
                 <div class="range range-xs-center range-sm-right offset-top-0">
                     <div class="cell-xs-10 cell-sm-7 text-sm-left">
                         <div class="section-image-aside-img bg-cover veil reveal-sm-block"
-                             style="background-image: url({% static 'images/uk-uni.jpg' %})"></div>
+                             style="background-image: url('/media/{{ page_info.feature_uni_baner }}')"></div>
                         <div class="section-image-aside-body inset-sm-left-70 inset-lg-left-110">
                             <h2 class="text-bold">Trường tiêu biểu</h2>
                             <hr class="divider hr-sm-left-0 bg-white">
@@ -142,11 +132,11 @@
                                         <div class="post-vacation-body">
                                             <div>
                                                 <h6 class="post-vacation-title"><a
-                                                        href="#">{{ university.universityName }}</a>
+                                                        href="#">{{ university.universityName|truncatewords_html:15 }}</a>
                                                 </h6>
                                             </div>
                                             <div class="offset-lg-top-10">
-                                                <p>{{ university.description|safe|truncatechars_html:50 }}</p>
+                                                <p>{{ university.description|safe|truncatewords_html:15 }}</p>
                                             </div>
                                         </div>
                                     </article>
@@ -162,7 +152,7 @@
     </section>
     <section class="section novi-background bg-cover section-70 section-md-114 bg-default">
         <div class="shell">
-            <h2 class="text-bold">Statistics</h2>
+            <h2 class="text-bold">Thành quả</h2>
             <hr class="divider bg-madison">
             <div class="range range-65 range-xs-center range-md-left offset-top-55 counters">
                 <div class="cell-sm-6 cell-md-3">
@@ -271,9 +261,9 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
                         <article class="post-news">
                             <div class="post-news-body">
-                                <h6><a href="#"> {{ article.title|truncatechars:50 }}</a></h6>
+                                <h6><a href="#"> {{ article.title|truncatewords:12 }}</a></h6>
                                 <div class="offset-top-20">
-                                    <p>{{ article.body|safe|truncatechars_html:100 }}</p>
+                                    <p>{{ article.body|safe|truncatewords_html:20 }}</p>
                                 </div>
                                 <div class="post-news-meta offset-top-20"><span
                                         class="icon novi-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span

@@ -24,11 +24,12 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', views.index, name='index'),
-                  # path('tracks', views.tracking, name='tracking'),
-                  # path('user/<int:userId>', views.userDetail, name='userDetail'),
                   path('universities/', views.universities, name='universities'),
                   path('universities-filter/', views.universitiesFilter, name='universitiesFilter'),
                   path('universities/<int:university_id>', views.university_detail, name='university_detail'),
+                  path('articles/', views.articles, name='articles'),
+                  path('contact/', views.contact, name='contact'),
+                  path('about-us/', views.about_us, name='about_us'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

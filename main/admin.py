@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
 from .models import SaleSummary, Customer, Tracking, University, Level, Subject, GuestCustomer, City, Article, \
-    Scholarship
+    Scholarship, PageInfo
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
@@ -67,3 +67,4 @@ admin.site.register(Subject, SubjectAdmin)
 admin.site.register(GuestCustomer, GuestCustomerAdmin)
 admin.site.register(City)
 admin.site.register(Article)
+admin.site.register(PageInfo)

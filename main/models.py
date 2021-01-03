@@ -38,7 +38,7 @@ class Customer(models.Model):
 
     class Meta:
         verbose_name = 'Khách hàng'
-        verbose_name_plural = 'Khách hàng'
+        verbose_name_plural = 'Quản lý khách hàng'
 
 
 class User(AbstractUser):
@@ -51,8 +51,8 @@ class User(AbstractUser):
     profilePic = models.ImageField(null=True)
 
     class Meta:
-        verbose_name = 'Thành viên'
-        verbose_name_plural = 'Thành viên'
+        verbose_name = 'Nhân viên'
+        verbose_name_plural = 'Quản lý nhân viên'
 
 
 class Tracking(models.Model):
@@ -158,3 +158,31 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Bài viết'
         verbose_name_plural = 'Quản lý bài viết'
+
+
+class PageInfo(models.Model):
+    page_name = models.CharField(max_length=50, null=True)
+    logo = models.ImageField(null=True)
+    address = models.CharField(max_length=200, null=True)
+    address_2 = models.CharField(max_length=200, null=True)
+    address_3 = models.CharField(max_length=200, null=True)
+    phone_number = models.CharField(max_length=50, null=True)
+    email = models.EmailField(max_length=50, null=True)
+    facebook_url = models.CharField(max_length=200, null=True)
+    banner = models.ImageField(null=True)
+    banner_slogan_title_1 = models.CharField(max_length=200, null=True)
+    banner_slogan_1 = models.CharField(max_length=200, null=True)
+    banner_slogan_title_2 = models.CharField(max_length=200, null=True)
+    banner_slogan_2 = models.CharField(max_length=200, null=True)
+    banner_slogan_title_3 = models.CharField(max_length=200, null=True)
+    banner_slogan_3 = models.CharField(max_length=200, null=True)
+    feature_uni_baner = models.ImageField(null=True)
+    team_pic = models.ImageField(null=True)
+    team_description = RichTextField(null=True)
+
+    class Meta:
+        verbose_name = 'Thông tin website'
+        verbose_name_plural = 'Quản lý thông tin website'
+
+    def __str__(self):
+        return self.page_name

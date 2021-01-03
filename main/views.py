@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level, Subject, Article
+from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics
 from rest_framework.response import Response
@@ -8,9 +8,6 @@ from django.db.models import Q
 
 
 # Create your views here.
-def trackingUser(user, path):
-    tracking = Tracking.objects.create(userName=user.username, request=path)
-    tracking.save()
 
 
 def index(request):
@@ -22,6 +19,7 @@ def index(request):
 def universitiesFilter(request):
     form = GuestCustomerForm()
     unies = None
+    page_name = 'Tìm trường'
     if request.method == 'POST':
         form = GuestCustomerForm(request.POST)
         if form.is_valid():
@@ -31,30 +29,40 @@ def universitiesFilter(request):
                 level__feeAYear__lte=form.cleaned_data['budget']))
             print(unies)
     return render(request, 'main/universitiesFilter.html',
-                  context={'unies': unies, 'form': form})
+                  context={'unies': unies, 'form': form, 'page_name': page_name})
 
 
 def universities(request):
     universities = University.objects.all()
-    return render(request, 'main/universities.html', context={'universities': universities})
+    page_name = 'Danh sách trường'
+    return render(request, 'main/universities.html', context={'universities': universities, 'page_name': page_name})
 
 
 def university_detail(request, university_id):
     university = University.objects.get(id=university_id)
+    page_name = university.universityName
     subjects = Subject.objects.filter(universities=university)
-    return render(request, 'main/uni_detail.html', context={'university': university, 'subjects': subjects})
+    return render(request, 'main/uni_detail.html',
+                  context={'university': university, 'subjects': subjects, 'page_name': page_name})
 
 
-@login_required
-def userDetail(request, userId):
-    user = User.objects.get(id=userId)
-    return render(request, 'main/user.html', context={'user': user})
+def articles(request):
+    arts = Article.objects.all()
+    page_name = 'Bài viết'
+    return render(request, 'main/articles.html', context={'arts': arts, 'page_name': page_name})
 
 
-@login_required
-def tracking(request):
-    pageName = 'tracking'
-    tracks = Tracking.objects.order_by('-date')
-    tableHeader = ['Tên người dùng', 'Trang', 'Thời gian']
-    return render(request, 'main/table.html',
-                  context={'tracks': tracks, 'tableHeader': tableHeader, 'pageName': pageName})
+def article_detail(request, article_id):
+    art = Article.objects.get(id=article_id)
+    page_name = 'Đọc bài viết'
+    return render(request, 'main/article_detail.html', context={'art': art, 'page_name': page_name})
+
+
+def contact(request):
+    page_name = 'Liên hệ'
+    return render(request, 'main/contact.html', context={'page_name': page_name})
+
+
+def about_us(request):
+    page_name = 'Lịch sử phát triển'
+    return render(request, 'main/about_us.html', context={'page_name': page_name})
