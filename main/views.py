@@ -12,7 +12,7 @@ from django.db.models import Q
 
 def index(request):
     universities = University.objects.all()[:3]
-    articles = Article.objects.all()[:3]
+    articles = Article.objects.order_by('-date')[:3]
     return render(request, 'main/index.html', context={'universities': universities, 'articles': articles})
 
 
@@ -46,7 +46,7 @@ def university_detail(request, university_id):
 
 
 def articles(request):
-    arts = Article.objects.all()
+    arts = Article.objects.order_by('-date')
     page_name = 'Bài viết'
     return render(request, 'main/articles.html', context={'arts': arts, 'page_name': page_name})
 
