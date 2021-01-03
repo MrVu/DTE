@@ -17,8 +17,8 @@ class MyUserChangeForm(UserChangeForm):
 
 class GuestCustomerForm(forms.ModelForm):
     subject = forms.ModelChoiceField(empty_label='Chọn môn học', queryset=Subject.objects.all())
-    cities = forms.ModelChoiceField(empty_label='Chọn thành phố', queryset=City.objects.all())
+    city_name = forms.ModelChoiceField(empty_label='Chọn thành phố', queryset=City.objects.all())
 
     class Meta:
         model = GuestCustomer
-        fields = ['subject', 'cities', 'level', 'budget', 'guest_name', 'email', 'phone_number']
+        fields = ['subject', 'city_name', 'level', 'budget', 'guest_name', 'email', 'phone_number']

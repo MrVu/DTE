@@ -25,7 +25,7 @@
                                     Thành phố</label>
                             </div>
                             <div class="col-lg-8">
-                                {% render_field form.cities class='form-control custom-select' %}
+                                {% render_field form.city_name class='form-control custom-select' %}
                             </div>
                         </div>
                         <div class="row form-group">
@@ -43,7 +43,7 @@
                                     Ngân sách</label>
                             </div>
                             <div class="col-lg-8">
-                                {% render_field form.budget type="range" class="slider" id="myRange" data-slider-id='ex1Slider' class="form-control form-range" min="10000" max="20000" step="1" %}
+                                {% render_field form.budget type="range" class="slider" id="myRange" data-slider-id='ex1Slider' class="form-control form-range" min="10000" max="20000" step="500" %}
                                 <p><span id="demo"></span>£/năm</p>
                             </div>
                         </div>
