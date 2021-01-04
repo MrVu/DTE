@@ -42402,3 +42402,7 @@ html:not(.lt-ie10) .not-animated {
 	color: #b80924;
 	padding-top: 30px;
 }
+
+.uni-search-button{
+	padding-top: 20px;
+}
