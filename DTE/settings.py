@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
     'ckeditor',
+    'easy_thumbnails',
+    'image_cropping',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +130,7 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'main.User'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+from easy_thumbnails.conf import Settings as thumbnail_settings
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS

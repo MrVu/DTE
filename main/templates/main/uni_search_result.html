@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 {% block content %}
 
     {% include 'main/breadcrumb.html' %}
@@ -19,7 +20,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
                         <article class="post-course"><a
                                 href="{% url 'university_detail' university_id=uni.id %}"><img
-                                class="img-responsive" src="/media/{{ uni.pic }}" width="370"
+                                class="img-responsive" src="{% cropped_thumbnail uni "cropping" %}" width="370"
                                 height="240"
                                 alt=""></a>
                             <div class="post-news-body">

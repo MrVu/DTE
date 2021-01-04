@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
 from .models import User as MyUser
+from image_cropping import ImageCroppingMixin
 
 User_model = get_user_model()
 
@@ -46,7 +47,7 @@ class ScholarshipInline(admin.TabularInline):
     model = Scholarship
 
 
-class UniversityAdmin(admin.ModelAdmin):
+class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['universityName']
     inlines = [LevelInline, ScholarshipInline]
     filter_horizontal = ('subjects', 'cities',)

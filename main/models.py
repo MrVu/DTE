@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 from django.utils.html import mark_safe
 from ckeditor.fields import RichTextField
+from image_cropping import ImageRatioField
 
 
 # Create your models here.
@@ -96,6 +97,7 @@ class University(models.Model):
     subjects = models.ManyToManyField(Subject, related_name='universities')
     description = RichTextField(null=True)
     pic = models.ImageField(null=True)
+    cropping = ImageRatioField('pic', '370x240')
 
     def __str__(self):
         return self.universityName

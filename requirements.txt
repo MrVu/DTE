@@ -9,13 +9,16 @@ distlib==0.3.0
 distro==1.4.0
 Django==3.1.4
 django-admin-interface==0.14.1
+django-appconf==1.0.4
 django-ckeditor==6.0.0
 django-colorfield==0.3.2
 django-flat-responsive==2.0
 django-flat-theme==1.1.4
+django-image-cropping==1.5.0
 django-js-asset==1.2.2
 django-widget-tweaks==1.4.8
 djangorestframework==3.12.2
+easy-thumbnails==2.7.1
 html5lib==1.0.1
 idna==2.8
 ipaddr==2.2.0

@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 {% block content %}
 
-    {% include 'main/breadcrumb.html' %}
 
+    {% include 'main/breadcrumb.html' %}
 
     <section class="section novi-background bg-cover section-70 section-md-114 bg-catskill">
         <div class="shell isotope-wrap">
@@ -13,21 +14,26 @@
             <div class="row range-30 isotope offset-top-60 text-left">
                 {% for university in universities %}
                     <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
-                    <article class="post-course"><a href="{% url 'university_detail' university_id=university.id %}"><img
-                            class="img-responsive" src="/media/{{ university.pic }}" width="370" height="240"
-                            alt=""></a>
-                        <div class="post-news-body">
-                            <h6><a href="{% url 'university_detail' university_id=university.id %}">{{ university.universityName|truncatewords:3 }}</a></h6>
-                            <div class="offset-top-10">
-                                <p>{{ university.description|safe|truncatewords_html:20 }}</p>
+                        <article class="post-course"><a
+                                href="{% url 'university_detail' university_id=university.id %}"><img
+                                class="img-responsive" src="{% cropped_thumbnail university "cropping" %}" width="370"
+                                height="240"
+                                alt=""></a>
+                            <div class="post-news-body">
+                                <h6>
+                                    <a href="{% url 'university_detail' university_id=university.id %}">{{ university.universityName|truncatewords:3 }}</a>
+                                </h6>
+                                <div class="offset-top-10">
+                                    <p>{{ university.description|safe|truncatewords_html:20 }}</p>
+                                </div>
+                                <div class="post-course-meta offset-top-20"><span
+                                        class="text-middle text-black"><a
+                                        href="{% url 'university_detail' university_id=university.id %}">Tìm hiểu thêm</a></span><span
+                                        class="icon inset-left-10 novi-icon icon-xs text-middle text-madison mdi-arrow-right mdi"></span>
+                                </div>
                             </div>
-                            <div class="post-course-meta offset-top-20"><span
-                                    class="text-middle text-black"><a href="{% url 'university_detail' university_id=university.id %}">Tìm hiểu thêm</a></span><span
-                                    class="icon inset-left-10 novi-icon icon-xs text-middle text-madison mdi-arrow-right mdi"></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                        </article>
+                    </div>
                 {% endfor %}
             </div>
         </div>
