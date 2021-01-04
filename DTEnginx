@@ -24,7 +24,7 @@ server {
 
 
     location /static/ {
-        alias /home/vuhoang/MyProject/DTE;
+        root /home/vuhoang/MyProject/DTE/staticfiles;
     }
 
 
