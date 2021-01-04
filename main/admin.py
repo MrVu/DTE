@@ -47,6 +47,7 @@ class ScholarshipInline(admin.TabularInline):
 
 
 class UniversityAdmin(admin.ModelAdmin):
+    search_fields = ['universityName']
     inlines = [LevelInline, ScholarshipInline]
     filter_horizontal = ('subjects', 'cities',)
 
@@ -56,6 +57,7 @@ class SubjectAdmin(admin.ModelAdmin):
 
 
 class GuestCustomerAdmin(admin.ModelAdmin):
+    search_fields = ['guest_name']
     list_display = ['guest_name', 'email', 'phone_number']
 
 
