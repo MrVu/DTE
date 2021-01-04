@@ -25,7 +25,7 @@
                                 alt=""></a>
                             <div class="post-news-body">
                                 <h6>
-                                    <a href="{% url 'university_detail' university_id=uni.id %}">{{ uni.universityName|truncatewords:3 }}</a>
+                                    <a href="{% url 'university_detail' university_id=uni.id %}">{{ uni.universityName|truncatechars:30 }}</a>
                                 </h6>
                                 <div class="offset-top-10">
                                     <p>{{ uni.description|safe|truncatewords_html:15 }}</p>
