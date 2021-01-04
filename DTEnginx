@@ -19,6 +19,7 @@ server {
 
     location = /favicon.ico {
      access_log off; log_not_found off;
+     alias /home/vuhoang/MyProject/DTE/favicon.ico;
      }
 
 
