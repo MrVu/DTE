@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo
+from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo, GuestCustomer
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.urls import reverse
@@ -17,11 +17,16 @@ def index(request):
 
 
 def uni_search(request):
-    form = GuestCustomerForm()
+    guest_email = request.POST.get('email')
+    if guest_email:
+        guest = GuestCustomer.objects.filter(email=guest_email).first()
+    else:
+        guest = None
+    form = GuestCustomerForm(instance=guest)
     page_name = 'Tìm trường'
     unies = None
     if request.method == 'POST':
-        form = GuestCustomerForm(request.POST)
+        form = GuestCustomerForm(request.POST, instance=guest)
         if form.is_valid():
             form.save()
             request.session['subject'] = form.cleaned_data['subject'].subjectName
@@ -40,7 +45,19 @@ def uni_search_result(request):
             cities__city_name=request.session.get('city_name')).filter(
             Q(level__levelName=request.session.get('level')) & Q(
                 level__feeAYear__lte=request.session.get('budget')))
-        return render(request,'main/uni_search_result.html', context={'unies': unies, 'page_name': page_name})
+        if not unies:
+            message = "Không tìm thấy trường phù hợp với bạn"
+            header = f"Đây là 1 số trường thuộc thành phố {request.session.get('city_name')} có ngành {request.session.get('subject')}"
+            unies = University.objects.filter(Q(subjects__subjectName=request.session.get('subject')) & Q(
+                cities__city_name=request.session.get('city_name')))
+            if not unies:
+                message = "Không tìm thấy trường phù hợp với bạn"
+                header = ""
+        else:
+            message = ""
+            header = "Trường phù hợp với bạn"
+        return render(request, 'main/uni_search_result.html',
+                      context={'unies': unies, 'page_name': page_name, 'message': message, 'header': header})
     else:
         return HttpResponseRedirect(reverse('uni_search'))
 
