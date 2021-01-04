@@ -28,7 +28,7 @@
                                     <a href="{% url 'university_detail' university_id=uni.id %}">{{ uni.universityName|truncatewords:3 }}</a>
                                 </h6>
                                 <div class="offset-top-10">
-                                    <p>{{ uni.description|safe|truncatechars_html:100 }}</p>
+                                    <p>{{ uni.description|safe|truncatewords_html:15 }}</p>
                                 </div>
                                 <div class="post-course-meta offset-top-20"><span
                                         class="text-middle text-black"><a
