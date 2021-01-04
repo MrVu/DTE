@@ -18,14 +18,6 @@
                             alt=""></a>
                         <div class="post-news-body">
                             <h6><a href="{% url 'university_detail' university_id=university.id %}">{{ university.universityName|truncatewords:3 }}</a></h6>
-                            <div class="post_meta">
-{#                                <ul>#}
-{#                                    <li><a href="course-grid.html#">Computer Science</a></li>#}
-{#                                    <li>#}
-{#                                        <p>Duration : 4 Yr</p>#}
-{#                                    </li>#}
-{#                                </ul>#}
-                            </div>
                             <div class="offset-top-10">
                                 <p>{{ university.description|safe|truncatewords_html:20 }}</p>
                             </div>

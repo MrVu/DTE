@@ -42397,3 +42397,8 @@ html:not(.lt-ie10) .not-animated {
 	padding-top: 65px;
 	padding-right: 35px;
 }
+.search-fail{
+	height: 100px;
+	color: #b80924;
+	padding-top: 30px;
+}

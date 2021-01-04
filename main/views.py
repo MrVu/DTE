@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo
-from django.contrib.auth.decorators import login_required
-from rest_framework import generics
-from rest_framework.response import Response
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from django.urls import reverse
 from .forms import GuestCustomerForm
 from django.db.models import Q
 
@@ -16,19 +16,33 @@ def index(request):
     return render(request, 'main/index.html', context={'universities': universities, 'articles': articles})
 
 
-def universitiesFilter(request):
+def uni_search(request):
     form = GuestCustomerForm()
-    unies = None
     page_name = 'Tìm trường'
+    unies = None
     if request.method == 'POST':
         form = GuestCustomerForm(request.POST)
         if form.is_valid():
             form.save()
-            unies = University.objects.filter(subjects=form.cleaned_data['subject']).filter(
-                cities=form.cleaned_data['city_name']).filter(Q(level__levelName=form.cleaned_data['level']) & Q(
-                level__feeAYear__lte=form.cleaned_data['budget']))
-    return render(request, 'main/universitiesFilter.html',
+            request.session['subject'] = form.cleaned_data['subject'].subjectName
+            request.session['city_name'] = form.cleaned_data['city_name'].city_name
+            request.session['level'] = form.cleaned_data['level']
+            request.session['budget'] = form.cleaned_data['budget']
+            return HttpResponseRedirect(reverse('uni_search_result'))
+    return render(request, 'main/uni_search.html',
                   context={'unies': unies, 'form': form, 'page_name': page_name})
+
+
+def uni_search_result(request):
+    page_name = 'Kết quả tìm kiếm'
+    if 'subject' and 'city_name' and 'level' and 'budget' in request.session:
+        unies = University.objects.filter(subjects__subjectName=request.session.get('subject')).filter(
+            cities__city_name=request.session.get('city_name')).filter(
+            Q(level__levelName=request.session.get('level')) & Q(
+                level__feeAYear__lte=request.session.get('budget')))
+        return render(request,'main/uni_search_result.html', context={'unies': unies, 'page_name': page_name})
+    else:
+        return HttpResponseRedirect(reverse('uni_search'))
 
 
 def universities(request):

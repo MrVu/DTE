@@ -138,6 +138,7 @@ class GuestCustomer(models.Model):
     budget = models.BigIntegerField(null=True)
     level = models.CharField(max_length=50, null=True,
                              choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ])
+    date = models.DateTimeField(default=datetime.now, null=True)
 
     def __str__(self):
         return self.guest_name
