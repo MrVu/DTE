@@ -12,8 +12,7 @@
                     <div class="col-md-6">
                         <div class="row form-group">
                             <div class="col-lg-4">
-                                <label>
-                                    Ngành học</label>
+                                <label>Ngành học</label>
                             </div>
                             <div class="col-lg-8">
                                 {% render_field form.subject class='form-control custom-select' %}
@@ -30,21 +29,10 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-4">
-                                <label>
-                                    Cấp học</label>
+                                <label>Cấp học</label>
                             </div>
                             <div class="col-lg-8">
                                 {% render_field form.level class='form-control custom-select' %}
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-4">
-                                <label>
-                                    Ngân sách</label>
-                            </div>
-                            <div class="col-lg-8">
-                                {% render_field form.budget type="range" class="slider" id="myRange" data-slider-id='ex1Slider' class="form-control form-range" min="10000" max="20000" step="500" %}
-                                <p><span id="demo"></span>£/năm</p>
                             </div>
                         </div>
 

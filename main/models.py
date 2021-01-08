@@ -137,7 +137,6 @@ class GuestCustomer(models.Model):
     guest_name = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=254, null=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    budget = models.BigIntegerField(null=True)
     level = models.CharField(max_length=50, null=True,
                              choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ])
     date = models.DateTimeField(default=datetime.now, null=True)

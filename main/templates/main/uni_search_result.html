@@ -6,9 +6,9 @@
 
     {% include 'main/breadcrumb.html' %}
     {% if message %}
-    <div class="search-fail">
-        <p>{{ message }}</p>
-    </div>
+        <div class="search-fail">
+            <p>{{ message }}</p>
+        </div>
     {% endif %}
 
     <section class="section novi-background bg-cover section-70 section-md-114">
@@ -16,13 +16,11 @@
             <h2 class="text-bold">{{ header }}</h2>
             <hr class="divider bg-madison">
             <div class="row range-30 isotope offset-top-60 text-left">
-                {% for uni in unies %}
+                {% for uni in universities %}
                     <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
-                        <article class="post-course"><a
-                                href="{% url 'university_detail' university_id=uni.id %}"><img
+                        <article class="post-course"><a href="{% url 'university_detail' university_id=uni.id %}"><img
                                 class="img-responsive" src="{% cropped_thumbnail uni "cropping" %}" width="370"
-                                height="240"
-                                alt=""></a>
+                                height="240" alt=""></a>
                             <div class="post-news-body">
                                 <h6>
                                     <a href="{% url 'university_detail' university_id=uni.id %}">{{ uni.universityName|truncatechars:30 }}</a>
@@ -30,8 +28,7 @@
                                 <div class="offset-top-10">
                                     <p>{{ uni.description|safe|truncatewords_html:15 }}</p>
                                 </div>
-                                <div class="post-course-meta offset-top-20"><span
-                                        class="text-middle text-black"><a
+                                <div class="post-course-meta offset-top-20"><span class="text-middle text-black"><a
                                         href="{% url 'university_detail' university_id=uni.id %}">Tìm hiểu thêm</a></span><span
                                         class="icon inset-left-10 novi-icon icon-xs text-middle text-madison mdi-arrow-right mdi"></span>
                                 </div>

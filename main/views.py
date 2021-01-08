@@ -32,7 +32,6 @@ def uni_search(request):
             request.session['subject'] = form.cleaned_data['subject'].subjectName
             request.session['city_name'] = form.cleaned_data['city_name'].city_name
             request.session['level'] = form.cleaned_data['level']
-            request.session['budget'] = form.cleaned_data['budget']
             return HttpResponseRedirect(reverse('uni_search_result'))
     return render(request, 'main/uni_search.html',
                   context={'unies': unies, 'form': form, 'page_name': page_name})
@@ -40,24 +39,21 @@ def uni_search(request):
 
 def uni_search_result(request):
     page_name = 'Kết quả tìm kiếm'
-    if 'subject' and 'city_name' and 'level' and 'budget' in request.session:
-        unies = University.objects.filter(subjects__subjectName=request.session.get('subject')).filter(
-            cities__city_name=request.session.get('city_name')).filter(
-            Q(level__levelName=request.session.get('level')) & Q(
-                level__feeAYear__lte=request.session.get('budget')))
-        if not unies:
+    if 'subject' and 'city_name' and 'level' in request.session:
+        universities = University.objects.filter(Q(subjects__subjectName=request.session.get('subject')) & Q(
+            cities__city_name=request.session.get('city_name')) & Q(level__levelName=request.session.get('level')))
+        if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
-            header = f"Đây là 1 số trường thuộc thành phố {request.session.get('city_name')} có ngành {request.session.get('subject')}"
-            unies = University.objects.filter(Q(subjects__subjectName=request.session.get('subject')) & Q(
-                cities__city_name=request.session.get('city_name')))
-            if not unies:
+            header = f"Đây là 1 số trường có ngành {request.session.get('subject')}"
+            universities = University.objects.filter(subjects__subjectName=request.session.get('subject'))
+            if not universities:
                 message = "Không tìm thấy trường phù hợp với bạn"
                 header = ""
         else:
             message = ""
             header = "Trường phù hợp với bạn"
         return render(request, 'main/uni_search_result.html',
-                      context={'unies': unies, 'page_name': page_name, 'message': message, 'header': header})
+                      context={'universities': universities, 'page_name': page_name, 'message': message, 'header': header})
     else:
         return HttpResponseRedirect(reverse('uni_search'))
 

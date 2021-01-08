@@ -21,4 +21,4 @@ class GuestCustomerForm(forms.ModelForm):
 
     class Meta:
         model = GuestCustomer
-        fields = ['subject', 'city_name', 'level', 'budget', 'guest_name', 'email', 'phone_number']
+        fields = ['subject', 'city_name', 'level', 'guest_name', 'email', 'phone_number']
