@@ -32,6 +32,6 @@ class AdditionalStepForm(forms.Form):
         super(AdditionalStepForm, self).__init__(*args, **kwargs)
         self.request = request
         self.fields['uni_subject'] = forms.ModelChoiceField(
-            empty_label='Chọn môn bạn muốn học', queryset=UniSubject.objects.filter(subject__subjectName=request.session.get('subject')),required=False)
+            empty_label='Chọn môn bạn muốn học (có thể bỏ qua)', queryset=UniSubject.objects.filter(subject__subjectName=request.session.get('subject')),required=False)
         self.fields['city'] = forms.ModelChoiceField(
-            empty_label='Chọn thành phố', queryset=City.objects.order_by('city_name'), required=False)
+            empty_label='Chọn thành phố (có thể bỏ qua)', queryset=City.objects.order_by('city_name'), required=False)
