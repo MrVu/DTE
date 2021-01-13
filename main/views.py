@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo, GuestCustomer
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
 from django.urls import reverse
-from .forms import GuestCustomerForm
+from .forms import GuestCustomerForm, AdditionalStepForm
 from django.db.models import Q
 
 
@@ -30,25 +29,53 @@ def uni_search(request):
         if form.is_valid():
             form.save()
             request.session['subject'] = form.cleaned_data['subject'].subjectName
-            request.session['city_name'] = form.cleaned_data['city_name'].city_name
             request.session['level'] = form.cleaned_data['level']
-            return HttpResponseRedirect(reverse('uni_search_result'))
+            return HttpResponseRedirect(reverse('additional_step'))
     return render(request, 'main/uni_search.html',
                   context={'unies': unies, 'form': form, 'page_name': page_name})
 
 
+def additional_search(request):
+    if 'city' in request.session:
+        del request.session['city']
+    if 'uni_subject' in request.session:
+        del request.session['uni_subject']
+    if not 'subject' and not 'level' in request.session:
+        return HttpResponseRedirect(reverse('uni_search'))
+    else:
+        page_name = 'Tìm chi tiết'
+        form = AdditionalStepForm(request=request)
+        if request.method == 'POST':
+            form = AdditionalStepForm(request.POST, request=request)
+            if form.is_valid():
+                if form.cleaned_data['city']:
+                    request.session['city'] = form.cleaned_data['city'].city_name
+                if form.cleaned_data['uni_subject']:
+                    request.session['uni_subject'] = form.cleaned_data['uni_subject'].name
+                return HttpResponseRedirect(reverse('uni_search_result'))
+            else:
+                return HttpResponseRedirect(reverse('uni_search_result'))
+        return render(request, 'main/additional_step.html', context={'form': form})
+
+
 def uni_search_result(request):
     page_name = 'Kết quả tìm kiếm'
-    if 'subject' and 'city_name' and 'level' in request.session:
-        universities = University.objects.filter(Q(subjects__subjectName=request.session.get('subject')) & Q(
-            cities__city_name=request.session.get('city_name')) & Q(level__levelName=request.session.get('level')))
+    if 'subject' in request.session and 'level' in request.session:
+        if 'city' in request.session and not 'uni_subject' in request.session:
+            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(cities__city_name=request.session.get('city')))
+        elif 'uni_subject' in request.session and not 'city' in request.session:
+            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(uni_subjects__name=request.session.get('uni_subject')))
+        elif 'city' in request.session and 'uni_subject' in request.session:
+            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(cities__city_name=request.session.get('city')) & Q(uni_subjects__name=request.session.get('uni_subject')))
+        else:
+            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
+            'subject')) & Q(level__levelName=request.session.get('level')))
         if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
-            header = f"Đây là 1 số trường có ngành {request.session.get('subject')}"
-            universities = University.objects.filter(subjects__subjectName=request.session.get('subject'))
-            if not universities:
-                message = "Không tìm thấy trường phù hợp với bạn"
-                header = ""
+            header = ""
         else:
             message = ""
             header = "Trường phù hợp với bạn"

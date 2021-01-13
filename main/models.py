@@ -70,14 +70,29 @@ class Tracking(models.Model):
 
 
 class Subject(models.Model):
-    subjectName = models.CharField(max_length=200, null=True)
+    subjectName = models.CharField(
+        max_length=200, null=True, verbose_name='Tên ngành')
 
     def __str__(self):
         return self.subjectName
 
     class Meta:
-        verbose_name = 'Môn học'
-        verbose_name_plural = 'Môn học'
+        verbose_name = 'Nhóm ngành'
+        verbose_name_plural = 'Quản lý nhóm ngành'
+        ordering =['subjectName']
+
+
+class UniSubject(models.Model):
+    name = models.CharField(max_length=200, null=True,
+                            verbose_name='Tên khóa học')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Ngành nhỏ'
+        verbose_name_plural = 'Quản lý ngành nhỏ'
+        ordering = ['name']
 
 
 class City(models.Model):
@@ -89,12 +104,16 @@ class City(models.Model):
     class Meta:
         verbose_name = 'Thành phố'
         verbose_name_plural = 'Thành phố'
+        ordering = ['city_name']
 
 
 class University(models.Model):
-    universityName = models.CharField(max_length=200, null=True)
+    universityName = models.CharField(
+        max_length=200, null=True, verbose_name='Tên trường')
     cities = models.ManyToManyField(City)
-    subjects = models.ManyToManyField(Subject, related_name='universities')
+    subjects = models.ManyToManyField(
+        Subject, related_name='universities', verbose_name='Ngành học')
+    uni_subjects = models.ManyToManyField(UniSubject, verbose_name='Môn học')
     description = RichTextField(null=True)
     pic = models.ImageField(null=True)
     cropping = ImageRatioField('pic', '370x240')
@@ -105,6 +124,7 @@ class University(models.Model):
     class Meta:
         verbose_name = 'Trường'
         verbose_name_plural = 'Quản lý trường'
+        ordering = ['universityName']
 
 
 class Scholarship(models.Model):
@@ -115,16 +135,17 @@ class Scholarship(models.Model):
 
 
 class Level(models.Model):
+    level_choices = [('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'),
+                     ('Thạc sĩ', 'Thạc sĩ')]
+    ielts_choices = [
+        ('', 'IELTS Overall'), (4.0, '4.0'), (4.5, '4.5'), (5.0,
+                                                            '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
+        (7.0, '7.0')]
     levelName = models.CharField(max_length=200, null=True,
-                                 choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'),
-                                          ('Thạc sĩ', 'Thạc sĩ')])
+                                 choices=level_choices)
     feeAYear = models.IntegerField(null=True)
-    ielts_overall = models.FloatField(null=True, choices=(
-        ('', 'IELTS Overall'), (4.0, '4.0'), (4.5, '4.5'), (5.0, '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
-        (7.0, '7.0')))
-    ieltsMin = models.FloatField(null=True, choices=(
-        ('', 'IELTS Minumum'), (4.0, '4.0'), (4.5, '4.5'), (5.0, '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
-        (7.0, '7.0')))
+    ielts_overall = models.FloatField(null=True, choices=ielts_choices)
+    ieltsMin = models.FloatField(null=True, choices=ielts_choices)
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -133,13 +154,14 @@ class Level(models.Model):
 
 class GuestCustomer(models.Model):
     subject = models.CharField(max_length=200, null=True)
-    city_name = models.CharField(max_length=200, null=True)
+    city_name = models.CharField(max_length=200, null=True, blank=True)
     guest_name = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=254, null=True)
     phone_number = models.CharField(max_length=20, blank=True)
     level = models.CharField(max_length=50, null=True,
                              choices=[('Đại học', 'Đại học'), ('Sau đại học', 'Sau đại học'), ])
     date = models.DateTimeField(default=datetime.now, null=True)
+    uni_subject = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.guest_name

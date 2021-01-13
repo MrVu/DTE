@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
 from .models import SaleSummary, Customer, Tracking, University, Level, Subject, GuestCustomer, City, Article, \
-    Scholarship, PageInfo
+    Scholarship, PageInfo, UniSubject
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
@@ -46,15 +46,20 @@ class LevelInline(admin.TabularInline):
 class ScholarshipInline(admin.TabularInline):
     model = Scholarship
 
+class UniSubjectInline(admin.TabularInline):
+    model = UniSubject
 
 class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['universityName']
+    ordering = ['universityName']
     inlines = [LevelInline, ScholarshipInline]
-    filter_horizontal = ('subjects', 'cities',)
+    filter_horizontal = ('subjects', 'cities','uni_subjects')
+    
 
 
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ['subjectName']
+    inlines = [UniSubjectInline]
 
 
 class GuestCustomerAdmin(admin.ModelAdmin):
@@ -64,7 +69,7 @@ class GuestCustomerAdmin(admin.ModelAdmin):
 
 # admin.site.register(Level)
 admin.site.register(Customer, CustomerAdmin)
-admin.site.register(Tracking, TrackingAdmin)
+# admin.site.register(Tracking, TrackingAdmin)
 admin.site.register(University, UniversityAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(GuestCustomer, GuestCustomerAdmin)

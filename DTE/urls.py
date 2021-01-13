@@ -22,17 +22,20 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', views.index, name='index'),
-                  path('universities/', views.universities, name='universities'),
-                  path('uni-search/', views.uni_search, name='uni_search'),
-                  path('uni-search-result', views.uni_search_result, name='uni_search_result'),
-                  path('universities/<int:university_id>', views.university_detail, name='university_detail'),
-                  path('articles/', views.articles, name='articles'),
-                  path('articles/<int:article_id>', views.article_detail, name='article_detail'),
-                  path('contact/', views.contact, name='contact'),
-                  path('about-us/', views.about_us, name='about_us'),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('universities/', views.universities, name='universities'),
+    path('uni-search/', views.uni_search, name='uni_search'),
+    path('uni-search/additional-step',
+         views.additional_search, name='additional_step'),
+    path('uni-search-result', views.uni_search_result, name='uni_search_result'),
+    path('universities/<int:university_id>',
+         views.university_detail, name='university_detail'),
+    path('articles/', views.articles, name='articles'),
+    path('articles/<int:article_id>', views.article_detail, name='article_detail'),
+    path('contact/', views.contact, name='contact'),
+    path('about-us/', views.about_us, name='about_us'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
