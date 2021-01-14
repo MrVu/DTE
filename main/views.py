@@ -23,7 +23,7 @@ def uni_search(request):
     else:
         guest = None
     form = GuestCustomerForm(instance=guest)
-    page_name = 'Tìm trường'
+    page_name = 'Tìm khóa học'
     unies = None
     if request.method == 'POST':
         form = GuestCustomerForm(request.POST, instance=guest)
@@ -101,9 +101,9 @@ def university_detail(request, university_id):
 
 
 def articles(request):
-    arts = Article.objects.order_by('-date')
+    articles = Article.objects.order_by('-date')
     page_name = 'Bài viết'
-    return render(request, 'main/articles.html', context={'arts': arts, 'page_name': page_name})
+    return render(request, 'main/articles.html', context={'articles': articles, 'page_name': page_name})
 
 
 def article_detail(request, article_id):

@@ -4,6 +4,23 @@
 {% block content %}
 
     {% include 'main/breadcrumb.html' %}
+    <div class="container-fluid padding-whitebg">
+    <div class="container padding">
+        <div class="row padding">
+            {% for article in articles %}
+                <div class="col-lg-4 col-md-4">
+                    <div class="card">
+                        <h5 class="card-header card-red-header">Tin tức</h5>
+                        <div class="card-body">
+                            <h4 class="card-title" style="height:80px">{{ article.title|truncatewords:12 }}</h4>
+                            <p class="card-text">{{ article.body|safe|truncatewords_html:20 }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
     <section class="section novi-background bg-cover section-70 section-md-114 bg-catskill">
         <div class="shell isotope-wrap">

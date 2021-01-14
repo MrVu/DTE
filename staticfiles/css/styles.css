@@ -1,181 +1,269 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-html, body{
-  height: 100%;
-  width: 100%;
-  font-family: 'Poppins', sans-serif !important;
-  color: #222 !important;
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+    color: #222 !important;
 }
 
 .navbar {
-  padding: .8rem;
+    padding: .8rem;
 }
 
 .navbar-nav li {
-  padding-right: 20px;
+    padding-right: 20px;
 }
 
 .nav-link {
-  font-size: 1.1em !important;
-  color: #9f2f31 !important;
+    font-size: 1.1em !important;
+    color: #9f2f31 !important;
 }
 
 .carousel-inner img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-caption {
-  position:absolute !important;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.carousel-caption h1 {
-  font-size: 500%;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 10px #000;
-}
-.jumbotron {
-  padding: 1rem;
-  border-radius: 0;
-}
-.padding {
-  padding-bottom: 2rem;
-}
-.card-news {
-  height: 450px;
-}
-.card-university{
-  height:420px;
-}
-.footer {
-  /*background-color: #3f3f3f;*/
-  /*color: #d5d5d5;*/
-  padding-top: 2rem;
-}
-.footer-text{
-  font-size:15px;
-}
-.footer-text > h5 {
-  color:#9f2f31;
-}
-.footer-end{
-  background-color:#131c3e;
-}
-.footer-end > h5 {
-  color: #d5d5d5;
-}
-.padding-greybg {
-  padding-top: 2rem;
-  background-color: #e9ecef;
-  margin-bottom: 2rem;
-}
-.padding-whitebg {
-  padding-top: 2rem;
-  margin-bottom: 2rem;
-}
-hr.light{
-  border-top: 1px solid #d5d5d5;
-  /*width: 75%;*/
-}
-.display-title {
-  font-size: 200% !important;
-  text-transform: uppercase;
-}
-.card-blue-header {
-  background-color:#26387c !important;
-  color: #d5d5d5;
-}
-.card-red-header {
-  background-color: #9f2f31 !important;
-  color: #d5d5d5;
+    position: absolute !important;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.btn-outline-secondary{
-  border-color: #26387c !important;
-  color: #26387c !important;
+.carousel-caption h1 {
+    font-size: 500%;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 10px #000;
 }
-.btn-outline-secondary:hover{
-  border-color: #26387c !important;
-  background-color:#26387c !important;
-  color: #d5d5d5 !important;
+
+.jumbotron {
+    padding: 1rem;
+    border-radius: 0;
+}
+
+.padding {
+    padding-bottom: 2rem;
+}
+
+.card-news {
+    height: 450px;
+}
+
+.card-university {
+    height: 420px;
+}
+
+.footer {
+    /*background-color: #3f3f3f;*/
+    /*color: #d5d5d5;*/
+    padding-top: 2rem;
+}
+
+.footer-text {
+    font-size: 15px;
+}
+
+.footer-text > h5 {
+    color: #9f2f31;
+}
+
+.footer-end {
+    background-color: #131c3e;
+}
+
+.footer-end > h5 {
+    color: #d5d5d5;
+}
+
+.padding-greybg {
+    padding-top: 2rem;
+    background-color: #e9ecef;
+    margin-bottom: 2rem;
+}
+
+.padding-whitebg {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+hr.light {
+    border-top: 1px solid #d5d5d5;
+    /*width: 75%;*/
+}
+
+.display-title {
+    font-size: 200% !important;
+    text-transform: uppercase;
+}
+
+.card-blue-header {
+    background-color: #26387c !important;
+    color: #d5d5d5;
+}
+
+.card-red-header {
+    background-color: #9f2f31 !important;
+    color: #d5d5d5;
+}
+
+
+.btn-outline-secondary {
+    border-color: #26387c !important;
+    color: #26387c !important;
+}
+
+.btn-outline-secondary:hover {
+    border-color: #26387c !important;
+    background-color: #26387c !important;
+    color: #d5d5d5 !important;
+}
+
+.btn-primary {
+    color: #d5d5d5 !important;
+    background-color: #9f2f31 !important;
+    border-color: #9f2f31 !important;
 }
 
 
 .carousel .carousel-item .img-box {
-	width: 135px;
-	height: 135px;
-	margin: 0 auto;
-	padding: 5px;
-	border: 1px solid #ddd;
-	border-radius: 50%;
+    width: 135px;
+    height: 135px;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
 }
+
 .carousel .img-box img {
-	width: 100%;
-	height: 100%;
-	display: block;
-	border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
 }
+
 .carousel .testimonial {
-	padding: 30px 0 10px;
+    padding: 30px 0 10px;
+}
+
+/*Form wizard*/
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center !important;
+    padding: 6px 0 !important;
+    font-size: 12px !important;
+    line-height: 1.428571429 !important;
+    border-radius: 15px !important;
+}
+
+.top-panel {
+    background-image: url('/static/images/parallax-03.jpg');
+    color: #d5d5d5;
+    font-size: 40px;
+    background-size: cover;
+    background-attachment: fixed;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
 }
 
 /*---Media Queries --*/
 @media (max-width: 992px) {
 
-  }
-@media (max-width: 768px) {
-  
 }
+
+@media (max-width: 768px) {
+
+}
+
 @media (max-width: 576px) {
-  
+
 }
 
 
 /*---Firefox Bug Fix --*/
 .carousel-item {
-  transition: -webkit-transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
+    transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
 }
+
 /*--- Fixed Background Image --*/
 figure {
-  position: relative;
-  width: 100%;
-  height: 60%;
-  margin: 0!important;
+    position: relative;
+    width: 100%;
+    height: 60%;
+    margin: 0 !important;
 }
+
 .fixed-wrap {
-  clip: rect(0, auto, auto, 0);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    clip: rect(0, auto, auto, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+
 #fixed {
-  background-image: url('img/mac.png');
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-  will-change: transform;
+    background-image: url('/static/images/parallax-03.jpg');
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
 }
+
 /*--- Bootstrap Padding Fix --*/
 [class*="col-"] {
     padding: 1rem;
 }
-
-
-
 
 
 /*

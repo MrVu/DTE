@@ -3,37 +3,6 @@
 {% load widget_tweaks %}
 {% load cropping %}
 {% block content %}
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Giới thiệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tìm khóa học</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Danh sách trường</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bài viết</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Liên hệ</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <!-- Carousel -->
 <div id="slides" class="carousel slide d-none d-md-block" data-ride="carousel">
@@ -47,7 +16,7 @@
             <div class="carousel-caption">
                 <h5></h5>
                 <h2>Tìm khóa học phù hợp nhất</h2>
-                <button type="button" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</button>
+                <a href="{% url 'uni_search' %}" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</a>
             </div>
         </div>
         <div class="carousel-item">
@@ -55,7 +24,7 @@
             <div class="carousel-caption">
                 <h5></h5>
                 <h2>Tìm khóa học phù hợp nhất</h2>
-                <button type="button" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</button>
+                <a href="{% url 'uni_search' %}" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</a>
             </div>
         </div>
     </div>
@@ -73,7 +42,7 @@
         </div>
     </div>
 </div>
-<!-- Feature University -->
+{# Feature subjects #}
 <div class="container-fluid">
     <div class="row welcome text-center">
         <div class="col-12">
@@ -155,7 +124,7 @@
         {% endfor %}
     </div>
     <div class="text-center">
-        <a class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
+        <a href="{% url 'universities' %}" class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
     </div>
 </div>
 {#testimonial#}
@@ -201,35 +170,6 @@
         </div>
     </div>
 </div>
-<!-- Footer -->
-<div class="container-fluid footer">
-    <div class="row text-center">
-        <div class="col-md-4">
-            <img src="{% static 'images/logo-no-uk.png' %}" style="width:120px;">
-            <hr class="light">
-            <p>(028) 628 732 53</p>
-            <p>info@dongthinh.co.uk</p>
-        </div>
-        <div class="col-md-4 text-left footer-text">
-            <h5>Văn phòng Hồ Chí Minh</h5>
-            <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
-            <p>Hotline: 0869932900</p>
-            <h5>Văn phòng London</h5>
-            <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
-            <p>Hotline: 07715621123</p>
-        </div>
-        <div class="col-md-4 text-left footer-text">
-            <h5>Văn phòng Đà Lạt</h5>
-            <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
-            <p>Hotline: (+84) 915 049 084</p>
-            <h5>Văn phòng Hà Nội</h5>
-            <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
-            <p>Hotline: 0961660266</p>
-        </div>
-        <div class="col-12 footer-end">
-                <h5>&copy;Dongthinh.co.uk</h5>
-        </div>
-    </div>
-</div>
+
 
 {% endblock %}
