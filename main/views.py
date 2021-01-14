@@ -10,9 +10,10 @@ from django.db.models import Q
 
 
 def index(request):
-    universities = University.objects.all()[:3]
-    articles = Article.objects.order_by('-date')[:3]
-    return render(request, 'main/index.html', context={'universities': universities, 'articles': articles})
+    universities = University.objects.all()[:6]
+    articles = Article.objects.order_by('-date')[:2]
+    subjects = Subject.objects.filter(unisubject__isnull=False).distinct()[:3]
+    return render(request, 'main/index.html', context={'universities': universities, 'articles': articles, 'subjects': subjects})
 
 
 def uni_search(request):

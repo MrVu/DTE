@@ -203,6 +203,8 @@ class PageInfo(models.Model):
     feature_uni_baner = models.ImageField(null=True)
     team_pic = models.ImageField(null=True)
     team_description = RichTextField(null=True)
+    cropping = ImageRatioField('banner', '1200x420')
+
 
     class Meta:
         verbose_name = 'Thông tin website'

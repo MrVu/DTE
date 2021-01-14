@@ -1,281 +1,235 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 {% block content %}
-    <section class="section">
-        <div class="swiper-container swiper-slider swiper-slider-modern swiper-slider-2" data-loop="true"
-             data-dragable="false" data-slide-effect="fade">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
-                     style="background-position: 80% center">
-                    <div class="swiper-slide-caption section-70">
-                        <div class="container">
-                            <div class="range range-xs-center">
-                                <div class="cell-md-9 cell-xs-10">
-                                    <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_1 }}</h1>
-                                    </div>
-                                    <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
-                                         data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6 class=""><span data-novi-id="1">{{ page_info.banner_slogan_1 }}</span>
-                                        </h6>
-                                    </div>
-                                    <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
-                                         data-caption-delay="400">
-                                        <div class="group-xl group-middle">
-                                            <a class="btn btn-primary" href="{% url 'uni_search' %}">Bắt đầu</a>
-                                            <a class="btn btn-default" href="{% url 'universities' %}"><span data-novi-id="3">Tìm hiểu thêm</span></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
-                     style="background-position: 80% center">
-                    <div class="swiper-slide-caption section-70">
-                        <div class="container">
-                            <div class="range range-xs-center">
-                                <div class="cell-md-9 cell-xs-10">
-                                    <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_2 }}</h1>
-                                    </div>
-                                    <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
-                                         data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6><span data-novi-id="2">{{ page_info.banner_slogan_2 }}</span>
-                                        </h6>
-                                    </div>
-                                    <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
-                                         data-caption-delay="400">
-                                        <div class="group-xl group-middle">
-                                            <a class="btn btn-primary" href="{% url 'uni_search' %}">Bắt đầu</a>
-                                            <a class="btn btn-default" href="{% url 'universities' %}">Tìm hiểu thêm</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-slide-bg="/media/{{ page_info.banner }}"
-                     style="background-position: 80% center">
-                    <div class="swiper-slide-caption section-70">
-                        <div class="container">
-                            <div class="range range-xs-center">
-                                <div class="cell-md-9 cell-xs-10">
-                                    <div data-caption-animate="fadeInUp" data-caption-delay="100">
-                                        <h1 class="text-bold">{{ page_info.banner_slogan_title_3 }}</h1>
-                                    </div>
-                                    <div class="offset-top-20 offset-xs-top-40 offset-xl-top-15"
-                                         data-caption-animate="fadeInUp" data-caption-delay="150">
-                                        <h6 class=""><span data-novi-id="0">{{ page_info.banner_slogan_3 }}</span>
-                                        </h6>
-                                    </div>
-                                    <div class="offset-top-20 offset-xl-top-30" data-caption-animate="fadeInUp"
-                                         data-caption-delay="400">
-                                        <div class="group-xl group-middle">
-                                            <a class="btn btn-primary" href="{% url 'uni_search' %}">Bắt đầu</a>
-                                            <a class="btn btn-default" href="{% url 'universities' %}">Tìm hiểu thêm</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-button-prev fa-arrow-left"></div>
-            <div class="swiper-button-next fa-arrow-right"></div>
-            <div class="swiper-pagination"></div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tìm khóa học</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Danh sách trường</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bài viết</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                </li>
+            </ul>
         </div>
-    </section>
-    <section class="section novi-background bg-cover section-70 section-md-114 bg-default">
-        <div class="shell">
-            <div class="range range-50">
-                <div class="cell-sm-4 cell-sm-push-2 text-sm-left">
-                    <div class="inset-sm-left-50"><img class="img-responsive reveal-inline-block img-rounded"
-                                                       src="/media/{{ page_info.team_pic }}"
-                                                       alt="" width="340" height="300">
-                        <div class="offset-top-20">
-                            <h6 class="text-primary text-bold">Team Đồng Thịnh</h6>
-                        </div>
-                        <p> Tư vấn du học Anh chuyên nghiệp</p>
-                    </div>
-                </div>
-                <div class="cell-sm-8 cell-sm-push-1 text-sm-left">
-                    <h2 class="text-bold">Đồng Thịnh</h2>
-                    <hr class="divider bg-madison hr-sm-left-0">
-                    <div class="offset-top-30 offset-sm-top-30">
-                        {{ page_info.team_description|safe }}
-                    </div>
+    </div>
+</nav>
 
-                </div>
+<!-- Carousel -->
+<div id="slides" class="carousel slide d-none d-md-block" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static '/images/slide-bg.jpg' %}">
+            <div class="carousel-caption">
+                <h5></h5>
+                <h2>Tìm khóa học phù hợp nhất</h2>
+                <button type="button" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</button>
             </div>
         </div>
-    </section>
-    <section class="section context-dark section-image-aside section-image-aside-left">
-        <div class="novi-background bg-cover section-70 section-md-114 bg-madison">
-            <div class="shell">
-                <div class="range range-xs-center range-sm-right offset-top-0">
-                    <div class="cell-xs-10 cell-sm-7 text-sm-left">
-                        <div class="section-image-aside-img bg-cover veil reveal-sm-block"
-                             style="background-image: url('/media/{{ page_info.feature_uni_baner }}')"></div>
-                        <div class="section-image-aside-body inset-sm-left-70 inset-lg-left-110">
-                            <h2 class="text-bold">Trường tiêu biểu</h2>
-                            <hr class="divider hr-sm-left-0 bg-white">
-                            <div class="offset-top-30 offset-md-top-30 text-light">Tại Đồng Thịnh, chúng tôi liên kết
-                                với các trường đại học hàng đầu Anh Quốc
-                            </div>
-                            <div class="text-left post-vacation-wrap offset-top-30">
-                                {% for university in universities %}
-                                    <article class="post-vacation"><a class="post-vacation-img-wrap bg-cover bg-image"
-                                                                      href="{% url 'university_detail' university_id=university.id %}"
-                                                                      style="background-image: url('media/{{ university.pic }}')"></a>
-                                        <div class="post-vacation-body">
-                                            <div>
-                                                <h6 class="post-vacation-title"><a
-                                                        href="#">{{ university.universityName|truncatewords_html:15 }}</a>
-                                                </h6>
-                                            </div>
-                                            <div class="offset-lg-top-10">
-                                                <p>{{ university.description|safe|truncatewords_html:15 }}</p>
-                                            </div>
-                                        </div>
-                                    </article>
-                                {% endfor %}
-                            </div>
-                            <div class="offset-top-60"><a class="btn btn-primary"
-                                                          href="{% url 'universities' %}">Tất cả trường</a></div>
-                        </div>
-                    </div>
-                </div>
+        <div class="carousel-item">
+            <img src="{% static '/images/slide-bg1.jpg' %}">
+            <div class="carousel-caption">
+                <h5></h5>
+                <h2>Tìm khóa học phù hợp nhất</h2>
+                <button type="button" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</button>
             </div>
         </div>
-    </section>
-    <section class="section novi-background bg-cover section-70 section-md-114 bg-default">
-        <div class="shell">
-            <h2 class="text-bold">Thành quả</h2>
-            <hr class="divider bg-madison">
-            <div class="range range-65 range-xs-center range-md-left offset-top-55 counters">
-                <div class="cell-sm-6 cell-md-3">
-                    <div class="counter-type-1"><span
-                            class="icon novi-icon icon-lg icon-outlined text-madison mdi mdi-school"></span>
-                        <div class="h3 text-bold text-primary offset-top-15"><span class="counter">10</span><span
-                                class="symbol">+</span></div>
-                        <hr class="divider bg-gray-light divider-sm">
-                        <div class="offset-top-10">
-                            <h6 class="text-black font-accent">Năm kinh nghiệm</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="cell-sm-6 cell-md-3">
-                    <div class="counter-type-1"><span
-                            class="icon novi-icon icon-lg icon-outlined text-madison mdi mdi-wallet-travel"></span>
-                        <div class="h3 text-bold text-primary offset-top-15"><span class="counter">300</span><span
-                                class="symbol">+</span></div>
-                        <hr class="divider bg-gray-light divider-sm">
-                        <div class="offset-top-10">
-                            <h6 class="text-black font-accent">Trường đại học</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="cell-sm-6 cell-md-3">
-                    <div class="counter-type-1"><span
-                            class="icon novi-icon icon-lg icon-outlined text-madison mdi mdi-domain"></span>
-                        <div class="h3 text-bold text-primary offset-top-15"><span class="counter">6</span><span
-                                class="symbol"></span></div>
-                        <hr class="divider bg-gray-light divider-sm">
-                        <div class="offset-top-10">
-                            <h6 class="text-black font-accent">Chi nhánh</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="cell-sm-6 cell-md-3">
-                    <div class="counter-type-1"><span
-                            class="icon novi-icon icon-lg icon-outlined text-madison mdi mdi-account-multiple-outline"></span>
-                        <div class="h3 text-bold text-primary offset-top-15"><span class="counter">2200</span><span
-                                class="symbol"></span></div>
-                        <hr class="divider bg-gray-light divider-sm">
-                        <div class="offset-top-10">
-                            <h6 class="text-black font-accent">Hồ sơ hoàn thành</h6>
-                        </div>
-                    </div>
+    </div>
+</div>
+<!-- jumbotron -->
+<div class="container-fluid">
+    <div class="row jumbotron">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <p class="lead">Đối tác chính thức của hơn 100 trường Đại học, Cao đẳng hàng đầu Anh quốc Đối tác của
+                Warwick Vesey, top 5 văn phòng luật sư lớn nhất Anh quốc
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <button type="button" class="btn btn-outline-secondary">Tìm khóa học</button>
+        </div>
+    </div>
+</div>
+<!-- Feature University -->
+<div class="container-fluid">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4 display-title">Ngành phổ biến</h1>
+        </div>
+        <hr>
+    </div>
+</div>
+<!-- Card -->
+<div class="container padding padding-whitebg">
+    <div class="row padding">
+        {% for subject in subjects %}
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header card-blue-header">{{ subject.subjectName }}</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for unisubject in subject.unisubject_set.all|slice:"5" %}
+                            <li class="list-group-item">{{ unisubject.name }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
+    </div>
+</div>
 
-    <section
-            class="section novi-background bg-cover section-70 section-xl-100 section-xl-bottom-114 bg-madison context-dark position-relative">
-        <div class="owl-carousel owl-carousel-default veil-xl-owl-dots veil-owl-nav reveal-xl-owl-nav" data-items="1"
-             data-nav="true" data-dots="true"
-             data-nav-class="[&quot;owl-prev fa-angle-left&quot;, &quot;owl-next fa-angle-right&quot;]">
-            <div>
-                <div class="shell">
-                    <div class="range range-xs-center range-xs-middle">
-                        <div class="cell-sm-9 cell-sm-push-1">
-                            <div class="quote-classic-boxed text-center">
-                                <div class="quote-body"><q>Chương trình A-Level cần thiết để được vào đại học bên Anh,
-                                    nên là em mới đi tìm hiểu và liên hệ rất là nhiều, thì em tìm được đến Đồng Thịnh và
-                                    Đồng Thịnh đã giúp đỡ em rất là nhiều trong việc lấy được học bổng và đi du học.</q>
-                                    <div class="offset-top-30 text-center"><cite class="font-accent">Nguyễn Duy
-                                        Tân</cite>
-                                        <div class="offset-top-5">
-                                            <p class="text-dark text-italic">KHOÁ A-LEVEL, BELLERBYS COLLEGE - ANH
-                                                QUỐC</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- 2 collumn -->
+<div class="container-fluid padding-greybg">
+    <div class="container padding">
+        <div class="row padding">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-news">
+                    <img src="{% static 'images/myhc_91803.jpg' %}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title">Ứng dụng quản lý chi tiêu nên-tải-về cho du học sinh</h3>
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="shell">
-                    <div class="range range-xs-center range-xs-middle">
-                        <div class="cell-sm-9 cell-sm-push-1">
-                            <div class="quote-classic-boxed text-center">
-                                <div class="quote-body"><q>Em cảm ơn chị Như đã nhiệt tình hỗ trợ em. Chị Như là trên cả
-                                    thân thiện và dễ thương luôn ạ. Em cũng cảm ơn chị Thư và chị Ngọc đã cẩn thận tỉ mỉ
-                                    giúp đỡ em trong quá trình apply visa, và có kết quả sau 12 ngày làm việc, quá nhanh
-                                    gọn. Em chúc trung tâm luôn có nhiều bạn học sinh đạt được ước mơ du học nhé.</q>
-                                    <div class="offset-top-30 text-center"><cite class="font-accent">Phạm Quế Anh</cite>
-                                        <div class="offset-top-5">
-                                            <p class="text-dark text-italic">MA TEACHING ENGLISH TO SPEAKERS OF OTHER
-                                                LANGUAGES (TESOL), UNIVERSITY OF HUDDERSFIELD</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            {% for article in articles %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-news">
+                        <h5 class="card-header card-red-header">Tin tức</h5>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ article.title|truncatewords:12 }}</h4>
+                            <p class="card-text">{{ article.body|safe|truncatewords_html:20 }}</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </section>
-    <section class="section novi-background bg-cover section-70 section-md-114 bg-catskill">
-        <div class="shell isotope-wrap">
-            <h2 class="text-bold">Bài viết</h2>
-            <hr class="divider bg-madison">
-            <div class="row range-30 isotope offset-top-50 text-left">
-                {% for article in articles %}
-                    <div class="col-xs-12 col-sm-6 col-md-4 isotope-item">
-                        <article class="post-news">
-                            <div class="post-news-body">
-                                <h6><a href="{% url 'article_detail' article_id=article.id %}"> {{ article.title|truncatewords:12 }}</a></h6>
-                                <div class="offset-top-20">
-                                    <p>{{ article.body|safe|truncatewords_html:20 }}</p>
-                                </div>
-                                <div class="post-news-meta offset-top-20"><span
-                                        class="icon novi-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span
-                                        class="text-middle inset-left-10 text-italic text-black">{{ article.date|date }}</span>
-                                </div>
-                            </div>
-                        </article>
+    </div>
+</div>
+<!-- Feature University -->
+<div class="container-fluid">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4 display-title">Trường phổ biến</h1>
+        </div>
+        <hr>
+    </div>
+</div>
+<!-- Card -->
+<div class="container padding">
+    <div class="row padding">
+        {% for university in universities %}
+            <div class="col-md-4">
+                <div class="card card-university">
+                    <img class="card-img-top" src="{% cropped_thumbnail university "cropping" %}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ university.universityName|truncatechars_html:20 }}</h4>
+                        <p class="card-text">{{ university.description|safe|truncatewords_html:10 }}</p>
+                        <a href="#" class="btn btn-outline-secondary">Tìm hiểu thêm</a>
                     </div>
-                {% endfor %}
+                </div>
             </div>
-            <div class="offset-top-50"><a class="btn btn-primary"
-                                          href="{% url 'articles' %}">Tất cả bài viết</a></div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
+    </div>
+</div>
+{#testimonial#}
+<div class="container-xl padding-greybg">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h2>Câu chuyện thành công</h2>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="img-box"><img
+                                src="{% static 'images/nguyen-duy-tan-bellerbys-college-1024x536.jpg' %}" alt=""></div>
+                        <p class="testimonial">Chương trình A-Level cần thiết để được vào đại học bên Anh, nên là em mới
+                            đi tìm hiểu và liên hệ rất là nhiều, thì em tìm được đến Đồng Thịnh và Đồng Thịnh đã giúp đỡ
+                            em rất là nhiều trong việc lấy được học bổng và đi du học.</p>
+                        <p class="overview"><b>Nguyễn Duy Tân</b>, BELLERBYS COLLEGE - ANH QUỐC</p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-box"><img src="{% static 'images/phương-mai.jpg' %}" alt=""></div>
+                        <p class="testimonial">Công ty Đồng Thịnh tư vấn giúp em du học Anh rất suôn sẻ, không có bị
+                            khúc mắc gì, nói chung mọi việc đều tốt. Còn các bạn tư vấn cho cô thì đều rất trẻ, rất nhẹ
+                            nhàng, dễ thương và tận tình. Cô cũng gửi lời cảm ơn đến các bạn tư vấn.</p>
+                        <p class="overview"><b>Cô Trần Tố Mai</b>, OSSALL SCHOOL, UK</p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-box"><img src="{% static 'images/my-ha-1024x536.jpg' %}" alt=""></div>
+                        <p class="testimonial">Em cảm ơn chị Nhi đã nhiệt tình hỗ trợ em. Chị Như là trên cả thân thiện
+                            và dễ thương luôn ạ. Em cũng cảm ơn chị Thư và chị Ngọc đã cẩn thận tỉ mỉ giúp đỡ em trong
+                            quá trình apply visa, và có kết quả sau 12 ngày làm việc, quá nhanh gọn</p>
+                        <p class="overview"><b>Phạm Quế Anh</b>, UNIVERSITY OF HUDDERSFIELD</p>
+                    </div>
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
+</div>
+<!-- Footer -->
+<div class="container-fluid footer">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <img src="{% static 'images/logo-no-uk.png' %}" style="width:120px;">
+            <hr class="light">
+            <p>(028) 628 732 53</p>
+            <p>info@dongthinh.co.uk</p>
+        </div>
+        <div class="col-md-4 text-left footer-text">
+            <h5>Văn phòng Hồ Chí Minh</h5>
+            <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
+            <p>Hotline: 0869932900</p>
+            <h5>Văn phòng London</h5>
+            <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
+            <p>Hotline: 07715621123</p>
+        </div>
+        <div class="col-md-4 text-left footer-text">
+            <h5>Văn phòng Đà Lạt</h5>
+            <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
+            <p>Hotline: (+84) 915 049 084</p>
+            <h5>Văn phòng Hà Nội</h5>
+            <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
+            <p>Hotline: 0961660266</p>
+        </div>
+        <div class="col-12 footer-end">
+                <h5>&copy;Dongthinh.co.uk</h5>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
