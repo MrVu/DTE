@@ -12,7 +12,7 @@
                     <div class="card">
                         <h5 class="card-header card-red-header">Tin tức</h5>
                         <div class="card-body">
-                            <h4 class="card-title" style="height:80px">{{ article.title|truncatewords:12 }}</h4>
+                            <h4 class="card-title">{{ article.title|truncatewords:9 }}</h4>
                             <p class="card-text">{{ article.body|safe|truncatewords_html:20 }}</p>
                         </div>
                     </div>
