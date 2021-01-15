@@ -118,9 +118,8 @@ def universities(request):
 def university_detail(request, university_id):
     university = University.objects.get(id=university_id)
     page_name = university.universityName
-    subjects = Subject.objects.filter(universities=university)
     return render(request, 'main/uni_detail.html',
-                  context={'university': university, 'subjects': subjects, 'page_name': page_name})
+                  context={'university': university, 'page_name': page_name})
 
 
 def articles(request):

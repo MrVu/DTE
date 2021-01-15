@@ -3,24 +3,12 @@
 {% load widget_tweaks %}
 {% block content %}
     {% include 'main/breadcrumb.html' %}
-<section class="section novi-background bg-cover section-70 section-md-114 bg-default">
-            <div class="shell">
-                <div class="range range-50 range-xs-center">
-                    <div class="cell-sm-10 cell-md-10 text-md-left">
-                        <h3 class="text-bold"> {{ art.title }} </h3>
-                        <hr class="divider bg-madison hr-md-left-0">
-                        <div class="offset-md-top-20 offset-top-10">
-                            <ul class="post-news-meta list list-inline list-inline-xl">
-                                <li><span class="icon novi-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span class="text-middle inset-left-10 text-italic text-black">{{ art.date|date }}</span></li>
-                            </ul>
-                        </div>
-                        <div class="offset-top-30">
-                            <div class="offset-top-30">
-                                {{ art.body|safe }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container padding-whitebg">
+        <div class="row padding text-left">
+            <div class="col-md-12">
+                <h3 class="text-bold red-h5"> {{ art.title }} </h3>
+                {{ art.body|safe }}
             </div>
-        </section>
+        </div>
+    </div>
 {% endblock %}

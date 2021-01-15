@@ -54,6 +54,13 @@ html, body {
     height: 420px;
 }
 
+.card-body a {
+    color: #9f2f31;
+}
+.card-body a:hover {
+    color: #26387c;
+}
+
 .list-group a {
     color: #26387c;
 }

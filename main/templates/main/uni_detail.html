@@ -3,106 +3,57 @@
 {% load widget_tweaks %}
 {% block content %}
     {% include 'main/breadcrumb.html' %}
-
-    <section class="section novi-background bg-cover section-90 section-md-114 bg-default">
-        <div class="shell">
-            <div class="responsive-tabs responsive-tabs-classic vertical" data-type="vertical">
-                <div class="resp-tabs-container text-sm-left tabs-lg-collapsed" data-group="tabs-lg-collapsed">
-                    <div>
-                        <div class="inset-lg-right-60">
-                            <h3 class="text-bold veil reveal-lg-block">Giới thiệu</h3>
-                            <div class="hr divider bg-madison hr-sm-left-0 veil reveal-lg-block"></div>
-                            <div class="offset-top-30"><img class="img-responsive reveal-inline-block"
-                                                            src="/media/{{ university.pic }}" width="770"
-                                                            alt=""></div>
-                            <div class="offset-lg-top-30">
-                                <p>{{ university.description|safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="inset-lg-right-60">
-                            <h3 class="text-bold veil reveal-lg-block">Các ngành học</h3>
-                            <div class="hr divider bg-madison hr-sm-left-0 veil reveal-lg-block"></div>
-                            <div class="offset-lg-top-30">
-                                <p>Ngành học tại {{ university.universityName }}</p>
-                            </div>
-                            <div class="offset-top-30">
-                                {% for subject in subjects %}
-                                    <p>- {{ subject.subjectName }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="inset-lg-right-60">
-                            <h3 class="text-bold veil reveal-lg-block">Điều kiện nhập học</h3>
-                            <div class="hr divider bg-madison hr-sm-left-0 veil reveal-lg-block"></div>
-                            <div class="offset-lg-top-30">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Bậc học</th>
-                                        <th scope="col">Điều kiện nhập học</th>
-                                        <th scope="col">Học phí</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for l in university.level_set.all %}
-                                        <tr>
-                                        <td>{{ l.levelName }}</td>
-                                        <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>
-                                        <td>{{ l.feeAYear }}£/năm</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="inset-lg-right-60">
-                            <h3 class="text-bold veil reveal-lg-block">Học bổng</h3>
-                            <div class="hr divider bg-madison hr-sm-left-0 veil reveal-lg-block"></div>
-                            <div class="offset-lg-top-30">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Bậc học</th>
-                                        <th scope="col">Giá trị</th>
-                                        <th scope="col">Thời hạn</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for c in university.scholarship_set.all %}
-                                        <tr>
-                                        <td>{{ c.name }}</td>
-                                        <td>{{ c.value }}£</td>
-                                        <td>{{ c.time }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="resp-tabs-list tabs-1 text-center tabs-lg-collapsed" data-group="tabs-lg-collapsed">
-                    <li class="resp-tab-item tabs-lg-collapsed resp-tab-active"
-                        aria-controls="tabs-lg-collapsed_tab_item-0" role="tab">Giới thiệu
-                    </li>
-                    <li class="resp-tab-item tabs-lg-collapsed resp-tab-active"
-                        aria-controls="tabs-lg-collapsed_tab_item-1" role="tab">Các Ngành học
-                    </li>
-                    <li class="resp-tab-item tabs-lg-collapsed resp-tab-active"
-                        aria-controls="tabs-lg-collapsed_tab_item-2" role="tab">Điều kiện nhập học
-                    </li>
-                    <li class="resp-tab-item tabs-lg-collapsed resp-tab-active"
-                        aria-controls="tabs-lg-collapsed_tab_item-3" role="tab">Học bổng
-                    </li>
-                </ul>
+    <div class="container">
+        <div class="row padding-whitebg">
+            <div class="col-md-12 text-left">
+                <h3 class="text-bold red-h5 text-center">Giới thiệu</h3>
+                <img class="img-responsive" src="/media/{{ university.pic }}" style="width: 100%">
+                <p>{{ university.description|safe }}</p>
+                <h5 class="text-bold red-h5">Các ngành học</h5>
+                {% for uni_subject in university.uni_subjects.all %}
+                    <p>- {{ uni_subject.name }}</p>
+                {% endfor %}
+                <h5 class="text-bold red-h5">Điều kiện nhập học</h5>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Bậc học</th>
+                        <th scope="col">Điều kiện nhập học</th>
+                        <th scope="col">Học phí</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for l in university.level_set.all %}
+                        <tr>
+                            <td>{{ l.levelName }}</td>
+                            <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>
+                            <td>{{ l.feeAYear }}£/năm</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <h5 class="text-bold red-h5">Học bổng</h5>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Bậc học</th>
+                        <th scope="col">Giá trị</th>
+                        <th scope="col">Thời hạn</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in university.scholarship_set.all %}
+                        <tr>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.value }}£</td>
+                            <td>{{ c.time }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+
+
 {% endblock %}
