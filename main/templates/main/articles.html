@@ -13,7 +13,7 @@
                         <h5 class="card-header card-red-header">Bài viết</h5>
                         <div class="card-body">
                             <a href="{% url 'article_detail' article_id=article.id %}"><h4 class="card-title">{{ article.title|truncatewords:9 }}</h4></a>
-                            <p class="card-text">{{ article.body|safe|truncatewords_html:20 }}</p>
+                            <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:20 }}</p>
                         </div>
                     </div>
                 </div>

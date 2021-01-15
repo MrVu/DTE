@@ -90,8 +90,8 @@ class UniSubject(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = 'Ngành nhỏ'
-        verbose_name_plural = 'Quản lý ngành nhỏ'
+        verbose_name = 'Khóa học'
+        verbose_name_plural = 'Quản lý Khóa học'
         ordering = ['name']
 
 

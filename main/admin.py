@@ -53,7 +53,7 @@ class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['universityName']
     ordering = ['universityName']
     inlines = [LevelInline, ScholarshipInline]
-    filter_horizontal = ('subjects', 'cities','uni_subjects')
+    filter_horizontal = ('subjects', 'cities', 'uni_subjects')
     
 
 
