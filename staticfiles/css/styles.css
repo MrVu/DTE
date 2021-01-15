@@ -68,6 +68,13 @@ html, body {
     color: #9f2f31;
 }
 
+.red-h5{
+    color: #9f2f31;
+}
+.blue-h5 {
+    color: #26387c;
+}
+
 .footer-end {
     background-color: #131c3e;
 }
@@ -75,7 +82,9 @@ html, body {
 .footer-end > h5 {
     color: #d5d5d5;
 }
+h5 {
 
+}
 .padding-greybg {
     padding-top: 2rem;
     background-color: #e9ecef;
@@ -88,7 +97,7 @@ html, body {
 }
 
 hr.light {
-    border-top: 1px solid #d5d5d5;
+    border-top: 1px solid #26387c;
     /*width: 75%;*/
 }
 

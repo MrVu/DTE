@@ -1,26 +1,14 @@
 {% extends 'main/base.html' %}
 {% block content %}
     {% include 'main/breadcrumb.html' %}
-    <section class="section novi-background bg-cover section-70 section-md-114 bg-default">
-        <div class="shell">
-            <div class="range range-50">
-                <div class="cell-sm-4 cell-sm-push-2 text-sm-left">
-                    <div class="inset-sm-left-30"><img class="img-responsive reveal-inline-block img-rounded"
-                                                       src="/media/{{ page_info.team_pic }}" width="340" alt="">
-                        <div class="offset-top-20">
-                            <h6 class="text-primary text-bold">Team Đồng Thịnh</h6>
-                        </div>
-                        <p>Tư vấn du học Anh chuyên nghiệp</p>
-                    </div>
-                </div>
-                <div class="cell-sm-8 cell-sm-push-1 text-sm-left">
-                    <h2 class="text-bold">Where your dream starts…</h2>
-                    <hr class="divider bg-madison hr-sm-left-0">
-                    <div class="offset-top-30 offset-sm-top-30">
-                        <p>{{ page_info.team_description|safe }}</p>
-                    </div>
-                </div>
+    <div class="container padding-whitebg">
+        <div class="row padding">
+            <div class="col-md-4 text-left">
+                <h5 class="red-h5">Chúng tôi là ai</h5>
+            </div>
+            <div class="col-md-8 text-left">
+                {{ page_info.team_description|safe }}
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}

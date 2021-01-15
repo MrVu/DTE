@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarResponsive">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="{% url 'index' %}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Giới thiệu</a>
+                        <a class="nav-link" href="{% url 'about_us' %}">Giới thiệu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'uni_search' %}">Tìm khóa học</a>
@@ -44,7 +44,7 @@
                         <a class="nav-link" href="{% url 'articles' %}">Bài viết</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Liên hệ</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Liên hệ</a>
                     </li>
                 </ul>
             </div>
