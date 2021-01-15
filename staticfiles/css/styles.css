@@ -54,6 +54,12 @@ html, body {
     height: 420px;
 }
 
+.list-group a {
+    color: #26387c;
+}
+.list-group a:hover {
+    color: #9f2f31;
+}
 
 .footer {
     /*background-color: #3f3f3f;*/

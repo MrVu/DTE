@@ -34,11 +34,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about_us' %}">Giới thiệu</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'uni_search' %}">Tìm khóa học</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'universities' %}">Danh sách trường</a>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Tìm khóa học</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'uni_search' %}">Công cụ tìm kiếm</a>
+                            <a class="dropdown-item" href="{% url 'universities' %}">Danh sách trường</a>
+                            <a class="dropdown-item" href="{% url 'subjects_query' %}">Danh sách ngành</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'articles' %}">Bài viết</a>
@@ -52,36 +55,36 @@
     </nav>
     {% block content %}
     {% endblock %}
-<!-- Footer -->
-<div class="container-fluid footer">
-    <div class="row text-center">
-        <div class="col-md-4">
-            <img src="{% static 'images/logo-no-uk.png' %}" style="width:120px;">
-            <hr class="light">
-            <p>(028) 628 732 53</p>
-            <p>info@dongthinh.co.uk</p>
-        </div>
-        <div class="col-md-4 text-left footer-text">
-            <h5>Văn phòng Hồ Chí Minh</h5>
-            <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
-            <p>Hotline: 0869932900</p>
-            <h5>Văn phòng London</h5>
-            <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
-            <p>Hotline: 07715621123</p>
-        </div>
-        <div class="col-md-4 text-left footer-text">
-            <h5>Văn phòng Đà Lạt</h5>
-            <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
-            <p>Hotline: (+84) 915 049 084</p>
-            <h5>Văn phòng Hà Nội</h5>
-            <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
-            <p>Hotline: 0961660266</p>
-        </div>
-        <div class="col-12 footer-end">
+    <!-- Footer -->
+    <div class="container-fluid footer">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <img src="{% static 'images/logo-no-uk.png' %}" style="width:120px;">
+                <hr class="light">
+                <p>(028) 628 732 53</p>
+                <p>info@dongthinh.co.uk</p>
+            </div>
+            <div class="col-md-4 text-left footer-text">
+                <h5>Văn phòng Hồ Chí Minh</h5>
+                <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
+                <p>Hotline: 0869932900</p>
+                <h5>Văn phòng London</h5>
+                <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
+                <p>Hotline: 07715621123</p>
+            </div>
+            <div class="col-md-4 text-left footer-text">
+                <h5>Văn phòng Đà Lạt</h5>
+                <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
+                <p>Hotline: (+84) 915 049 084</p>
+                <h5>Văn phòng Hà Nội</h5>
+                <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
+                <p>Hotline: 0961660266</p>
+            </div>
+            <div class="col-12 footer-end">
                 <h5>&copy;Dongthinh.co.uk</h5>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
