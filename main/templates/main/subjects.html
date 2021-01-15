@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load cropping %}
+{% block content %}
+
+
+    {% include 'main/breadcrumb.html' %}
+    <div class="container padding-whitebg">
+        <div class="row">
+            {% for subject in subjects %}
+                <div class="col-md-12">
+                    <div class="card">
+                        <a href="#" data-toggle="collapse" data-target="#collapse{{ subject.id }}"><h5
+                                class="card-header card-blue-header">{{ subject.subjectName }}({{ subject.unisubject_set.count }})</h5></a>
+                        <div class="collapse" id="collapse{{ subject.id }}">
+                            <ul class="list-group list-group-flush collapse">
+                                {% for unisubject in subject.unisubject_set.all %}
+                                    <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}">
+                                        <li class="list-group-item">{{ unisubject.name }}</li>
+                                    </a>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

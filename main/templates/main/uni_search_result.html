@@ -6,8 +6,21 @@
 
     {% include 'main/breadcrumb.html' %}
     {% if message %}
-        <div class="search-fail">
-            <p>{{ message }}</p>
+        <div class="container padding-whitebg">
+            <div class="row padding text-center">
+                <div class="col-md-12">
+                    <h5 class="red-h5">{{ message }}</h5>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if header %}
+        <div class="container padding-whitebg">
+            <div class="row padding text-center text-uppercase">
+                <div class="col-md-12">
+                    <h5 class="blue-h5">{{ header }}</h5>
+                </div>
+            </div>
         </div>
     {% endif %}
 

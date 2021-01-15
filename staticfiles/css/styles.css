@@ -54,6 +54,7 @@ html, body {
     height: 420px;
 }
 
+
 .footer {
     /*background-color: #3f3f3f;*/
     /*color: #d5d5d5;*/
@@ -109,6 +110,9 @@ hr.light {
 .card-blue-header {
     background-color: #26387c !important;
     color: #d5d5d5;
+}
+.card a {
+    text-decoration: none !important;
 }
 
 .card-red-header {

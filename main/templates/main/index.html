@@ -39,6 +39,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <button type="button" class="btn btn-outline-secondary">Tìm khóa học</button>
+            <a href="{% url 'uni_search' %}" class="btn btn-outline-secondary">Tìm khóa học</a>
         </div>
     </div>
 </div>
@@ -60,7 +61,7 @@
                     <h5 class="card-header card-blue-header">{{ subject.subjectName }}</h5>
                     <ul class="list-group list-group-flush">
                         {% for unisubject in subject.unisubject_set.all|slice:"5" %}
-                            <li class="list-group-item">{{ unisubject.name }}</li>
+                            <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}"><li class="list-group-item">{{ unisubject.name }}</li></a>
                         {% endfor %}
                     </ul>
                 </div>
@@ -68,7 +69,7 @@
         {% endfor %}
     </div>
     <div class="text-center">
-        <a class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
+        <a href="{% url 'subjects_query' %}" class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
     </div>
 </div>
 

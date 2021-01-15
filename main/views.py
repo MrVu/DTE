@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo, GuestCustomer
+from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo, GuestCustomer, UniSubject
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .forms import GuestCustomerForm, AdditionalStepForm
@@ -13,7 +13,8 @@ def index(request):
     universities = University.objects.all()[:6]
     articles = Article.objects.order_by('-date')[:2]
     subjects = Subject.objects.filter(unisubject__isnull=False).distinct()[:3]
-    return render(request, 'main/index.html', context={'universities': universities, 'articles': articles, 'subjects': subjects})
+    return render(request, 'main/index.html',
+                  context={'universities': universities, 'articles': articles, 'subjects': subjects})
 
 
 def uni_search(request):
@@ -64,16 +65,20 @@ def uni_search_result(request):
     if 'subject' in request.session and 'level' in request.session:
         if 'city' in request.session and not 'uni_subject' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(cities__city_name=request.session.get('city')))
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                cities__city_name=request.session.get('city')))
         elif 'uni_subject' in request.session and not 'city' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(uni_subjects__name=request.session.get('uni_subject')))
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                uni_subjects__name=request.session.get('uni_subject')))
         elif 'city' in request.session and 'uni_subject' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(cities__city_name=request.session.get('city')) & Q(uni_subjects__name=request.session.get('uni_subject')))
+                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                cities__city_name=request.session.get('city')) & Q(
+                uni_subjects__name=request.session.get('uni_subject')))
         else:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-            'subject')) & Q(level__levelName=request.session.get('level')))
+                'subject')) & Q(level__levelName=request.session.get('level')))
         if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
             header = ""
@@ -81,9 +86,27 @@ def uni_search_result(request):
             message = ""
             header = "Trường phù hợp với bạn"
         return render(request, 'main/uni_search_result.html',
-                      context={'universities': universities, 'page_name': page_name, 'message': message, 'header': header})
+                      context={'universities': universities, 'page_name': page_name, 'message': message,
+                               'header': header})
     else:
         return HttpResponseRedirect(reverse('uni_search'))
+
+
+def universities_by_subject(request, uni_subject_id):
+    uni_subject = UniSubject.objects.get(id=uni_subject_id)
+    universities = University.objects.filter(uni_subjects=uni_subject)
+    page_name = 'Khóa học'
+    message = ""
+    header = f"Có {universities.count()} trường có khóa học {uni_subject.name}"
+    return render(request, 'main/uni_search_result.html',
+                  context={'universities': universities, 'page_name': page_name, 'message': message,
+                           'header': header})
+
+
+def subjects_query(request):
+    page_name = 'Danh sách ngành học'
+    subjects = Subject.objects.filter(unisubject__isnull=False).distinct()
+    return render(request, 'main/subjects.html', context={'page_name': page_name, 'subjects': subjects})
 
 
 def universities(request):

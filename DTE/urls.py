@@ -31,6 +31,8 @@ urlpatterns = [
     path('uni-search-result', views.uni_search_result, name='uni_search_result'),
     path('universities/<int:university_id>',
          views.university_detail, name='university_detail'),
+    path('uni-by-subject/<int:uni_subject_id>', views.universities_by_subject, name='uni_by_subject'),
+    path('subjects/', views.subjects_query, name='subjects_query'),
     path('articles/', views.articles, name='articles'),
     path('articles/<int:article_id>', views.article_detail, name='article_detail'),
     path('contact/', views.contact, name='contact'),
