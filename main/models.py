@@ -72,6 +72,7 @@ class Tracking(models.Model):
 class Subject(models.Model):
     subjectName = models.CharField(
         max_length=200, null=True, verbose_name='Tên ngành')
+    pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.subjectName
