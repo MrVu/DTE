@@ -84,13 +84,24 @@
                     </div>
                 </div>
             </div>
-            {% for article in articles %}
+            {% for article in articles|slice:":2" %}
                 <div class="col-lg-3 col-md-6">
                     <div class="card card-news">
                         <h5 class="card-header card-red-header">Bài viết</h5>
                         <div class="card-body">
                             <a href="{% url 'article_detail' article_id=article.id %}"> <h4 class="card-title">{{ article.title|truncatewords:12 }}</h4></a>
                             <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:20 }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for article in articles|slice:"2:" %}
+                <div class="col-lg-6">
+                    <div class="card card-news">
+                        <h5 class="card-header card-red-header">Bài viết</h5>
+                        <div class="card-body">
+                            <a href="{% url 'article_detail' article_id=article.id %}"> <h4 class="card-title">{{ article.title }}</h4></a>
+                            <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:40 }}</p>
                         </div>
                     </div>
                 </div>

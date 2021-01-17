@@ -11,7 +11,7 @@ from django.db.models import Q
 
 def index(request):
     universities = University.objects.all()[:6]
-    articles = Article.objects.order_by('-date')[:2]
+    articles = Article.objects.order_by('-date')[:4]
     subjects = Subject.objects.filter(unisubject__isnull=False).distinct()[:3]
     return render(request, 'main/index.html',
                   context={'universities': universities, 'articles': articles, 'subjects': subjects})
