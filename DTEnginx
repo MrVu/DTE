@@ -1,41 +1,13 @@
 server {
     listen 80;
-    server_name dongthinh.xyz;
+    server_name dongthinh.co.uk;
 
     location ~ /.well-known {
         root /home/vuhoang/well-known;
     }
 
     location / {
-        return 301 https://$host$request_uri;
-    }
-}
-server {
-    listen 443 ssl;
-    server_name dongthinh.xyz;
-    ssl_certificate /etc/letsencrypt/live/dongthinh.xyz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/dongthinh.xyz/privkey.pem;
-    client_max_body_size 12M;
-
-    location = /favicon.ico {
-     access_log off; log_not_found off;
-     alias /home/vuhoang/MyProject/DTE/favicon.ico;
-     }
-
-
-    location /static/ {
-        root /home/vuhoang/MyProject/DTE;
-    }
-
-
-    location /media/ {
-        root /home/vuhoang/MyProject/DTE;
-    }
-
-
-    location / {
         include proxy_params;
         proxy_pass http://unix:/home/vuhoang/MyProject/DTE/DTE.sock;
     }
-
 }
