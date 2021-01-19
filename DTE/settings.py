@@ -30,7 +30,7 @@ if os.environ.get('DJANGO_DEBUG'):
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['dongthinh.xyz', '127.0.0.1']
+ALLOWED_HOSTS = ['dongthinh.co.uk', '127.0.0.1']
 
 # Application definition
 

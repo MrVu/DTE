@@ -7,7 +7,35 @@ server {
     }
 
     location / {
+        return 301 https://$host$request_uri;
+    }
+}
+server {
+    listen 443 ssl;
+    server_name dongthinh.co.uk;
+    ssl_certificate /etc/letsencrypt/live/dongthinh.co.uk/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/dongthinh.co.uk/privkey.pem;
+    client_max_body_size 12M;
+
+    location = /favicon.ico {
+     access_log off; log_not_found off;
+     alias /home/vuhoang/MyProject/DTE/favicon.ico;
+     }
+
+
+    location /static/ {
+        root /home/vuhoang/MyProject/DTE;
+    }
+
+
+    location /media/ {
+        root /home/vuhoang/MyProject/DTE;
+    }
+
+
+    location / {
         include proxy_params;
         proxy_pass http://unix:/home/vuhoang/MyProject/DTE/DTE.sock;
     }
+
 }
