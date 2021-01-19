@@ -9,21 +9,22 @@
     <div class="container padding-whitebg">
         <div class="row">
             {% for subject in subjects %}
-                <div class="col-md-12">
-                <div>
-                        <a href="#" data-toggle="collapse" data-target="#collapse{{ subject.id }}">
-                            <img class="img-fluid" src="/media/{{ subject.pic }}">
-                            <h5 class="centered">{{ subject.subjectName }}({{ subject.unisubject_set.count }})</h5>
-                        </a></div>
-                        <div class="collapse" id="collapse{{ subject.id }}">
-                            <ul class="list-group list-group-flush collapse">
-                                {% for unisubject in subject.unisubject_set.all %}
-                                    <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}">
-                                        <li class="list-group-item">{{ unisubject.name }}</li>
-                                    </a>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                <div class="col-md-12 padding-0">
+                    <a href="#" data-toggle="collapse" data-target="#collapse{{ subject.id }}">
+                        <img class="img-fluid" src="/media/{{ subject.pic }}">
+                        <h5 class="centered">{{ subject.subjectName }}({{ subject.unisubject_set.count }})</h5>
+                    </a>
+                </div>
+                <div class="col-md-12 padding-0">
+                    <div class="collapse" id="collapse{{ subject.id }}">
+                        <ul class="list-group list-group-flush collapse">
+                            {% for unisubject in subject.unisubject_set.all %}
+                                <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}">
+                                    <li class="list-group-item">{{ unisubject.name }}</li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             {% endfor %}
         </div>
