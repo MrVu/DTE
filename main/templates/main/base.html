@@ -1,7 +1,7 @@
 {% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
-<html class="wide wow-animation scrollTo" lang="en">
+<html lang="en">
 
 <head>
     <title>Du học Đồng Thịnh</title>
@@ -10,6 +10,9 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta property="og:image" content="/media/logo-no-uk.png">
+    <meta property="og:title" content="Tư vấn du học Đồng Thịnh">
+    <meta property="og:description" content="Tư vấn du học United Kingdom, Tư vấn du học Anh">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
     <link rel="stylesheet" type="text/css"
@@ -31,9 +34,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'index' %}">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about_us' %}">Giới thiệu</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Tìm khóa học</a>
@@ -46,6 +46,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'articles' %}">Bài viết</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_us' %}">Giới thiệu</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Liên hệ</a>
                     </li>
@@ -66,7 +70,7 @@
             </div>
             <div class="col-md-4 text-left footer-text">
                 <h5>Văn phòng Hồ Chí Minh</h5>
-                <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
+                <p>21G Nguyễn Văn Trỗi, P.8, Q. Phú Nhuận</p>
                 <p>Hotline: 0869932900</p>
                 <h5>Văn phòng London</h5>
                 <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
