@@ -10,10 +10,10 @@
             {% for article in articles %}
                 <div class="col-lg-4 col-md-4">
                     <div class="card">
-                        <h5 class="card-header card-red-header">Bài viết</h5>
+                        <h4 class="card-header card-red-header">Bài viết</h4>
                         <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"><h4 class="card-title">{{ article.title|truncatewords:9 }}</h4></a>
-                            <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:20 }}</p>
+                            <a href="{% url 'article_detail' article_id=article.id %}"><h5 class="card-title">{{ article.title|truncatewords:9 }}</h5></a>
+                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:20 }}</p>
                         </div>
                     </div>
                 </div>

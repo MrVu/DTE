@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
 
 html, body {
     height: 100%;
     width: 100%;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Lato', sans-serif !important;
     color: #222 !important;
 }
 
@@ -15,16 +15,33 @@ html, body {
     padding-right: 20px;
 }
 
-.nav-link {
+.nav-link:hover {
     font-size: 1.1em !important;
     color: #9f2f31 !important;
+    text-transform: uppercase;
 }
-
+.nav-link {
+    font-size: 1.1em !important;
+    color: #26387c !important;
+    text-transform: uppercase;
+}
+.dropdown-item {
+    text-transform: uppercase;
+}
+.dropdown-item:hover {
+    background-color: #9f2f31 !important;
+    color: white !important;
+}
 .carousel-inner img {
     width: 100%;
     height: 100%;
 }
 
+.carousel-discription{
+    font-size: 45px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 .carousel-caption {
     position: absolute !important;
     top: 50%;
@@ -94,7 +111,7 @@ html, body {
 }
 
 .footer-end > h5 {
-    color: #d5d5d5;
+    color: white;
 }
 h5 {
 
@@ -106,7 +123,7 @@ h5 {
 }
 
 .padding-whitebg {
-    padding-top: 2rem;
+    /*padding-top: 2rem;*/
     margin-bottom: 2rem;
 }
 
@@ -122,7 +139,7 @@ hr.light {
 
 .card-blue-header {
     background-color: #26387c !important;
-    color: #d5d5d5;
+    color: white;
 }
 .card a {
     text-decoration: none !important;
@@ -130,27 +147,33 @@ hr.light {
 
 .card-red-header {
     background-color: #9f2f31 !important;
-    color: #d5d5d5;
+    color: white;
 }
 
 
 .btn-outline-secondary {
     border-color: #26387c !important;
-    color: #26387c !important;
+    background-color: #26387c !important;
+    color: white !important;
 }
 
 .btn-outline-secondary:hover {
-    border-color: #26387c !important;
-    background-color: #26387c !important;
-    color: #d5d5d5 !important;
-}
-
-.btn-primary {
-    color: #d5d5d5 !important;
+    color: white !important;
     background-color: #9f2f31 !important;
     border-color: #9f2f31 !important;
 }
 
+.btn-primary {
+    color: white !important;
+    background-color: #9f2f31 !important;
+    border-color: #9f2f31 !important;
+}
+
+.btn-primary:hover {
+    border-color: #26387c !important;
+    background-color: #26387c !important;
+    color: white !important;
+}
 
 .carousel .carousel-item .img-box {
     width: 135px;
@@ -222,7 +245,7 @@ hr.light {
 
 .top-panel {
     background-image: url('/static/images/parallax-03.jpg');
-    color: #d5d5d5;
+    color: white;
     font-size: 40px;
     background-size: cover;
     background-attachment: fixed;
@@ -241,6 +264,9 @@ hr.light {
 
 .padding-0 {
     padding: 0 !important;
+}
+.uni-des {
+    padding-top:25px;
 }
 
 /*---Media Queries --*/

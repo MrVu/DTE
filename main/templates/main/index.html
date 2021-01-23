@@ -15,31 +15,33 @@
             <img src="{% static '/images/slide-bg.jpg' %}">
             <div class="carousel-caption">
                 <h5></h5>
-                <h2>Tìm khóa học phù hợp nhất</h2>
-                <a href="{% url 'uni_search' %}" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</a>
+                <p class="carousel-discription">Tìm khóa học phù hợp nhất</p>
+                <a href="{% url 'uni_search' %}" class="btn btn-primary btn-lg">Công cụ tìm kiếm khóa học</a>
             </div>
         </div>
         <div class="carousel-item">
             <img src="{% static '/images/slide-bg1.jpg' %}">
             <div class="carousel-caption">
                 <h5></h5>
-                <h2>Tìm khóa học phù hợp nhất</h2>
-                <a href="{% url 'uni_search' %}" class="btn btn-danger btn-lg">Công cụ tìm kiếm khóa học</a>
+                <p class="carousel-discription" >Tìm khóa học phù hợp nhất</p>
+                <a href="{% url 'uni_search' %}" class="btn btn-primary btn-lg">Công cụ tìm kiếm khóa học</a>
             </div>
         </div>
     </div>
 </div>
 <!-- jumbotron -->
-<div class="container-fluid">
-    <div class="row jumbotron">
+<div class="container-fluid jumbotron">
+    <div class="container">
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
             <p class="lead">Đối tác chính thức của hơn 100 trường Đại học, Cao đẳng hàng đầu Anh quốc Đối tác của
                 Warwick Vesey, top 5 văn phòng luật sư lớn nhất Anh quốc
             </p>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <a href="{% url 'uni_search' %}" class="btn btn-outline-secondary">Tìm khóa học</a>
+            <a href="{% url 'uni_search' %}" class="btn btn-outline-secondary btn-lg">Tìm khóa học</a>
         </div>
+    </div>
     </div>
 </div>
 {# Feature subjects #}
@@ -87,10 +89,10 @@
             {% for article in articles|slice:":2" %}
                 <div class="col-lg-3 col-md-6">
                     <div class="card card-news">
-                        <h5 class="card-header card-red-header">Bài viết</h5>
+                        <h4 class="card-header card-red-header">Bài viết</h4>
                         <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"> <h4 class="card-title">{{ article.title|truncatewords:12 }}</h4></a>
-                            <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:20 }}</p>
+                            <a href="{% url 'article_detail' article_id=article.id %}"> <h5 class="card-title">{{ article.title|truncatewords:12 }}</h5></a>
+                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:20 }}</p>
                         </div>
                     </div>
                 </div>
@@ -98,10 +100,10 @@
             {% for article in articles|slice:"2:" %}
                 <div class="col-lg-6">
                     <div class="card card-news">
-                        <h5 class="card-header card-red-header">Bài viết</h5>
+                        <h4 class="card-header card-red-header">Bài viết</h4>
                         <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"> <h4 class="card-title">{{ article.title }}</h4></a>
-                            <p class="card-text">{{ article.body|striptags|safe|truncatewords_html:40 }}</p>
+                            <a href="{% url 'article_detail' article_id=article.id %}"> <h5 class="card-title">{{ article.title }}</h5></a>
+                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:40 }}</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +126,7 @@
         {% for university in universities %}
             <div class="col-lg-4 col-md-6">
                 <div class="card card-university">
-                    <img class="card-img-top" src="{% cropped_thumbnail university "cropping" %}">
+                    <a href="{% url 'university_detail' university_id=university.id %}"><img class="card-img-top" src="{% cropped_thumbnail university "cropping" %}"></a>
                     <div class="card-body">
                         <h4 class="card-title">{{ university.universityName|truncatechars_html:20 }}</h4>
                         <p class="card-text">{{ university.description|striptags|safe|truncatewords_html:10 }}</p>
@@ -140,8 +142,9 @@
 </div>
 {#testimonial#}
 <div class="container-xl padding-greybg">
+    <div class="container">
     <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-10 mx-auto">
             <h2>Câu chuyện thành công</h2>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Carousel indicators -->
@@ -179,6 +182,7 @@
                 </a>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

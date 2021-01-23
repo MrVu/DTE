@@ -7,50 +7,52 @@
         <div class="row padding-whitebg">
             <div class="col-md-12 text-left">
                 <h3 class="text-bold red-h5 text-center">Giới thiệu</h3>
-                <img class="img-responsive" src="/media/{{ university.pic }}" style="width: 100%">
-                <p>{{ university.description|safe }}</p>
-                <h5 class="text-bold red-h5">Các ngành học</h5>
-                {% for uni_subject in university.uni_subjects.all %}
-                    <p>- {{ uni_subject.name }}</p>
-                {% endfor %}
-                <h5 class="text-bold red-h5">Điều kiện nhập học</h5>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Bậc học</th>
-                        <th scope="col">Điều kiện nhập học</th>
-                        <th scope="col">Học phí</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for l in university.level_set.all %}
-                        <tr>
-                            <td>{{ l.levelName }}</td>
-                            <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>
-                            <td>{{ l.feeAYear }}£/năm</td>
-                        </tr>
+                <div class="uni-des">
+                    <img class="img-responsive" src="/media/{{ university.pic }}" style="width: 100%">
+                    <p>{{ university.description|safe }}</p>
+                    <h5 class="text-bold red-h5">Các ngành học</h5>
+                    {% for uni_subject in university.uni_subjects.all %}
+                        <p>- {{ uni_subject.name }}</p>
                     {% endfor %}
-                    </tbody>
-                </table>
-                <h5 class="text-bold red-h5">Học bổng</h5>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Bậc học</th>
-                        <th scope="col">Giá trị</th>
-                        <th scope="col">Thời hạn</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for c in university.scholarship_set.all %}
+                    <h5 class="text-bold red-h5">Điều kiện nhập học</h5>
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <td>{{ c.name }}</td>
-                            <td>{{ c.value }}£</td>
-                            <td>{{ c.time }}</td>
+                            <th scope="col">Bậc học</th>
+                            <th scope="col">Điều kiện nhập học</th>
+                            <th scope="col">Học phí</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for l in university.level_set.all %}
+                            <tr>
+                                <td>{{ l.levelName }}</td>
+                                <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>
+                                <td>{{ l.feeAYear }}£/năm</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <h5 class="text-bold red-h5">Học bổng</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Bậc học</th>
+                            <th scope="col">Giá trị</th>
+                            <th scope="col">Thời hạn</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for c in university.scholarship_set.all %}
+                            <tr>
+                                <td>{{ c.name }}</td>
+                                <td>{{ c.value }}£</td>
+                                <td>{{ c.time }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
