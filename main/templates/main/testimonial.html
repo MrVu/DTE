@@ -1,0 +1,24 @@
+{% load static %}
+{% load cropping %}
+<!--testimonial area-->
+    <section class="testimonial-area">
+        <div class="container">
+            <div class="heading">
+                <h2>Nhận xét khách hàng</h2>
+            </div>
+            <div class="testimonials wow fadeInUp">
+                {% for comment in page_info.customercomment_set.all %}
+                <div class="testimonial">
+                    <div class="author-img">
+                        <img src="{% cropped_thumbnail comment 'cropping' %}" alt="" class="img-fluid rounded">
+                    </div>
+                    <div class="author-quote">
+                        <h4>{{ comment.name }}, {{ comment.school }}</h4>
+                        <blockquote> <i class="fa fa-quote-left"></i> {{ comment.body }} <i class="fa fa-quote-right"></i> </blockquote>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--testimonial end-->

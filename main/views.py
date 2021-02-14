@@ -1,20 +1,18 @@
 from django.shortcuts import render
-from .models import Customer, User, Tracking, University, Level, Subject, Article, PageInfo, GuestCustomer, UniSubject
+from .models import User, University, Level, Subject, Article, PageInfo, UniSubject
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .forms import GuestCustomerForm, AdditionalStepForm
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 
 
 def index(request):
-    universities = University.objects.all()[:6]
-    articles = Article.objects.order_by('-date')[:4]
-    subjects = Subject.objects.filter(unisubject__isnull=False).distinct()[:3]
+    universities = University.objects.filter(show_on_homepage=True)
     return render(request, 'main/index.html',
-                  context={'universities': universities, 'articles': articles, 'subjects': subjects})
+                  context={'universities': universities})
 
 
 def uni_search(request):
@@ -65,20 +63,20 @@ def uni_search_result(request):
     if 'subject' in request.session and 'level' in request.session:
         if 'city' in request.session and not 'uni_subject' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                'subject')) & Q(level__name=request.session.get('level')) & Q(
                 cities__city_name=request.session.get('city')))
         elif 'uni_subject' in request.session and not 'city' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                'subject')) & Q(level__name=request.session.get('level')) & Q(
                 uni_subjects__name=request.session.get('uni_subject')))
         elif 'city' in request.session and 'uni_subject' in request.session:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')) & Q(
+                'subject')) & Q(level__name=request.session.get('level')) & Q(
                 cities__city_name=request.session.get('city')) & Q(
                 uni_subjects__name=request.session.get('uni_subject')))
         else:
             universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__levelName=request.session.get('level')))
+                'subject')) & Q(level__name=request.session.get('level')))
         if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
             header = ""
@@ -102,6 +100,14 @@ def universities_by_subject(request, uni_subject_id):
                   context={'universities': universities, 'page_name': page_name, 'message': message,
                            'header': header})
 
+def universities_by_level(request, level):
+    universities = University.objects.filter(level__name=level).all()
+    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    page_name = 'Danh sách trường phù hợp'
+    return render(request, 'main/universities.html', context={'page_obj': page_obj, 'page_name': page_name})
+
 
 def subjects_query(request):
     page_name = 'Danh sách ngành học'
@@ -111,8 +117,11 @@ def subjects_query(request):
 
 def universities(request):
     universities = University.objects.all()
+    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     page_name = 'Danh sách trường'
-    return render(request, 'main/universities.html', context={'universities': universities, 'page_name': page_name})
+    return render(request, 'main/universities.html', context={'page_obj': page_obj, 'page_name': page_name})
 
 
 def university_detail(request, university_id):
@@ -123,9 +132,12 @@ def university_detail(request, university_id):
 
 
 def articles(request):
-    articles = Article.objects.order_by('-date')
-    page_name = 'Bài viết'
-    return render(request, 'main/articles.html', context={'articles': articles, 'page_name': page_name})
+    articles = Article.objects.filter(show_on_homepage=False).order_by('-date')
+    paginator = Paginator(articles, 8) # Show 8 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    page_name = 'Tin tức'
+    return render(request, 'main/articles.html', context={'page_obj': page_obj, 'page_name': page_name})
 
 
 def article_detail(request, article_id):

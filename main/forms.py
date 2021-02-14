@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
-from .models import User, Subject, GuestCustomer, City, UniSubject
+from .models import User, Subject, City, UniSubject
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -17,14 +17,6 @@ class MyUserChangeForm(UserChangeForm):
                   'position', 'address', 'profilePic')
 
 
-class GuestCustomerForm(forms.ModelForm):
-    subject = forms.ModelChoiceField(
-        empty_label='Chọn môn học', queryset=Subject.objects.order_by('subjectName'))
-
-    class Meta:
-        model = GuestCustomer
-        fields = ['subject', 'level',
-                  'guest_name', 'email', 'phone_number']
 
 
 class AdditionalStepForm(forms.Form):

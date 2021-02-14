@@ -5,6 +5,8 @@ html, body {
     width: 100%;
     font-family: 'Lato', sans-serif !important;
     color: #222 !important;
+    scroll-behavior: smooth;
+    /* background-color: #d5d5d5; */
 }
 
 .navbar {
@@ -15,21 +17,12 @@ html, body {
     padding-right: 20px;
 }
 
-.nav-link:hover {
-    font-size: 1.1em !important;
-    color: #9f2f31 !important;
-    text-transform: uppercase;
-}
-.nav-link {
-    font-size: 1.1em !important;
-    color: #26387c !important;
-    text-transform: uppercase;
-}
+
 .dropdown-item {
     text-transform: uppercase;
 }
 .dropdown-item:hover {
-    background-color: #9f2f31 !important;
+    background-color: #b11215 !important;
     color: white !important;
 }
 .carousel-inner img {
@@ -72,7 +65,7 @@ html, body {
 }
 
 .card-body a {
-    color: #9f2f31;
+    color: #b11215;
 }
 .card-body a:hover {
     color: #26387c;
@@ -82,25 +75,13 @@ html, body {
     color: #26387c;
 }
 .list-group a:hover {
-    color: #9f2f31;
+    color: #b11215;
 }
 
-.footer {
-    /*background-color: #3f3f3f;*/
-    /*color: #d5d5d5;*/
-    padding-top: 2rem;
-}
 
-.footer-text {
-    font-size: 15px;
-}
-
-.footer-text > h5 {
-    color: #9f2f31;
-}
 
 .red-h5{
-    color: #9f2f31;
+    color: #b11215;
 }
 .blue-h5 {
     color: #26387c;
@@ -146,7 +127,7 @@ hr.light {
 }
 
 .card-red-header {
-    background-color: #9f2f31 !important;
+    background-color: #b11215 !important;
     color: white;
 }
 
@@ -159,14 +140,14 @@ hr.light {
 
 .btn-outline-secondary:hover {
     color: white !important;
-    background-color: #9f2f31 !important;
-    border-color: #9f2f31 !important;
+    background-color: #b11215 !important;
+    border-color: #b11215 !important;
 }
 
 .btn-primary {
     color: white !important;
-    background-color: #9f2f31 !important;
-    border-color: #9f2f31 !important;
+    background-color: #b11215 !important;
+    border-color: #b11215 !important;
 }
 
 .btn-primary:hover {
@@ -268,18 +249,251 @@ hr.light {
 .uni-des {
     padding-top:25px;
 }
+.list-group-item{
+    padding: 0.35rem 1.25rem !important;
+}
+.div-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+.blue-bg{
+    background-color: #26387c;
+    color: white;
+}
+.nav-link:hover {
+    font-size: 1.1em !important;
+    color: #b11215 !important;
+    text-transform: capitalize;
+}
+.nav-link {
+    font-size: 1.1em !important;
+    color: #ddd !important;
+    text-transform: capitalize;
+}
+
+.width-100 {
+    width:100%;
+}
+
+.no-line span{
+    color: #b11215;
+    text-transform: capitalize;
+    font-weight:700;
+}
+.university-slide{
+    width:90%;
+}
+
+.counter {
+    padding-top: 6.6rem;
+    padding-bottom: 5.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: #000000;
+    background-image: url(/static/images/slide-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+.number{
+    font-size:50px;
+    color:#ddd;
+}
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 2rem;
+}
+
+.footer-text {
+    font-size: 15px;
+}
+
+.footer-text > h5 {
+    color: #ddd;
+}
+.zalo {
+    background: url(/static/images/logo-zalo-png-vertor-jpeg.jpg.webp); 
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    display: block;
+    margin-left: 10px;
+}
+.img-container{
+    position: relative;
+}
+.img-container .img-overlay {
+    position: absolute;
+    background: #000000d4;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.float-img {
+    margin: 0 0 -29px 0;
+    max-width: 100%;
+}
+.btn-round {
+    border-radius: 0.7rem !important;
+}
+.banner-box{
+    background: #26387cd6;
+    width: 570px;
+    padding-bottom: 35px;
+}
+.banner-text{
+    padding-top: 2rem;
+}
+.banner-text h5{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+    width: 80%;
+}
+/* styles for 'truncate' */ 
+.truncate {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative; 
+    /* use this value to count block height */
+    line-height: 1.2em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 4.8em; 
+    /* fix problem when last visible word doesn't adjoin right side  */
+    text-align: justify;  
+    /* place for '...' */
+    margin-right: -1em;
+    padding-right: 1em;
+  }
+  /* create the ... */
+  .truncate:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+  /* hide ... if we have text, which is less than or equal to max lines */
+  .truncate:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: white;
+  }
+  .truncate-title {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative; 
+    /* use this value to count block height */
+    line-height: 1.2em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 1.2em; 
+    /* fix problem when last visible word doesn't adjoin right side  */
+    /* text-align: justify;   */
+    /* place for '...' */
+    /* margin-right: -1em; */
+    padding-right: 1em;
+  }
+  /* create the ... */
+  .truncate-title:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+  /* hide ... if we have text, which is less than or equal to max lines */
+  .truncate-title:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: white;
+  }
+  .btn-wide {
+      padding: 0.5rem 4rem !important;
+  }
+  .rounded-15 {
+      border-radius: 15%;
+  }
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff !important;
+    background-color: #b11215 !important;
+    border-color: #b11215 !important;
+}
+.page-link{
+    color: #000000 !important;
+}
+.article-img:hover + .article-description{
+    display: block;
+}
+.article-description{
+    display: none;
+    position: absolute;
+    background: #000000d4;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.youtube{
+    height:600px;
+}
+.youtube-container {
+    padding: 0 !important;
+}
+.subject-title{
+    position: absolute;
+    color: white;
+    width: 100%;
+    bottom: calc(50% - 24px);
+    left: 0;
+    font-weight: 700;
+}
+.blue-hr {
+    height: 5px !important;
+    width: 6rem;
+    color: #3087a3;
+    opacity:1;
+}
+.university-description{
+    padding-top: 3rem !important;
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {
-
 }
 
 @media (max-width: 768px) {
-
 }
 
 @media (max-width: 576px) {
-
 }
 
 

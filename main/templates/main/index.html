@@ -4,187 +4,174 @@
 {% load cropping %}
 {% block content %}
 
-<!-- Carousel -->
-<div id="slides" class="carousel slide d-none d-md-block" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0" class="active"></li>
-        <li data-target="#slides" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{% static '/images/slide-bg.jpg' %}">
-            <div class="carousel-caption">
-                <h5></h5>
-                <p class="carousel-discription">Tìm khóa học phù hợp nhất</p>
-                <a href="{% url 'uni_search' %}" class="btn btn-primary btn-lg">Công cụ tìm kiếm khóa học</a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static '/images/slide-bg1.jpg' %}">
-            <div class="carousel-caption">
-                <h5></h5>
-                <p class="carousel-discription" >Tìm khóa học phù hợp nhất</p>
-                <a href="{% url 'uni_search' %}" class="btn btn-primary btn-lg">Công cụ tìm kiếm khóa học</a>
-            </div>
+<!-- slick -->
+{% include 'main/carousel.html' %}
+<!-- <section class="slide padding">
+    <div class="banner">
+        <div><img class="div-center width-100" src="{% static '/images/image-44.png' %}"></div>
+        <div><img class="div-center width-100" src="{% static '/images/image-44.png' %}"></div>
+        <div><img class="div-center width-100" src="{% static '/images/image-44.png' %}"></div>
+    </div>
+    <div class="banner-box">
+        <div class="banner-text">
+            <h5>Khám phá cơ hội học tập và làm việc toàn cầu</h5>
+            <p>Với hơn 100 cơ hội nhận học bổng lên đến 85%</p>
         </div>
     </div>
-</div>
-<!-- jumbotron -->
-<div class="container-fluid jumbotron">
+</section> -->
+<!--  -->
+
+<!-- blog link  -->
     <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-            <p class="lead">Đối tác chính thức của hơn 100 trường Đại học, Cao đẳng hàng đầu Anh quốc Đối tác của
-                Warwick Vesey, top 5 văn phòng luật sư lớn nhất Anh quốc
-            </p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <a href="{% url 'uni_search' %}" class="btn btn-outline-secondary btn-lg">Tìm khóa học</a>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-lg btn-outline-secondary width-100 btn-round" href="#study-level">Các bậc học</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-lg btn-outline-secondary width-100 btn-round" href="#">Ngành phổ biến</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-lg btn-outline-secondary width-100 btn-round" href="#scholarship">Học bổng</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-lg btn-outline-secondary width-100 btn-round" href="#event">Sự kiện</a>
+            </div>
         </div>
     </div>
-    </div>
-</div>
-{# Feature subjects #}
-<div class="container-fluid">
-    <div class="row welcome text-center">
-        <div class="col-12">
-            <h1 class="display-4 display-title">Ngành phổ biến</h1>
+<!--  -->
+
+<!-- Study level -->
+<section id="study-level" class="padding d-none d-md-block">
+    <div class="container">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4 display-title no-line"><span>Các bậc học</span></h1>
+            </div>
         </div>
-        <hr>
     </div>
-</div>
-<!-- Card -->
-<div class="container padding padding-whitebg">
-    <div class="row padding">
-        {% for subject in subjects %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <h5 class="card-header card-blue-header">{{ subject.subjectName }}</h5>
-                    <ul class="list-group list-group-flush">
-                        {% for unisubject in subject.unisubject_set.all|slice:"5" %}
-                            <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}"><li class="list-group-item">{{ unisubject.name }}</li></a>
-                        {% endfor %}
-                    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="img-container">
+                    <a href="{% url 'universities_by_level' level='gcse' %}"><img class="width-100" src="{% static '/images/Untitled-2level 1.jpg' %}"></a>
+                    <div class="img-overlay">
+                        <h5>
+                            Bậc học GCSE
+                        </h5>
+                        <p>THCS 10-18 tuổi</p>
+                    </div>
                 </div>
             </div>
-        {% endfor %}
+            <div class="col-lg-3 col-md-6">
+                <div class="img-container">
+                    <a href="{% url 'universities_by_level' level='a-level-foundation' %}"><img class="width-100" src="{% static '/images/Untitled-2level 2.jpg' %}"></a>
+                    <div class="img-overlay">
+                        <h5>
+                            Bậc học A level Foundation
+                        </h5>
+                        <p>Dự bị đại học 18-20 tuổi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="img-container">
+                    <a href="{% url 'universities_by_level' level='under-graduate' %}"><img class="width-100" src="{% static '/images/Untitled-2level 3.jpg' %}"></a>
+                    <div class="img-overlay">
+                        <h5>
+                            Bậc học Under-Graduate
+                        </h5>
+                        <p>Cử nhân</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="img-container">
+                    <a href="{% url 'universities_by_level' level='graduate' %}"><img class="width-100" src="{% static '/images/Untitled-2level 4.jpg' %}"></a>
+                    <div class="img-overlay">
+                        <h5>
+                            Bậc học Graduate
+                        </h5>
+                        <p>Thạc sĩ-Master</p>
+                    </div>
+                    
+                    <!-- <img src="{% static '/images/Untitled-2level 5.jpg' %}"> -->
+                </div>
+                <div class="img-container" style="padding-top: 4%;">
+                    <a href="{% url 'universities_by_level' level='research' %}"><img class="width-100" src="{% static '/images/Untitled-2level 5.jpg' %}"></a>
+                    <div class="img-overlay">
+                        <h5>
+                            Bậc học Research
+                        </h5>
+                        <p>Tiến sĩ-Nghiên cứu sư-Trợ lý giáo sư</p>
+                    </div>
+                    
+                    <!-- <img src="{% static '/images/Untitled-2level 5.jpg' %}"> -->
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text-center">
-        <a href="{% url 'subjects_query' %}" class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
+</section>
+<!--  -->
+
+
+<!-- top universities -->
+<section id="scholarship" class="py-5">
+<div class="container">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4 display-title no-line"><span>Trường học bổng giá trị cao</span></h1>
+            <p class="discription">Lên đến tối đa 90% hoặc giảm thẳng vào học phí</p>
+        </div>
     </div>
 </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" slide-container feature-university">
+            {% for university in universities %}
+                <div class="col-lg-2">
+                    <div class="card card-university">
+                        <a href="{% url 'university_detail' university_id=university.id %}"><img class="card-img-top" src="{% cropped_thumbnail university "cropping" %}"></a>
+                        <div class="card-body">
+                            <h4 class="card-title truncate-title">{{ university.universityName }}</h4>
+                            <p class="card-text truncate">{{ university.description|striptags|safe }}</p>
+                            <a href="{% url 'university_detail' university_id=university.id %}" class="btn btn-outline-secondary">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'universities' %}" class="btn btn-primary btn-lg btn-wide">Xem tất cả</a>
+        </div>
+    </div>
+</section>
+<!--  -->
 
-<!-- 2 collumn -->
-<div class="container-fluid padding-greybg">
-    <div class="container padding">
+
+<!-- counter -->
+<section class="counter padding">
+    <div class="container-fluid">
         <div class="row padding">
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-news">
-                    <img src="{% static 'images/myhc_91803.jpg' %}" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">Ứng dụng quản lý chi tiêu nên-tải-về cho du học sinh</h3>
-                    </div>
-                </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="number timer" data-to="10" data-speed="1500"></div>
+                <h5 class="title">Kinh nghiệm tư vấn</h5>
             </div>
-            {% for article in articles|slice:":2" %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-news">
-                        <h4 class="card-header card-red-header">Bài viết</h4>
-                        <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"> <h5 class="card-title">{{ article.title|truncatewords:12 }}</h5></a>
-                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:20 }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            {% for article in articles|slice:"2:" %}
-                <div class="col-lg-6">
-                    <div class="card card-news">
-                        <h4 class="card-header card-red-header">Bài viết</h4>
-                        <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"> <h5 class="card-title">{{ article.title }}</h5></a>
-                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:40 }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-<!-- Feature University -->
-<div class="container-fluid">
-    <div class="row welcome text-center">
-        <div class="col-12">
-            <h1 class="display-4 display-title">Trường phổ biến</h1>
-        </div>
-        <hr>
-    </div>
-</div>
-<!-- Card -->
-<div class="container padding">
-    <div class="row padding">
-        {% for university in universities %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card card-university">
-                    <a href="{% url 'university_detail' university_id=university.id %}"><img class="card-img-top" src="{% cropped_thumbnail university "cropping" %}"></a>
-                    <div class="card-body">
-                        <h4 class="card-title">{{ university.universityName|truncatechars_html:20 }}</h4>
-                        <p class="card-text">{{ university.description|striptags|safe|truncatewords_html:10 }}</p>
-                        <a href="{% url 'university_detail' university_id=university.id %}" class="btn btn-outline-secondary">Tìm hiểu thêm</a>
-                    </div>
-                </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="number timer" data-to="3000" data-speed="1500"></div>
+                <h5 class="title">Học viên</h5>
             </div>
-        {% endfor %}
-    </div>
-    <div class="text-center">
-        <a href="{% url 'universities' %}" class="btn btn-outline-secondary btn-lg">Xem tất cả</a>
-    </div>
-</div>
-{#testimonial#}
-<div class="container-xl padding-greybg">
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-10 mx-auto">
-            <h2>Câu chuyện thành công</h2>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Carousel indicators -->
-                <!-- Wrapper for carousel items -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="img-box"><img
-                                src="{% static 'images/nguyen-duy-tan-bellerbys-college-1024x536.jpg' %}" alt=""></div>
-                        <p class="testimonial">Chương trình A-Level cần thiết để được vào đại học bên Anh, nên là em mới
-                            đi tìm hiểu và liên hệ rất là nhiều, thì em tìm được đến Đồng Thịnh và Đồng Thịnh đã giúp đỡ
-                            em rất là nhiều trong việc lấy được học bổng và đi du học.</p>
-                        <p class="overview"><b>Nguyễn Duy Tân</b>, BELLERBYS COLLEGE - ANH QUỐC</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="img-box"><img src="{% static 'images/phương-mai.jpg' %}" alt=""></div>
-                        <p class="testimonial">Công ty Đồng Thịnh tư vấn giúp em du học Anh rất suôn sẻ, không có bị
-                            khúc mắc gì, nói chung mọi việc đều tốt. Còn các bạn tư vấn cho cô thì đều rất trẻ, rất nhẹ
-                            nhàng, dễ thương và tận tình. Cô cũng gửi lời cảm ơn đến các bạn tư vấn.</p>
-                        <p class="overview"><b>Cô Trần Tố Mai</b>, OSSALL SCHOOL, UK</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="img-box"><img src="{% static 'images/my-ha-1024x536.jpg' %}" alt=""></div>
-                        <p class="testimonial">Em cảm ơn chị Nhi đã nhiệt tình hỗ trợ em. Chị Như là trên cả thân thiện
-                            và dễ thương luôn ạ. Em cũng cảm ơn chị Thư và chị Ngọc đã cẩn thận tỉ mỉ giúp đỡ em trong
-                            quá trình apply visa, và có kết quả sau 12 ngày làm việc, quá nhanh gọn</p>
-                        <p class="overview"><b>Phạm Quế Anh</b>, UNIVERSITY OF HUDDERSFIELD</p>
-                    </div>
-                </div>
-                <!-- Carousel controls -->
-                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
+            <div class="col-md-3 col-sm-6" >
+                <div class="number timer" data-to="1000" data-speed="1500"></div>
+                <h5 class="title">Học bổng</h5>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="number timer" data-to="350" data-speed="1500"></div>
+                <h5 class="title">Đối tác</h5>
             </div>
         </div>
     </div>
-    </div>
-</div>
-
+</section>
+<!--  -->
 
 {% endblock %}

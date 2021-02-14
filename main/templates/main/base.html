@@ -1,5 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,93 +16,145 @@
     <meta property="og:description" content="Tư vấn du học United Kingdom, Tư vấn du học Anh">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/testimonial.css' %}"/>
+    <!-- font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- end css  -->
 </head>
 <body>
+    
 <div class="page text-center">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a href="{% url 'index' %}" class="navbar-brand"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Trang chủ</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Tìm khóa học</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'uni_search' %}">Công cụ tìm kiếm</a>
-                            <a class="dropdown-item" href="{% url 'universities' %}">Danh sách trường</a>
-                            <a class="dropdown-item" href="{% url 'subjects_query' %}">Danh sách ngành</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'articles' %}">Bài viết</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about_us' %}">Giới thiệu</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Liên hệ</a>
-                    </li>
-                </ul>
+    <section class="header">
+            <div class="container d-none d-md-block">
+                <div class="row">
+                    <div class="col-xl-6 col-md-3 text-start">
+                        <a href="{% url 'index' %}" class="navbar-logo"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
+                    </div>
+                    
+                    <div class="col-xl-2 col-md-3">
+                        <i class="fas fa-phone-alt"> 
+                            <p style="display: inline; font-weight: 400;">
+                            (028) 628 732 53
+                            </p>
+                        </i>
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                        <i class="fab fa-facebook-messenger"> <p style="display: inline; font-weight: 400;">
+                            DuHocDongThinh
+                        </p></i>
+                    </div>
+                    <div class="col-xl-2 col-md-3">
+                        <span class="zalo"></span>
+                        <p>(028) 628 732 53</p>
+                    </div>
+                  </div>
             </div>
-        </div>
-    </nav>
+            
+        <nav class="navbar navbar-expand-md blue-bg">
+            <div class="container">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" style="color:#ffffff">
+                    <i title="" class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav div-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Học bổng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'articles' %}">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://duhocblog.com/">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    
     {% block content %}
     {% endblock %}
-    <!-- Footer -->
-    <div class="container-fluid footer">
-        <div class="row text-center">
-            <div class="col-md-4">
-                <img src="{% static 'images/logo-no-uk.png' %}" style="width:120px;">
-                <hr class="light">
-                <p>(028) 628 732 53</p>
-                <p>info@dongthinh.co.uk</p>
+<!-- Event  -->
+<section id="event" class="padding pt-5 d-none d-md-block">
+    <div class="container">
+        <div class="row padding">
+            <div class="col-md-10 text-start">
+                <h1 class="no-line"><span>Sự kiện sắp tới</span></h1>
+                <p class="title">
+                    Các sự kiện sắp diễn ra trong năm 2021
+                </p>
             </div>
-            <div class="col-md-4 text-left footer-text">
-                <h5>Văn phòng Hồ Chí Minh</h5>
-                <p>21G Nguyễn Văn Trỗi, P.8, Q. Phú Nhuận</p>
-                <p>Hotline: 0869932900</p>
-                <h5>Văn phòng London</h5>
-                <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
-                <p>Hotline: 07715621123</p>
-            </div>
-            <div class="col-md-4 text-left footer-text">
-                <h5>Văn phòng Đà Lạt</h5>
-                <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
-                <p>Hotline: (+84) 915 049 084</p>
-                <h5>Văn phòng Hà Nội</h5>
-                <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
-                <p>Hotline: 0961660266</p>
-            </div>
-            <div class="col-12 footer-end">
-                <h5>&copy;Dongthinh.co.uk</h5>
+            <div class="col-md-2">
+                <a href="{% url 'articles' %}" class="btn btn-primary btn-lg me-auto width-100">Xem tất cả</a>
             </div>
         </div>
+        <div class="row padding">
+            {% for article in articles %}
+            <div class="col-md-4">
+                <div class="img-container"><img class="width-100 rounded-15 article-img" src="{% cropped_thumbnail article "cropping" %}" alt="">
+                <div class="article-description">
+                <h5>
+                {{ article.title }}
+                </h5>
+                </div></div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+</section>
+<!--  -->
+
+
+<!-- testimonial -->
+{% include 'main/testimonial.html' %}
+<!--  -->
+
+<!-- float banner -->
+<img class="float-img" src="{% static 'images/Image 56.png' %}" alt="">
+<!--  -->
+    <!-- Footer -->
+    <section class="footer">
+        <div class="container">
+            <div class="row text-start">
+                <div class="col-md-4 ">
+                    <img src="/media/{{ page_info.logo }}" style="width:120px;">
+                    <hr class="light">
+                    <p>(028) 628 732 53</p>
+                    <p>info@dongthinh.co.uk</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">{% for address in page_info.companyaddress_set.all %}
+                    <div class="col-md-6 text-left footer-text ">
+                    <h5>{{ address.title }}</h5>
+                    <p>{{ address.address }}</p>
+                    <p>{{ address.phone_number }}</p>
+                    </div>
+                    {% endfor %}</div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<!-- javasript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8ca29e9b4c.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<!-- end javasript  -->
 </body>
 </html>

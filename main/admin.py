@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
-from .models import SaleSummary, Customer, Tracking, University, Level, Subject, GuestCustomer, City, Article, \
-    Scholarship, PageInfo, UniSubject
+from .models import University, Level, Subject, City, Article, \
+    Scholarship, PageInfo, UniSubject, Banner, CustomerComment, CompanyAddress, Tag
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
@@ -24,21 +24,6 @@ class UserAdmin(OrigUserAdmin):
     )  # this will allow to change these fields in admin module
 
 
-class CustomerAdmin(admin.ModelAdmin):
-    search_fields = ['fullName']
-    readonly_fields = ('thumbnail_preview',)
-
-    def thumbnail_preview(self, obj):
-        return obj.thumbnail_preview
-
-    thumbnail_preview.short_description = 'Thumbnail Preview'
-    thumbnail_preview.allow_tags = True
-
-
-class TrackingAdmin(admin.ModelAdmin):
-    list_display = ['userName', 'request', 'date']
-
-
 class LevelInline(admin.TabularInline):
     model = Level
 
@@ -54,6 +39,7 @@ class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     ordering = ['universityName']
     inlines = [LevelInline, ScholarshipInline]
     filter_horizontal = ('subjects', 'cities', 'uni_subjects')
+    readonly_fields = ['slug']
     
 
 
@@ -62,17 +48,30 @@ class SubjectAdmin(admin.ModelAdmin):
     inlines = [UniSubjectInline]
 
 
-class GuestCustomerAdmin(admin.ModelAdmin):
-    search_fields = ['guest_name']
-    list_display = ['guest_name', 'email', 'phone_number']
+class BannerAdmin(ImageCroppingMixin, admin.TabularInline):
+    model = Banner
 
 
+class CustomerCommentAdmin(ImageCroppingMixin, admin.TabularInline):
+    model = CustomerComment
+
+class CompanyAddressAdmin(admin.TabularInline):
+    model = CompanyAddress
+
+
+class PageInfoAdmin(admin.ModelAdmin):
+    inlines = [BannerAdmin, CustomerCommentAdmin, CompanyAddressAdmin]
+
+class TagAdmin(admin.TabularInline):
+    model = Tag
+
+class ArticleAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    inlines = [TagAdmin]
+    readonly_fields = ['slug']
 # admin.site.register(Level)
-admin.site.register(Customer, CustomerAdmin)
 # admin.site.register(Tracking, TrackingAdmin)
 admin.site.register(University, UniversityAdmin)
 admin.site.register(Subject, SubjectAdmin)
-admin.site.register(GuestCustomer, GuestCustomerAdmin)
 admin.site.register(City)
-admin.site.register(Article)
-admin.site.register(PageInfo)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(PageInfo, PageInfoAdmin)

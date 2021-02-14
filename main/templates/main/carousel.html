@@ -1,0 +1,27 @@
+{% load static %}
+{% load cropping %}
+<div id="carouselExampleIndicators" class="carousel slide padding" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for banner in page_info.banner_set.all %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+            <img src="{% cropped_thumbnail banner 'cropping' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <div class="banner-box mx-auto">
+                    <div class="banner-text">
+                        <h5 class="mx-auto">{{ banner.title }}</h5>
+                        <p class="mx-auto">{{ banner.body }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+</div>

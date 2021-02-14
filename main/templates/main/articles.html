@@ -1,25 +1,43 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 {% block content %}
 
-    {% include 'main/breadcrumb.html' %}
-    <div class="container-fluid padding-whitebg">
-    <div class="container padding">
+{% include 'main/carousel.html' %}
+<div class="container padding">
+        <h1 class="display-4 display-title no-line padding"><span>{{ page_name }}</span></h1>
         <div class="row padding">
-            {% for article in articles %}
-                <div class="col-lg-4 col-md-4">
-                    <div class="card">
-                        <h4 class="card-header card-red-header">Bài viết</h4>
-                        <div class="card-body">
-                            <a href="{% url 'article_detail' article_id=article.id %}"><h5 class="card-title">{{ article.title|truncatewords:9 }}</h5></a>
-                            <p class="card-text">{{ article.body|lower|striptags|safe|truncatewords_html:20 }}</p>
+            {% for article in page_obj %}
+                <div class="col-lg-3 col-md-3">
+                    <div class="img-container">
+                        {% if article.img_description %}
+                        <img class="width-100 rounded-15 article-img" src="{% cropped_thumbnail article "cropping" %}" alt="">
+                        <div class="article-description">
+                            <h5>
+                                {{ article.title }}
+                            </h5>
                         </div>
-                    </div>
+                        {% endif %}
+                    </div> 
                 </div>
             {% endfor %}
         </div>
-    </div>
+        <div class="row">
+            <div class="col">
+                {% if page_obj.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
 </div>
 
 {% endblock %}
