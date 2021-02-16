@@ -5,9 +5,8 @@
 {% block content %}
 
 
-    {% include 'main/breadcrumb.html' %}
-    <div class="container padding-whitebg">
-        <div class="row">
+    <div class="container pt-4">
+        <!-- <div class="row">
             {% for subject in subjects %}
                 <div class="col-md-12 padding-0">
                     <a href="#" data-toggle="collapse" data-target="#collapse{{ subject.id }}">
@@ -27,6 +26,55 @@
                     </div>
                 </div>
             {% endfor %}
+        </div> -->
+        <h1 class="display-4 display-title no-line padding"><span>{{ page_name }}</span></h1>
+        <div class="row">
+            {% for subject in page_obj %}
+                <div class="col-md-3">
+                    <div class="img-container">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ subject.id }}"><img src="/media/{{subject.pic}}" alt="" class="rounded-15 width-100">
+                        <div class="subject-title">
+                            <p>- {{ subject.subjectName }}</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal fade" id="modal-{{ subject.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Các khóa học</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            {% for unisubject in subject.unisubject_set.all %}
+                                <a href="{% url 'uni_by_subject' uni_subject_id=unisubject.id %}">
+                                    <li class="list-group-item">{{ unisubject.name }}</li>
+                                </a>
+                            {% endfor %}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row pt-4">
+            <div class="col">
+                {% if page_obj.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
 

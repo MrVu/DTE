@@ -4,10 +4,9 @@
 {% load cropping %}
 {% block content %}
 
-    {% include 'main/breadcrumb.html' %}
     {% if message %}
-        <div class="container padding-whitebg">
-            <div class="row padding text-center">
+        <div class="container">
+            <div class="row text-center">
                 <div class="col-md-12">
                     <h5 class="red-h5">{{ message }}</h5>
                 </div>
@@ -15,8 +14,8 @@
         </div>
     {% endif %}
     {% if header %}
-        <div class="container padding-whitebg">
-            <div class="row padding text-center text-uppercase">
+        <div class="container">
+            <div class="row text-uppercase">
                 <div class="col-md-12">
                     <h5 class="blue-h5">{{ header }}</h5>
                 </div>
@@ -24,10 +23,10 @@
         </div>
     {% endif %}
 
-    <div class="container padding">
-        <div class="row padding">
+    <div class="container">
+        <div class="row">
             {% for university in universities %}
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card card-university">
                         <a href="{% url 'university_detail' university_id=university.id %}"><img class="card-img-top"
                                                                                                  src="{% cropped_thumbnail university "cropping" %}"></a>
@@ -40,6 +39,21 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="row pt-4">
+            <div class="col">
+                {% if page_obj.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
 

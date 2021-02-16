@@ -8,7 +8,7 @@
     {% include 'main/carousel.html' %}
 
     <div class="container padding">
-        <h1 class="display-4 display-title no-line padding"><span>Danh sách trường</span></h1>
+        <h1 class="display-4 display-title no-line padding"><span>{{ page_name }}</span></h1>
         <div class="row padding">
             {% for university in page_obj %}
                 <div class="col-md-3">

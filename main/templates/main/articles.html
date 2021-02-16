@@ -12,7 +12,7 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="img-container">
                         {% if article.img_description %}
-                        <img class="width-100 rounded-15 article-img" src="{% cropped_thumbnail article "cropping" %}" alt="">
+                        <a class="article-img" href="{% url 'article_detail' article_id=article.id %}"><img class="width-100 rounded-15 " src="{% cropped_thumbnail article "cropping" %}" alt=""></a>
                         <div class="article-description">
                             <h5>
                                 {{ article.title }}

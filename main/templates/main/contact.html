@@ -1,42 +1,45 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    {% include 'main/breadcrumb.html' %}
-    <div class="container padding-whitebg">
-        <div class="row padding">
-            <div class="col-md-4 text-left">
-                <h5 class="red-h5">Liên hệ với chúng tôi</h5>
+    <div class="container text-start">
+        <h3 class="no-line text-center pt-4"><span>{{ page_name }}</span></h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <label class="control-label">Họ và tên</label>
+                    {{ form.name }}
+                </div>
             </div>
-            <div class="col-md-8 text-left">
-                <p>Chúng tôi luôn cố gắng cải thiện trang web. Chúng tôi hoan nghênh mọi phản hồi và góp
-                    ý của bạn tại địa chỉ {{ page_info.email }}, dù khen hay chê đều vô cùng hữu ích. Chúng
-                    tôi sẽ cố gắng phản hồi và xử lý một cách nhanh nhất. Những đóng góp của các bạn sẽ giúp ích cho
-                    hàng
-                    nghìn người Việt Nam để tìm kiếm khóa học mỗi ngày.</p>
-                <p>Nếu bạn cần thêm thông tin, lời khuyên hoặc thấy có lỗi hoặc sự cố trên website trong quá trình tìm
-                    kiếm thông tin, xin vui lòng thông báo cho Đồng Thịnh tại {{ page_info.email }}</p>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <label class="control-label">Email</label>
+                    {{ form.email }}
+                </div>
             </div>
-        </div>
-        <hr class="light">
-        <div class="row padding">
-            <div class="col-md-4 text-left">
-                <h5 class="red-h5">Văn phòng của chúng tôi</h5>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <label class="control-label">Số điện thoại</label>
+                    {{ form.phone_number }}
+                </div>
             </div>
-            <div class="col-md-4 text-left">
-                <h5 class="blue-h5">Văn phòng Hồ Chí Minh</h5>
-                <p>21G Hoàng Văn Thụ, P. 8, Q. Phú Nhuận</p>
-                <p>Hotline: 0869932900</p>
-                <h5 class="blue-h5">Văn phòng London</h5>
-                <p>Newtec Building, 2nd Floor, Room S4, 1 Mark St, Stratford, London, E154GY</p>
-                <p>Hotline: 07715621123</p>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <label class="control-label">Nội dung</label>
+                    {{ form.message }}
+                </div>
             </div>
-            <div class="col-md-4 text-left">
-                <h5 class="blue-h5">Văn phòng Đà Lạt</h5>
-                <p>Lô K1 K2 khu quy hoạch, Đoàn Thị Điểm, Phường 4, Thành phố Đà Lạt, Lâm Đồng</p>
-                <p>Hotline: (+84) 915 049 084</p>
-                <h5 class="blue-h5">Văn phòng Hà Nội</h5>
-                <p>Tầng 5, Tòa nhà số 42A Trần Xuân Soạn, P. Ngô Thị Nhậm, Q. Hai Bà Trưng</p>
-                <p>Hotline: 0961660266</p>
+            <div class="col-md-6 offset-md-3">
+                <button type="submit" class="btn btn-primary">Đăng ký tư vấn</button>
             </div>
+        </form>
+        <div class="col-md-6 offset-md-3">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

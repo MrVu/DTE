@@ -2,12 +2,51 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
-    {% include 'main/breadcrumb.html' %}
-    <div class="container padding-whitebg">
-        <div class="row padding text-left">
-            <div class="col-md-12">
+    <div class="container text-start pt-4">
+        <div class="row">
+            <div class="col-md-8 pt-5">
                 <h3 class="text-bold red-h5"> {{ art.title }} </h3>
                 {{ art.body|safe }}
+            </div>
+            <div class="col-md-4">
+                <h3 class="no-line text-center pt-4"><span>Đăng ký tư vấn</span></h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Họ và tên</label>
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Số điện thoại</label>
+                            {{ form.phone_number }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Nội dung</label>
+                            {{ form.message }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
     </div>

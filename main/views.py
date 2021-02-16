@@ -4,79 +4,33 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Q
 from django.core.paginator import Paginator
-
+from .forms import ContactForm, SearchForm
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import redirect
+from django.contrib import messages
 
 # Create your views here.
 
 
 def index(request):
     universities = University.objects.filter(show_on_homepage=True)
-    return render(request, 'main/index.html',
-                  context={'universities': universities})
-
-
-def uni_search(request):
-    guest_email = request.POST.get('email')
-    if guest_email:
-        guest = GuestCustomer.objects.filter(email=guest_email).first()
-    else:
-        guest = None
-    form = GuestCustomerForm(instance=guest)
-    page_name = 'Tìm khóa học'
-    unies = None
     if request.method == 'POST':
-        form = GuestCustomerForm(request.POST, instance=guest)
+        form = SearchForm(request.POST)
         if form.is_valid():
-            form.save()
             request.session['subject'] = form.cleaned_data['subject'].subjectName
             request.session['level'] = form.cleaned_data['level']
-            return HttpResponseRedirect(reverse('additional_step'))
-    return render(request, 'main/uni_search.html',
-                  context={'unies': unies, 'form': form, 'page_name': page_name})
+            return redirect('uni_search_result')
+    return render(request, 'main/index.html',
+                    context={'universities': universities})
 
 
-def additional_search(request):
-    if 'city' in request.session:
-        del request.session['city']
-    if 'uni_subject' in request.session:
-        del request.session['uni_subject']
-    if not 'subject' and not 'level' in request.session:
-        return HttpResponseRedirect(reverse('uni_search'))
-    else:
-        page_name = 'Tìm chi tiết'
-        form = AdditionalStepForm(request=request)
-        if request.method == 'POST':
-            form = AdditionalStepForm(request.POST, request=request)
-            if form.is_valid():
-                if form.cleaned_data['city']:
-                    request.session['city'] = form.cleaned_data['city'].city_name
-                if form.cleaned_data['uni_subject']:
-                    request.session['uni_subject'] = form.cleaned_data['uni_subject'].name
-                return HttpResponseRedirect(reverse('uni_search_result'))
-            else:
-                return HttpResponseRedirect(reverse('uni_search_result'))
-        return render(request, 'main/additional_step.html', context={'form': form})
 
 
 def uni_search_result(request):
     page_name = 'Kết quả tìm kiếm'
     if 'subject' in request.session and 'level' in request.session:
-        if 'city' in request.session and not 'uni_subject' in request.session:
-            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__name=request.session.get('level')) & Q(
-                cities__city_name=request.session.get('city')))
-        elif 'uni_subject' in request.session and not 'city' in request.session:
-            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__name=request.session.get('level')) & Q(
-                uni_subjects__name=request.session.get('uni_subject')))
-        elif 'city' in request.session and 'uni_subject' in request.session:
-            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__name=request.session.get('level')) & Q(
-                cities__city_name=request.session.get('city')) & Q(
-                uni_subjects__name=request.session.get('uni_subject')))
-        else:
-            universities = University.objects.filter(Q(subjects__subjectName=request.session.get(
-                'subject')) & Q(level__name=request.session.get('level')))
+        universities = University.objects.filter(level__name=request.session.get('level')).filter(subjects__subjectName=request.session.get('subject')).distinct()
         if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
             header = ""
@@ -96,6 +50,9 @@ def universities_by_subject(request, uni_subject_id):
     page_name = 'Khóa học'
     message = ""
     header = f"Có {universities.count()} trường có khóa học {uni_subject.name}"
+    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     return render(request, 'main/uni_search_result.html',
                   context={'universities': universities, 'page_name': page_name, 'message': message,
                            'header': header})
@@ -112,7 +69,10 @@ def universities_by_level(request, level):
 def subjects_query(request):
     page_name = 'Danh sách ngành học'
     subjects = Subject.objects.filter(unisubject__isnull=False).distinct()
-    return render(request, 'main/subjects.html', context={'page_name': page_name, 'subjects': subjects})
+    paginator = Paginator(subjects, 8) # Show 8 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/subjects.html', context={'page_name': page_name, 'page_obj': page_obj})
 
 
 def universities(request):
@@ -142,15 +102,33 @@ def articles(request):
 
 def article_detail(request, article_id):
     art = Article.objects.get(id=article_id)
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = 'Tư vấn khách hàng'
+            message = 'Tên khách hàng: ' + form.cleaned_data['name'] +'\n' + 'Email: ' + form.cleaned_data['email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + form.cleaned_data['message'] 
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['vuhoang17891@gmail.com']
+            send_mail( subject, message, email_from, recipient_list )
+            messages.success(request, 'Yêu cầu của bạn đã được gửi')
+        return redirect('article_detail', article_id=art.id)
     page_name = 'Đọc bài viết'
-    return render(request, 'main/article_detail.html', context={'art': art, 'page_name': page_name})
+    return render(request, 'main/article_detail.html', context={'form':form,'art': art, 'page_name': page_name})
 
 
 def contact(request):
     page_name = 'Liên hệ'
-    return render(request, 'main/contact.html', context={'page_name': page_name})
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = 'Tư vấn khách hàng'
+            message = 'Tên khách hàng: ' + form.cleaned_data['name'] +'\n' + 'Email: ' + form.cleaned_data['email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + form.cleaned_data['message'] 
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['vuhoang17891@gmail.com']
+            send_mail( subject, message, email_from, recipient_list )
+            messages.success(request, 'Yêu cầu của bạn đã được gửi')
+        return HttpResponseRedirect(reverse('contact'))
+    return render(request, 'main/contact.html', context={'page_name': page_name, 'form': form})
 
-
-def about_us(request):
-    page_name = 'Lịch sử phát triển'
-    return render(request, 'main/about_us.html', context={'page_name': page_name})

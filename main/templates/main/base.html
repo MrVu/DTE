@@ -76,7 +76,7 @@
                             <a class="nav-link" target="_blank" href="https://duhocblog.com/">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Liên hệ</a>
+                            <a class="nav-link" href="{% url 'contact' %}">Liên hệ</a>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +103,7 @@
         <div class="row padding">
             {% for article in articles %}
             <div class="col-md-4">
-                <div class="img-container"><img class="width-100 rounded-15 article-img" src="{% cropped_thumbnail article "cropping" %}" alt="">
+                <a class="article-img" href="{% url 'article_detail' article_id=article.id %}"><div class="img-container"><img class="width-100 rounded-15" src="{% cropped_thumbnail article "cropping" %}" alt=""></a>
                 <div class="article-description">
                 <h5>
                 {{ article.title }}

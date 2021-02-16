@@ -10,12 +10,42 @@
                     <div class="banner-text">
                         <h5 class="mx-auto">{{ banner.title }}</h5>
                         <p class="mx-auto">{{ banner.body }}</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#search-form">Tìm trường phù hợp</button>
                     </div>
                 </div>
             </div>
         </div>
-      {% endfor %}
+        {% endfor %}
     </div>
+    <div class="modal fade" id="search-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="exampleModalLabel">Tìm kiếm trường</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                  <form action='/' method="post">
+                    {% csrf_token %}
+                    <div class="row"><div class="col-12">
+                    {{ search_form.level }}
+                    </div></div>
+                    <div class="row"><div class="col-12">
+                    {{ search_form.subject }}
+                    </div></div>
+                    <div>
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+      </div>
+  </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
