@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% load cropping %}
 {% block content %}
-
+{% include 'main/carousel.html' %}
     {% if message %}
         <div class="container">
             <div class="row text-center">
@@ -25,7 +25,7 @@
 
     <div class="container">
         <div class="row">
-            {% for university in universities %}
+            {% for university in page_obj %}
                 <div class="col-md-3">
                     <div class="card card-university">
                         <a href="{% url 'university_detail' university_id=university.id %}"><img class="card-img-top"

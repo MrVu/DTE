@@ -31,6 +31,9 @@ def uni_search_result(request):
     page_name = 'Kết quả tìm kiếm'
     if 'subject' in request.session and 'level' in request.session:
         universities = University.objects.filter(level__name=request.session.get('level')).filter(subjects__subjectName=request.session.get('subject')).distinct()
+        paginator = Paginator(universities, 8) # Show 8 contacts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         if not universities:
             message = "Không tìm thấy trường phù hợp với bạn"
             header = ""
@@ -38,7 +41,7 @@ def uni_search_result(request):
             message = ""
             header = "Trường phù hợp với bạn"
         return render(request, 'main/uni_search_result.html',
-                      context={'universities': universities, 'page_name': page_name, 'message': message,
+                      context={'page_obj': page_obj, 'page_name': page_name, 'message': message,
                                'header': header})
     else:
         return HttpResponseRedirect(reverse('uni_search'))
@@ -54,7 +57,7 @@ def universities_by_subject(request, uni_subject_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/uni_search_result.html',
-                  context={'universities': universities, 'page_name': page_name, 'message': message,
+                  context={'page_obj': page_obj, 'page_name': page_name, 'message': message,
                            'header': header})
 
 def universities_by_level(request, level):
