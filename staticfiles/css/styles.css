@@ -278,6 +278,7 @@ hr.light {
 }
 .zalo {
     display: flex !important;
+    justify-content: center;
 }
 .zalo img {
     width: 20px;
