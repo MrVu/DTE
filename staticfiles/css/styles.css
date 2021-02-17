@@ -176,43 +176,6 @@ hr.light {
     padding: 30px 0 10px;
 }
 
-/*Form wizard*/
-.stepwizard-step p {
-    margin-top: 10px;
-}
-
-.stepwizard-row {
-    display: table-row;
-}
-
-.stepwizard {
-    display: table;
-    width: 100%;
-    position: relative;
-}
-
-.stepwizard-step button[disabled] {
-    opacity: 1 !important;
-    filter: alpha(opacity=100) !important;
-}
-
-.stepwizard-row:before {
-    top: 14px;
-    bottom: 0;
-    position: absolute;
-    content: " ";
-    width: 100%;
-    height: 1px;
-    background-color: #ccc;
-    z-order: 0;
-
-}
-
-.stepwizard-step {
-    display: table-cell;
-    text-align: center;
-    position: relative;
-}
 
 .btn-circle {
     width: 30px;
@@ -314,13 +277,12 @@ hr.light {
     color: #ddd;
 }
 .zalo {
-    background: url(/static/images/logo-zalo-png-vertor-jpeg.jpg.webp); 
-    position: absolute;
+    display: flex !important;
+}
+.zalo img {
     width: 20px;
     height: 20px;
-    background-size: cover;
-    display: block;
-    margin-left: 10px;
+    margin-right: 0.5rem;
 }
 .img-container{
     position: relative;
@@ -492,11 +454,22 @@ hr.light {
     text-transform:capitalize;
 }
 
+.top-contact{
+    font-size: 1em;
+}
+
 /*---Media Queries --*/
 @media (max-width: 992px) {
+.top-contact{
+    font-size: 0.9em;
+}
+
 }
 
 @media (max-width: 768px) {
+.top-contact{
+    font-size: 0.8em;
+}
 }
 
 @media (max-width: 576px) {

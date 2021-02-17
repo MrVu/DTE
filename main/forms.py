@@ -25,8 +25,9 @@ class ContactForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    level_choices = [('','Cấp học'),('gcse','THCS'),('a-level-foundation','Dự bị đại học'),('under-graduate', 'Đại học'), ('graduate', 'Thạc sĩ-Master'),
+    level_choices = [('', 'Cấp học'), ('gcse', 'THCS'), ('a-level-foundation', 'Dự bị đại học'),
+                     ('under-graduate', 'Đại học'), ('graduate', 'Thạc sĩ-Master'),
                      ('research', 'Tiến sĩ-Nghiên cứu-Trợ lý giáo sư')]
     level = forms.ChoiceField(choices=level_choices, widget=forms.Select(attrs={'class': 'form-select'}))
-    subject = forms.ModelChoiceField(empty_label='Ngành bạn muốn học',queryset=Subject.objects.all(), widget=forms.Select(attrs={'class': 'form-select'}))
-
+    subject = forms.ModelChoiceField(empty_label='Ngành bạn muốn học', queryset=Subject.objects.all(),
+                                     widget=forms.Select(attrs={'class': 'form-select'}))

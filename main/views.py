@@ -10,6 +10,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib import messages
 
+
 # Create your views here.
 
 
@@ -22,16 +23,15 @@ def index(request):
             request.session['level'] = form.cleaned_data['level']
             return redirect('uni_search_result')
     return render(request, 'main/index.html',
-                    context={'universities': universities})
-
-
+                  context={'universities': universities})
 
 
 def uni_search_result(request):
     page_name = 'Kết quả tìm kiếm'
     if 'subject' in request.session and 'level' in request.session:
-        universities = University.objects.filter(level__name=request.session.get('level')).filter(subjects__subjectName=request.session.get('subject')).distinct()
-        paginator = Paginator(universities, 8) # Show 8 contacts per page.
+        universities = University.objects.filter(level__name=request.session.get('level')).filter(
+            subjects__subjectName=request.session.get('subject')).distinct()
+        paginator = Paginator(universities, 8)  # Show 8 contacts per page.
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         if not universities:
@@ -53,16 +53,17 @@ def universities_by_subject(request, uni_subject_id):
     page_name = 'Khóa học'
     message = ""
     header = f"Có {universities.count()} trường có khóa học {uni_subject.name}"
-    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    paginator = Paginator(universities, 8)  # Show 8 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/uni_search_result.html',
                   context={'page_obj': page_obj, 'page_name': page_name, 'message': message,
                            'header': header})
 
+
 def universities_by_level(request, level):
     universities = University.objects.filter(level__name=level).all()
-    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    paginator = Paginator(universities, 8)  # Show 8 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     page_name = 'Danh sách trường phù hợp'
@@ -72,7 +73,7 @@ def universities_by_level(request, level):
 def subjects_query(request):
     page_name = 'Danh sách ngành học'
     subjects = Subject.objects.filter(unisubject__isnull=False).distinct()
-    paginator = Paginator(subjects, 8) # Show 8 contacts per page.
+    paginator = Paginator(subjects, 8)  # Show 8 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/subjects.html', context={'page_name': page_name, 'page_obj': page_obj})
@@ -80,7 +81,7 @@ def subjects_query(request):
 
 def universities(request):
     universities = University.objects.all()
-    paginator = Paginator(universities, 8) # Show 8 contacts per page.
+    paginator = Paginator(universities, 8)  # Show 8 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     page_name = 'Danh sách trường'
@@ -96,7 +97,7 @@ def university_detail(request, university_id):
 
 def articles(request):
     articles = Article.objects.filter(show_on_homepage=False).order_by('-date')
-    paginator = Paginator(articles, 8) # Show 8 contacts per page.
+    paginator = Paginator(articles, 8)  # Show 8 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     page_name = 'Tin tức'
@@ -110,14 +111,16 @@ def article_detail(request, article_id):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = 'Tư vấn khách hàng'
-            message = 'Tên khách hàng: ' + form.cleaned_data['name'] +'\n' + 'Email: ' + form.cleaned_data['email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + form.cleaned_data['message'] 
+            message = 'Tên khách hàng: ' + form.cleaned_data['name'] + '\n' + 'Email: ' + form.cleaned_data[
+                'email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + \
+                      form.cleaned_data['message']
             email_from = settings.EMAIL_HOST_USER
             recipient_list = ['vuhoang17891@gmail.com']
-            send_mail( subject, message, email_from, recipient_list )
+            send_mail(subject, message, email_from, recipient_list)
             messages.success(request, 'Yêu cầu của bạn đã được gửi')
         return redirect('article_detail', article_id=art.id)
     page_name = 'Đọc bài viết'
-    return render(request, 'main/article_detail.html', context={'form':form,'art': art, 'page_name': page_name})
+    return render(request, 'main/article_detail.html', context={'form': form, 'art': art, 'page_name': page_name})
 
 
 def contact(request):
@@ -127,11 +130,12 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = 'Tư vấn khách hàng'
-            message = 'Tên khách hàng: ' + form.cleaned_data['name'] +'\n' + 'Email: ' + form.cleaned_data['email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + form.cleaned_data['message'] 
+            message = 'Tên khách hàng: ' + form.cleaned_data['name'] + '\n' + 'Email: ' + form.cleaned_data[
+                'email'] + '\n' + 'Điện thoại: ' + form.cleaned_data['phone_number'] + '\n' + 'Nội dung: ' + \
+                      form.cleaned_data['message']
             email_from = settings.EMAIL_HOST_USER
             recipient_list = ['vuhoang17891@gmail.com']
-            send_mail( subject, message, email_from, recipient_list )
+            send_mail(subject, message, email_from, recipient_list)
             messages.success(request, 'Yêu cầu của bạn đã được gửi')
         return HttpResponseRedirect(reverse('contact'))
     return render(request, 'main/contact.html', context={'page_name': page_name, 'form': form})
-

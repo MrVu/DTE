@@ -1,7 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load cropping %}
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,43 +21,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
     <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- end css  -->
 </head>
 <body>
-    
+
 <div class="page text-center">
     <!-- Navigation -->
     <section class="header">
-            <div class="container d-none d-md-block">
-                <div class="row">
-                    <div class="col-xl-6 col-md-3 text-start">
-                        <a href="{% url 'index' %}" class="navbar-logo"><img src="/media/logo-no-uk.png" style="width:120px;"></a>
-                    </div>
-                    
-                    <div class="col-xl-2 col-md-3">
-                        <i class="fas fa-phone-alt"> 
-                            <p style="display: inline; font-weight: 400;">
+        <div class="container d-none d-md-block">
+            <div class="row">
+                <div class="col-xl-2 col-md-2 text-start">
+                    <a href="{% url 'index' %}" class="navbar-logo"><img src="/media/logo-no-uk.png"
+                                                                         style="width:120px;"></a>
+                </div>
+                <div class="col-xl-10 col-md-10">
+                    <div class="row justify-content-end">
+                        <div class="col-xl-3 col-md-4">
+                            <i class="fas fa-phone-alt top-contact">
+                        <span>
                             (028) 628 732 53
-                            </p>
-                        </i>
-                    </div>
-                    <div class="col-xl-2 col-md-3">
-                        <i class="fab fa-facebook-messenger"> <p style="display: inline; font-weight: 400;">
+                        </span>
+                            </i>
+                        </div>
+                        <div class="col-xl-3 col-md-4">
+                            <i class="fab fa-facebook-messenger top-contact">
+                        <span>
                             DuHocDongThinh
-                        </p></i>
+                        </span>
+                            </i>
+                        </div>
+                        <div class="col-xl-3 col-md-4 zalo">
+                            <img src="{% static '/images/logo-zalo-png-vertor-jpeg.webp' %}">
+                            <p class="top-contact">(028) 628 732 53</p>
+                        </div>
                     </div>
-                    <div class="col-xl-2 col-md-3">
-                        <span class="zalo"></span>
-                        <p>(028) 628 732 53</p>
-                    </div>
-                  </div>
+                </div>
             </div>
-            
+        </div>
+
         <nav class="navbar navbar-expand-md blue-bg">
             <div class="container">
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" style="color:#ffffff">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarResponsive" style="color:#ffffff">
                     <i title="" class="fa fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -83,47 +90,50 @@
             </div>
         </nav>
     </section>
-    
+
     {% block content %}
     {% endblock %}
-<!-- Event  -->
-<section id="event" class="pt-5 d-none d-md-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 text-start">
-                <h1 class="no-line"><span>Sự kiện sắp tới</span></h1>
-                <p class="title">
-                    Các sự kiện sắp diễn ra trong năm 2021
-                </p>
+    <!-- Event  -->
+    <section id="event" class="pt-5 d-none d-md-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 text-start">
+                    <h1 class="no-line"><span>Sự kiện sắp tới</span></h1>
+                    <p class="title">
+                        Các sự kiện sắp diễn ra trong năm 2021
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <a href="{% url 'articles' %}" class="btn btn-primary btn-lg me-auto width-100">Xem tất cả</a>
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="{% url 'articles' %}" class="btn btn-primary btn-lg me-auto width-100">Xem tất cả</a>
-            </div>
-        </div>
-        <div class="row padding">
-            {% for article in articles %}
-            <div class="col-md-4">
-                <a class="article-img" href="{% url 'article_detail' article_id=article.id %}"><div class="img-container"><img class="width-100 rounded-15" src="{% cropped_thumbnail article "cropping" %}" alt=""></a>
-                <div class="article-description">
-                <h5>
-                {{ article.title }}
-                </h5>
-                </div></div>
+            <div class="row padding">
+                {% for article in articles %}
+                <div class="col-md-4">
+                    <a class="article-img" href="{% url 'article_detail' article_id=article.id %}">
+                        <div class="img-container"><img class="width-100 rounded-15"
+                                                        src="{% cropped_thumbnail article 'cropping'%}" alt=""></div>
+                    </a>
+                    <div class="article-description">
+                        <h5>
+                            {{ article.title }}
+                        </h5>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
-    </div>
-</section>
-<!--  -->
+    </section>
+    <!--  -->
 
 
-<!-- testimonial -->
-{% include 'main/testimonial.html' %}
-<!--  -->
+    <!-- testimonial -->
+    {% include 'main/testimonial.html' %}
+    <!--  -->
 
-<!-- float banner -->
-<img class="float-img" src="{% static 'images/Image 56.png' %}" alt="">
-<!--  -->
+    <!-- float banner -->
+    <img class="float-img" src="{% static 'images/Image 56.png' %}" alt="">
+    <!--  -->
     <!-- Footer -->
     <section class="footer">
         <div class="container">
@@ -136,20 +146,23 @@
                 </div>
                 <div class="col-md-8">
                     <div class="row">{% for address in page_info.companyaddress_set.all %}
-                    <div class="col-md-6 text-left footer-text ">
-                    <h5>{{ address.title }}</h5>
-                    <p>{{ address.address }}</p>
-                    <p>{{ address.phone_number }}</p>
+                        <div class="col-md-6 text-left footer-text ">
+                            <h5>{{ address.title }}</h5>
+                            <p>{{ address.address }}</p>
+                            <p>{{ address.phone_number }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}</div>
                 </div>
-                
+
             </div>
         </div>
     </section>
 </div>
 <!-- javasript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8ca29e9b4c.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

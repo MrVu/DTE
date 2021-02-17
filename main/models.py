@@ -21,7 +21,6 @@ class User(AbstractUser):
         verbose_name_plural = 'Quản trị viên'
 
 
-
 class Subject(models.Model):
     subjectName = models.CharField(
         max_length=200, null=True, verbose_name='Tên ngành')
@@ -33,7 +32,7 @@ class Subject(models.Model):
     class Meta:
         verbose_name = 'Nhóm ngành'
         verbose_name_plural = 'Quản lý nhóm ngành'
-        ordering =['subjectName']
+        ordering = ['subjectName']
 
 
 class UniSubject(models.Model):
@@ -43,6 +42,7 @@ class UniSubject(models.Model):
 
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name = 'Khóa học'
         verbose_name_plural = 'Quản lý Khóa học'
@@ -81,8 +81,8 @@ class University(models.Model):
         verbose_name = 'Trường'
         verbose_name_plural = 'Quản lý trường'
         ordering = ['universityName']
-    
-    def save(self, *args, **kwargs): # add slug on save event
+
+    def save(self, *args, **kwargs):  # add slug on save event
         if not self.slug:
             self.slug = slugify(self.universityName)
         return super().save(*args, **kwargs)
@@ -96,14 +96,15 @@ class Scholarship(models.Model):
 
 
 class Level(models.Model):
-    level_choices = [('gcse','THCS'),('a-level-foundation','Dự bị đại học'),('under-graduate', 'Đại học'), ('graduate', 'Thạc sĩ-Master'),
+    level_choices = [('gcse', 'THCS'), ('a-level-foundation', 'Dự bị đại học'), ('under-graduate', 'Đại học'),
+                     ('graduate', 'Thạc sĩ-Master'),
                      ('research', 'Tiến sĩ-Nghiên cứu-Trợ lý giáo sư')]
     ielts_choices = [
         ('', 'IELTS Overall'), (4.0, '4.0'), (4.5, '4.5'), (5.0,
                                                             '5.0'), (5.5, '5.5'), (6.0, '6.0'), (6.5, '6.5'),
         (7.0, '7.0')]
     name = models.CharField(max_length=200, null=True,
-                                 choices=level_choices)
+                            choices=level_choices)
     feeAYear = models.IntegerField(null=True)
     ielts_overall = models.FloatField(null=True, choices=ielts_choices)
     ieltsMin = models.FloatField(null=True, choices=ielts_choices)
@@ -111,7 +112,6 @@ class Level(models.Model):
 
     def __str__(self):
         return ''
-
 
 
 class Article(models.Model):
@@ -130,10 +130,11 @@ class Article(models.Model):
         verbose_name = 'Bài viết'
         verbose_name_plural = 'Quản lý bài viết'
 
-    def save(self, *args, **kwargs): # add slug on save event
+    def save(self, *args, **kwargs):  # add slug on save event
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -144,7 +145,7 @@ class PageInfo(models.Model):
     page_name = models.CharField(max_length=50, null=True)
     logo = models.ImageField(null=True)
     facebook_url = models.CharField(max_length=200, null=True)
-    
+
     class Meta:
         verbose_name = 'Thông tin website'
         verbose_name_plural = 'Quản lý thông tin website'

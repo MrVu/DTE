@@ -31,8 +31,10 @@ class LevelInline(admin.TabularInline):
 class ScholarshipInline(admin.TabularInline):
     model = Scholarship
 
+
 class UniSubjectInline(admin.TabularInline):
     model = UniSubject
+
 
 class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['universityName']
@@ -40,7 +42,6 @@ class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     inlines = [LevelInline, ScholarshipInline]
     filter_horizontal = ('subjects', 'cities', 'uni_subjects')
     readonly_fields = ['slug']
-    
 
 
 class SubjectAdmin(admin.ModelAdmin):
@@ -55,6 +56,7 @@ class BannerAdmin(ImageCroppingMixin, admin.TabularInline):
 class CustomerCommentAdmin(ImageCroppingMixin, admin.TabularInline):
     model = CustomerComment
 
+
 class CompanyAddressAdmin(admin.TabularInline):
     model = CompanyAddress
 
@@ -62,12 +64,16 @@ class CompanyAddressAdmin(admin.TabularInline):
 class PageInfoAdmin(admin.ModelAdmin):
     inlines = [BannerAdmin, CustomerCommentAdmin, CompanyAddressAdmin]
 
+
 class TagAdmin(admin.TabularInline):
     model = Tag
+
 
 class ArticleAdmin(ImageCroppingMixin, admin.ModelAdmin):
     inlines = [TagAdmin]
     readonly_fields = ['slug']
+
+
 # admin.site.register(Level)
 # admin.site.register(Tracking, TrackingAdmin)
 admin.site.register(University, UniversityAdmin)
