@@ -1,24 +1,49 @@
 {% load static %}
 {% load cropping %}
 <!--testimonial area-->
-    <section class="testimonial-area">
-        <div class="container">
-            <div class="heading">
-                <h2>Nhận xét khách hàng</h2>
-            </div>
-            <div class="testimonials wow fadeInUp">
-                {% for comment in page_info.customercomment_set.all %}
-                <div class="testimonial">
-                    <div class="author-img">
-                        <img src="{% cropped_thumbnail comment 'cropping' %}" alt="" class="img-fluid rounded">
+<section class="testimonial-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="heading">
+                    <h2>Nhận xét khách hàng</h2>
+                </div>
+                <div class="testimonials">
+                    {% for comment in page_info.customercomment_set.all %}
+                    <div class="testimonial">
+                        <div class="author-img">
+                            <img src="{% cropped_thumbnail comment 'cropping' %}" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="author-quote">
+                            <h4>{{ comment.name }}, {{ comment.school }}</h4>
+                            <blockquote><i class="fa fa-quote-left"></i> {{ comment.body }} <i
+                                    class="fa fa-quote-right"></i></blockquote>
+                        </div>
                     </div>
-                    <div class="author-quote">
-                        <h4>{{ comment.name }}, {{ comment.school }}</h4>
-                        <blockquote> <i class="fa fa-quote-left"></i> {{ comment.body }} <i class="fa fa-quote-right"></i> </blockquote>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    {% for image in page_info.gallery_set.all %}
+                    <div class="col-md-4">
+                        <a href="#" class="pop"><img class="width-100" src="{% cropped_thumbnail image 'cropping' %}"></a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="" class="imagepreview" style="width: 100%;">
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
-    </section>
-    <!--testimonial end-->
+
+    </div>
+</section>
+<!--testimonial end-->

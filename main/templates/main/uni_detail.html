@@ -1,57 +1,77 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load cropping %}
 {% block content %}
 {% include 'main/carousel.html' %}
 <div class="container-fluid padding">
     <div class="row">
-        <div class="col-md-5">
-            <img class="width-100" src="/media/{{ university.pic }}" alt="">
-            <div class="uni-des">
-                <h5 class="text-bold red-h5">Điều kiện nhập học</h5>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Bậc học</th>
-                        <th scope="col">Điều kiện nhập học</th>
-                        <th scope="col">Học phí</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for l in university.level_set.all %}
-                        <tr>
-                            <td>{{ l.name }}</td>
-                            <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>
-                            <td>{{ l.feeAYear }}£/năm</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <h5 class="text-bold red-h5">Học bổng</h5>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Bậc học</th>
-                        <th scope="col">Giá trị</th>
-                        <th scope="col">Thời hạn</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for c in university.scholarship_set.all %}
-                        <tr>
-                            <td>{{ c.name }}</td>
-                            <td>{{ c.value }}£</td>
-                            <td>{{ c.time }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+        <div class="col-md-4">
+            <!--            <img class="width-100" src="/media/{{ university.pic }}" alt="">-->
+            <iframe width="100%" height="450" style="border:0" loading="lazy" allowfullscreen
+                    src="{{ university.google_map_url }}"></iframe>
+            <div class="row">
+                {% for image in university.uniimage_set.all %}
+                <div class="col-4">
+                    <a href="#" class="pop"><img class="width-100" src="{% cropped_thumbnail image 'cropping' %}"></a>
+                </div>
+                {% endfor %}
             </div>
+            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="" class="imagepreview" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="uni-des">-->
+            <!--                <h5 class="text-bold red-h5">Điều kiện nhập học</h5>-->
+            <!--                <table class="table table-bordered">-->
+            <!--                    <thead>-->
+            <!--                    <tr>-->
+            <!--                        <th scope="col">Bậc học</th>-->
+            <!--                        <th scope="col">Điều kiện nhập học</th>-->
+            <!--                        <th scope="col">Học phí</th>-->
+            <!--                    </tr>-->
+            <!--                    </thead>-->
+            <!--                    <tbody>-->
+            <!--                    {% for l in university.level_set.all %}-->
+            <!--                    <tr>-->
+            <!--                        <td>{{ l.name }}</td>-->
+            <!--                        <td>IELTS >= {{ l.ielts_overall }} (Không môn nào dưới {{ l.ieltsMin }})</td>-->
+            <!--                        <td>{{ l.feeAYear }}£/năm</td>-->
+            <!--                    </tr>-->
+            <!--                    {% endfor %}-->
+            <!--                    </tbody>-->
+            <!--                </table>-->
+            <!--                <h5 class="text-bold red-h5">Học bổng</h5>-->
+            <!--                <table class="table table-bordered">-->
+            <!--                    <thead>-->
+            <!--                    <tr>-->
+            <!--                        <th scope="col">Bậc học</th>-->
+            <!--                        <th scope="col">Giá trị</th>-->
+            <!--                        <th scope="col">Thời hạn</th>-->
+            <!--                    </tr>-->
+            <!--                    </thead>-->
+            <!--                    <tbody>-->
+            <!--                    {% for c in university.scholarship_set.all %}-->
+            <!--                    <tr>-->
+            <!--                        <td>{{ c.name }}</td>-->
+            <!--                        <td>{{ c.value }}£</td>-->
+            <!--                        <td>{{ c.time }}</td>-->
+            <!--                    </tr>-->
+            <!--                    {% endfor %}-->
+            <!--                    </tbody>-->
+            <!--                </table>-->
+            <!--            </div>-->
         </div>
-        <div class="col-md-7 text-start university-description">
+        <div class="col-md-8 text-start university-description">
             <hr class="blue-hr">
             <h2 class="text-bold text-start">Thông tin chung</h2>
-            <div class="uni-des">
+            <div class="pt-4 pe-5">
                 <p>{{ university.description|safe }}</p>
             </div>
         </div>
@@ -59,17 +79,17 @@
 </div>
 <div class="container">
     <div class="row">
-            <h5 class="text-bold red-h5">Các ngành học</h5>
-            {% for subject in university.subjects.all %}
-                <div class="col-md-3">
-                    <div class="img-container">
-                        <img src="/media/{{subject.pic}}" alt="" class="rounded-15 width-100">
-                        <div class="subject-title">
-                            <p>- {{ subject.subjectName }}</p>
-                        </div>
-                    </div>
+        <h5 class="text-bold red-h5">Các ngành học</h5>
+        {% for subject in university.subjects.all %}
+        <div class="col-md-3">
+            <div class="img-container">
+                <img src="/media/{{subject.pic}}" alt="" class="rounded-15 width-100">
+                <div class="subject-title">
+                    <p>- {{ subject.subjectName }}</p>
                 </div>
-            {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

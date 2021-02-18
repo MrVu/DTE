@@ -461,16 +461,11 @@ hr.light {
 
 /*---Media Queries --*/
 @media (max-width: 992px) {
-.top-contact{
-    font-size: 0.9em;
-}
 
 }
 
 @media (max-width: 768px) {
-.top-contact{
-    font-size: 0.8em;
-}
+
 }
 
 @media (max-width: 576px) {

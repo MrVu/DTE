@@ -72,6 +72,7 @@ class University(models.Model):
     pic = models.ImageField(null=True)
     cropping = ImageRatioField('pic', '370x240')
     show_on_homepage = models.BooleanField(null=True, default=False)
+    google_map_url = models.URLField(null=True)
     slug = models.SlugField(null=True, unique=True, blank=True)
 
     def __str__(self):
@@ -86,6 +87,12 @@ class University(models.Model):
         if not self.slug:
             self.slug = slugify(self.universityName)
         return super().save(*args, **kwargs)
+
+
+class UniImage(models.Model):
+    image = models.ImageField(null=True)
+    cropping = ImageRatioField('image', '600x600')
+    uni = models.ForeignKey(University, on_delete=models.CASCADE)
 
 
 class Scholarship(models.Model):
@@ -152,6 +159,12 @@ class PageInfo(models.Model):
 
     def __str__(self):
         return self.page_name
+
+
+class Gallery(models.Model):
+    image = models.ImageField(null=True)
+    cropping = ImageRatioField('image', '600x600')
+    page = models.ForeignKey(PageInfo, on_delete=models.CASCADE)
 
 
 class Banner(models.Model):

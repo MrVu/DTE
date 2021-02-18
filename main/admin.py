@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
 from .models import University, Level, Subject, City, Article, \
-    Scholarship, PageInfo, UniSubject, Banner, CustomerComment, CompanyAddress, Tag
+    Scholarship, PageInfo, UniSubject, Banner, CustomerComment, CompanyAddress, Tag, UniImage, Gallery
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as OrigUserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
@@ -36,10 +36,14 @@ class UniSubjectInline(admin.TabularInline):
     model = UniSubject
 
 
+class UniImageInline(ImageCroppingMixin, admin.TabularInline):
+    model = UniImage
+
+
 class UniversityAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['universityName']
     ordering = ['universityName']
-    inlines = [LevelInline, ScholarshipInline]
+    inlines = [UniImageInline, LevelInline, ScholarshipInline]
     filter_horizontal = ('subjects', 'cities', 'uni_subjects')
     readonly_fields = ['slug']
 
@@ -61,8 +65,13 @@ class CompanyAddressAdmin(admin.TabularInline):
     model = CompanyAddress
 
 
+class GalleryInline(ImageCroppingMixin, admin.TabularInline):
+    model = Gallery
+    max_num = 9
+
+
 class PageInfoAdmin(admin.ModelAdmin):
-    inlines = [BannerAdmin, CustomerCommentAdmin, CompanyAddressAdmin]
+    inlines = [BannerAdmin, CustomerCommentAdmin, CompanyAddressAdmin, GalleryInline]
 
 
 class TagAdmin(admin.TabularInline):

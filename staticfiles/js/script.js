@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 //testimonial slider
 $('.testimonials').slick({
-  slidesToShow: 3,
+  slidesToShow: 1,
   slidesToScroll: 1,
   speed: 300,
   dots: true,
@@ -162,4 +162,12 @@ jQuery(function ($) {
     options = $.extend({}, options || {}, $this.data('countToOptions') || {});
     $this.countTo(options);
   }
+});
+
+//pop-up-img
+$(function() {
+		$('.pop').on('click', function() {
+			$('.imagepreview').attr('src', $(this).find('img').attr('src'));
+			$('#imagemodal').modal('show');
+		});
 });
