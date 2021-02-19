@@ -459,6 +459,25 @@ hr.light {
     font-size: 1em;
 }
 
+.feature-university {
+    width:95% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.custom-arrow-left {
+    height: 200px !important;
+    background-color: #ff000073 !important;
+    width: 20px !important;
+    margin-left: -1rem !important;
+}
+.custom-arrow-right {
+    height: 200px !important;
+    background-color: #ff000073 !important;
+    width: 20px !important;
+    right: -7px !important;
+
+}
+
 /*---Media Queries --*/
 @media (max-width: 992px) {
 

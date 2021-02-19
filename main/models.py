@@ -144,7 +144,7 @@ class Article(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True, help_text='phần tag này copy mục slug bên TRƯỜNG')
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
 

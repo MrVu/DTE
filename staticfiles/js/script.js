@@ -19,6 +19,8 @@ $(document).ready(function () {
     arrows: true,
     autoplay: false,
     autoplaySpeed: 2000,
+    prevArrow: "<button type='button' class='slick-prev pull-left custom-arrow-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+    nextArrow: "<button type='button' class='slick-next pull-right custom-arrow-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
     responsive: [{
         breakpoint: 768,
         settings: {
